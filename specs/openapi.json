@@ -14739,7 +14739,7 @@
                         "properties": {
                           "name": {
                             "description": "The name of the repository (defaults to a random name if not provided)",
-                            "default": "CaeQlFhK",
+                            "default": "UtTVYAzI",
                             "type": "string",
                             "minLength": 1
                           },
@@ -20389,7 +20389,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-08-25T09:35:31.132Z",
+              "default": "2026-08-27T06:33:59.416Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -20494,7 +20494,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-08-25T09:35:31.132Z",
+              "default": "2026-08-27T06:33:59.417Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -21091,7 +21091,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-08-25T09:35:31.132Z",
+              "default": "2026-08-27T06:33:59.417Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -21658,6 +21658,570 @@
               "minLength": 24,
               "maxLength": 24,
               "pattern": "^[0-9a-f]{24}$"
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/users/{username}/followers": {
+      "get": {
+        "summary": "List user followers",
+        "tags": [
+          "users"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "minLength": 24,
+                            "maxLength": 24,
+                            "pattern": "^[0-9a-f]{24}$"
+                          },
+                          "orgs": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "fullname": {
+                                  "type": "string"
+                                },
+                                "avatarUrl": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "name",
+                                "fullname",
+                                "avatarUrl"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "avatarUrl": {
+                            "type": "string"
+                          },
+                          "fullname": {
+                            "type": "string"
+                          },
+                          "isPro": {
+                            "type": "boolean"
+                          },
+                          "user": {
+                            "type": "string"
+                          },
+                          "numModels": {
+                            "type": "number"
+                          },
+                          "numDatasets": {
+                            "type": "number"
+                          },
+                          "numSpaces": {
+                            "type": "number"
+                          },
+                          "numBuckets": {
+                            "type": "number"
+                          },
+                          "numKernels": {
+                            "type": "number"
+                          },
+                          "numDiscussions": {
+                            "type": "number"
+                          },
+                          "numPapers": {
+                            "type": "number"
+                          },
+                          "numUpvotes": {
+                            "type": "number"
+                          },
+                          "numLikes": {
+                            "type": "number"
+                          },
+                          "numFollowers": {
+                            "type": "number"
+                          },
+                          "numFollowing": {
+                            "type": "number"
+                          },
+                          "numFollowingOrgs": {
+                            "type": "number"
+                          },
+                          "details": {
+                            "type": "string"
+                          },
+                          "isFollowing": {
+                            "type": "boolean"
+                          },
+                          "reasonToFollow": {
+                            "type": "string"
+                          },
+                          "primaryOrgAvatarUrl": {
+                            "type": "string"
+                          },
+                          "serviceAccount": {
+                            "description": "Set when the user is a service account",
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "minLength": 24,
+                                "maxLength": 24,
+                                "pattern": "^[0-9a-f]{24}$"
+                              },
+                              "org": {
+                                "type": "string"
+                              },
+                              "orgAvatarUrl": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "org",
+                              "orgAvatarUrl"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "type": {
+                            "const": "user"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "avatarUrl",
+                          "fullname",
+                          "isPro",
+                          "user",
+                          "type"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "description": "Returned when `expand=followedAt` is set",
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "minLength": 24,
+                            "maxLength": 24,
+                            "pattern": "^[0-9a-f]{24}$"
+                          },
+                          "followedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "followedAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "description": "The users following the given user",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                },
+                "description": "Link to the next page"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "description": "Cursor for pagination",
+              "type": "string",
+              "minLength": 24,
+              "maxLength": 24,
+              "pattern": "^[0-9a-fA-F]{24}$"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "description": "Max number of followers to return",
+              "default": 500,
+              "type": "integer",
+              "minimum": 10,
+              "maximum": 10000
+            },
+            "required": false
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "followedAt"
+                ]
+              }
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/users/{username}/following": {
+      "get": {
+        "summary": "List followed users",
+        "tags": [
+          "users"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$"
+                      },
+                      "orgs": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "fullname": {
+                              "type": "string"
+                            },
+                            "avatarUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "fullname",
+                            "avatarUrl"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "avatarUrl": {
+                        "type": "string"
+                      },
+                      "fullname": {
+                        "type": "string"
+                      },
+                      "isPro": {
+                        "type": "boolean"
+                      },
+                      "user": {
+                        "type": "string"
+                      },
+                      "numModels": {
+                        "type": "number"
+                      },
+                      "numDatasets": {
+                        "type": "number"
+                      },
+                      "numSpaces": {
+                        "type": "number"
+                      },
+                      "numBuckets": {
+                        "type": "number"
+                      },
+                      "numKernels": {
+                        "type": "number"
+                      },
+                      "numDiscussions": {
+                        "type": "number"
+                      },
+                      "numPapers": {
+                        "type": "number"
+                      },
+                      "numUpvotes": {
+                        "type": "number"
+                      },
+                      "numLikes": {
+                        "type": "number"
+                      },
+                      "numFollowers": {
+                        "type": "number"
+                      },
+                      "numFollowing": {
+                        "type": "number"
+                      },
+                      "numFollowingOrgs": {
+                        "type": "number"
+                      },
+                      "details": {
+                        "type": "string"
+                      },
+                      "isFollowing": {
+                        "type": "boolean"
+                      },
+                      "reasonToFollow": {
+                        "type": "string"
+                      },
+                      "primaryOrgAvatarUrl": {
+                        "type": "string"
+                      },
+                      "serviceAccount": {
+                        "description": "Set when the user is a service account",
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 24,
+                            "maxLength": 24,
+                            "pattern": "^[0-9a-f]{24}$"
+                          },
+                          "org": {
+                            "type": "string"
+                          },
+                          "orgAvatarUrl": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "org",
+                          "orgAvatarUrl"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "type": {
+                        "const": "user"
+                      }
+                    },
+                    "required": [
+                      "_id",
+                      "avatarUrl",
+                      "fullname",
+                      "isPro",
+                      "user",
+                      "type"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            "description": "The users followed by the given user",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                },
+                "description": "Link to the next page"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "description": "Cursor for pagination",
+              "type": "string",
+              "minLength": 24,
+              "maxLength": 24,
+              "pattern": "^[0-9a-fA-F]{24}$"
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/users/{username}/following/orgs": {
+      "get": {
+        "summary": "List followed organizations",
+        "tags": [
+          "users"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$"
+                      },
+                      "avatarUrl": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "fullname": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "const": "org"
+                      },
+                      "isHf": {
+                        "type": "boolean"
+                      },
+                      "orgType": {
+                        "enum": [
+                          "company",
+                          "university",
+                          "classroom",
+                          "non-profit",
+                          "government",
+                          "community"
+                        ]
+                      },
+                      "plan": {
+                        "enum": [
+                          "team",
+                          "enterprise",
+                          "plus",
+                          "academia"
+                        ]
+                      },
+                      "isFollowing": {
+                        "type": "boolean"
+                      },
+                      "numModels": {
+                        "type": "number"
+                      },
+                      "followerCount": {
+                        "type": "number"
+                      },
+                      "reasonToFollow": {
+                        "type": "string"
+                      },
+                      "emailDomains": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "domain": {
+                              "type": "string"
+                            },
+                            "verified": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "domain"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "_id",
+                      "avatarUrl",
+                      "name",
+                      "fullname",
+                      "type",
+                      "isHf"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            "description": "The organizations followed by the given user",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                },
+                "description": "Link to the next page"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "description": "Cursor for pagination",
+              "type": "string",
+              "minLength": 24,
+              "maxLength": 24,
+              "pattern": "^[0-9a-fA-F]{24}$"
             },
             "required": false
           }
@@ -68874,6 +69438,75 @@
       }
     },
     "/api/collections/{namespace}/{slug}-{id}/items/{itemId}": {
+      "patch": {
+        "description": "Update an item in a collection",
+        "summary": "Update item",
+        "tags": [
+          "collections"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "gallery": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "note": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "position": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
       "delete": {
         "description": "Delete an item from a collection",
         "summary": "Delete item",
@@ -68917,6 +69550,67 @@
       }
     },
     "/api/collections/{namespace}/{slug}/items/{slug}": {
+      "patch": {
+        "description": "Update an item in a collection",
+        "summary": "Update item",
+        "tags": [
+          "collections"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "gallery": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "note": {
+                    "type": "string",
+                    "maxLength": 500
+                  },
+                  "position": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
       "delete": {
         "description": "Delete an item from a collection",
         "summary": "Delete item",
