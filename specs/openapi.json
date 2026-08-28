@@ -14739,7 +14739,7 @@
                         "properties": {
                           "name": {
                             "description": "The name of the repository (defaults to a random name if not provided)",
-                            "default": "UtTVYAzI",
+                            "default": "LkYoMCAa",
                             "type": "string",
                             "minLength": 1
                           },
@@ -20389,7 +20389,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-08-27T06:33:59.416Z",
+              "default": "2026-08-27T16:21:01.057Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -20494,7 +20494,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-08-27T06:33:59.417Z",
+              "default": "2026-08-27T16:21:01.058Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -21091,7 +21091,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-08-27T06:33:59.417Z",
+              "default": "2026-08-27T16:21:01.058Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -23316,6 +23316,18 @@
             "required": false
           },
           {
+            "name": "direction",
+            "in": "query",
+            "schema": {
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "limit",
             "in": "query",
             "schema": {
@@ -23323,6 +23335,18 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 1000
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "default": "size",
+              "enum": [
+                "size",
+                "pushedAt"
+              ]
             },
             "required": false
           },
@@ -23536,6 +23560,18 @@
             "required": false
           },
           {
+            "name": "direction",
+            "in": "query",
+            "schema": {
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "limit",
             "in": "query",
             "schema": {
@@ -23543,6 +23579,18 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 1000
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "default": "size",
+              "enum": [
+                "size",
+                "pushedAt"
+              ]
             },
             "required": false
           },
@@ -23756,6 +23804,18 @@
             "required": false
           },
           {
+            "name": "direction",
+            "in": "query",
+            "schema": {
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          },
+          {
             "name": "limit",
             "in": "query",
             "schema": {
@@ -23763,6 +23823,18 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 1000
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "default": "size",
+              "enum": [
+                "size",
+                "pushedAt"
+              ]
             },
             "required": false
           },
@@ -44970,6 +45042,7 @@
                     "cotracker",
                     "colpali",
                     "comet",
+                    "cortiq",
                     "cosmos",
                     "cxr-foundation",
                     "deepforest",
@@ -45054,6 +45127,7 @@
                     "manas-1",
                     "mars5-tts",
                     "matanyone",
+                    "memra",
                     "mesh-anything",
                     "merlin",
                     "medvae",
@@ -45066,6 +45140,7 @@
                     "mlc-llm",
                     "model2vec",
                     "mobilint",
+                    "montreal-forced-aligner",
                     "moshi",
                     "mtvcraft",
                     "multimolecule",
@@ -45076,6 +45151,7 @@
                     "open-oasis",
                     "open_clip",
                     "openasr",
+                    "opendde",
                     "openpeerllm",
                     "open-sora",
                     "outetts",
@@ -45084,6 +45160,7 @@
                     "peft",
                     "perception-encoder",
                     "phantom-wan",
+                    "piper",
                     "pocket-tts",
                     "pruna-ai",
                     "pxia",
@@ -45099,6 +45176,7 @@
                     "reverb",
                     "rkllm",
                     "robo-orchard-lab",
+                    "routee-powertrain",
                     "rwkv",
                     "saelens",
                     "scail-2",
@@ -45716,6 +45794,7 @@
                           "cotracker",
                           "colpali",
                           "comet",
+                          "cortiq",
                           "cosmos",
                           "cxr-foundation",
                           "deepforest",
@@ -45800,6 +45879,7 @@
                           "manas-1",
                           "mars5-tts",
                           "matanyone",
+                          "memra",
                           "mesh-anything",
                           "merlin",
                           "medvae",
@@ -45812,6 +45892,7 @@
                           "mlc-llm",
                           "model2vec",
                           "mobilint",
+                          "montreal-forced-aligner",
                           "moshi",
                           "mtvcraft",
                           "multimolecule",
@@ -45822,6 +45903,7 @@
                           "open-oasis",
                           "open_clip",
                           "openasr",
+                          "opendde",
                           "openpeerllm",
                           "open-sora",
                           "outetts",
@@ -45830,6 +45912,7 @@
                           "peft",
                           "perception-encoder",
                           "phantom-wan",
+                          "piper",
                           "pocket-tts",
                           "pruna-ai",
                           "pxia",
@@ -45845,6 +45928,7 @@
                           "reverb",
                           "rkllm",
                           "robo-orchard-lab",
+                          "routee-powertrain",
                           "rwkv",
                           "saelens",
                           "scail-2",
@@ -46696,6 +46780,7 @@
                     "cotracker",
                     "colpali",
                     "comet",
+                    "cortiq",
                     "cosmos",
                     "cxr-foundation",
                     "deepforest",
@@ -46780,6 +46865,7 @@
                     "manas-1",
                     "mars5-tts",
                     "matanyone",
+                    "memra",
                     "mesh-anything",
                     "merlin",
                     "medvae",
@@ -46792,6 +46878,7 @@
                     "mlc-llm",
                     "model2vec",
                     "mobilint",
+                    "montreal-forced-aligner",
                     "moshi",
                     "mtvcraft",
                     "multimolecule",
@@ -46802,6 +46889,7 @@
                     "open-oasis",
                     "open_clip",
                     "openasr",
+                    "opendde",
                     "openpeerllm",
                     "open-sora",
                     "outetts",
@@ -46810,6 +46898,7 @@
                     "peft",
                     "perception-encoder",
                     "phantom-wan",
+                    "piper",
                     "pocket-tts",
                     "pruna-ai",
                     "pxia",
@@ -46825,6 +46914,7 @@
                     "reverb",
                     "rkllm",
                     "robo-orchard-lab",
+                    "routee-powertrain",
                     "rwkv",
                     "saelens",
                     "scail-2",
