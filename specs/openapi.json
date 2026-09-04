@@ -4158,6 +4158,8 @@
                           "org.token_approval.authorization_request.authorized",
                           "org.token_approval.authorization_request.revoked",
                           "org.token_approval.authorization_request.denied",
+                          "org.audit_log.export",
+                          "org.repo_analytics.export",
                           "repo.add_secrets",
                           "repo.remove_secrets",
                           "repo.add_secret",
@@ -14739,7 +14741,7 @@
                         "properties": {
                           "name": {
                             "description": "The name of the repository (defaults to a random name if not provided)",
-                            "default": "wsmOJOOQ",
+                            "default": "PUSzfnVt",
                             "type": "string",
                             "minLength": 1
                           },
@@ -19000,6 +19002,173 @@
         ]
       }
     },
+    "/api/blog/{namespace}/{slug}/resource-group": {
+      "get": {
+        "summary": "Get blog resource group",
+        "tags": [
+          "blogs"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "numUsers": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The resource group the blog currently belongs to"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "description": "Assign, move, or unassign an organization-owned blog to a resource group. Pass null to unassign. User-owned blogs are not eligible.",
+        "summary": "Set blog resource group",
+        "tags": [
+          "blogs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "resourceGroupId": {
+                    "description": "The resource group to assign the blog to. If null, the blog is removed from any resource group.",
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-fA-F]{24}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "resourceGroupId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "resourceGroupId": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "private": {
+                      "type": "boolean"
+                    },
+                    "addedBy": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "resourceGroupId",
+                    "id",
+                    "slug",
+                    "title",
+                    "private",
+                    "addedBy"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The blog and its resource group after the assignment"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/docs": {
       "get": {
         "description": "Get list of available documentation",
@@ -20389,7 +20558,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-02T14:00:25.613Z",
+              "default": "2026-09-04T02:08:37.153Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -20494,7 +20663,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-02T14:00:25.614Z",
+              "default": "2026-09-04T02:08:37.154Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -21091,7 +21260,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-02T14:00:25.614Z",
+              "default": "2026-09-04T02:08:37.154Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -44744,6 +44913,36 @@
                     },
                     "kernelsCount": {
                       "type": "number"
+                    },
+                    "blogs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "private": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "slug",
+                          "title",
+                          "private"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "blogsCount": {
+                      "type": "number"
                     }
                   },
                   "required": [
@@ -44763,7 +44962,9 @@
                     "buckets",
                     "bucketsCount",
                     "kernels",
-                    "kernelsCount"
+                    "kernelsCount",
+                    "blogs",
+                    "blogsCount"
                   ],
                   "additionalProperties": false
                 }
@@ -45281,7 +45482,8 @@
                       "paper",
                       "collection",
                       "bucket",
-                      "kernel"
+                      "kernel",
+                      "blog"
                     ]
                   }
                 },
@@ -45437,12 +45639,12 @@
             "name": "exclude",
             "in": "query",
             "schema": {
-              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo",
+              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug",
               "default": [],
               "type": "array",
               "items": {
                 "type": "string",
-                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels)\\/.*"
+                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels|blog)\\/.*"
               }
             },
             "required": false
@@ -46029,7 +46231,8 @@
                             "paper",
                             "collection",
                             "bucket",
-                            "kernel"
+                            "kernel",
+                            "blog"
                           ]
                         }
                       },
@@ -46165,12 +46368,12 @@
                     ]
                   },
                   "exclude": {
-                    "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo",
+                    "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug",
                     "default": [],
                     "type": "array",
                     "items": {
                       "type": "string",
-                      "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels)\\/.*"
+                      "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels|blog)\\/.*"
                     }
                   },
                   "namespace": {
@@ -46484,6 +46687,36 @@
                     },
                     "kernelsCount": {
                       "type": "number"
+                    },
+                    "blogs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "private": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "slug",
+                          "title",
+                          "private"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "blogsCount": {
+                      "type": "number"
                     }
                   },
                   "required": [
@@ -46503,7 +46736,9 @@
                     "buckets",
                     "bucketsCount",
                     "kernels",
-                    "kernelsCount"
+                    "kernelsCount",
+                    "blogs",
+                    "blogsCount"
                   ],
                   "additionalProperties": false
                 }
@@ -47021,7 +47256,8 @@
                       "paper",
                       "collection",
                       "bucket",
-                      "kernel"
+                      "kernel",
+                      "blog"
                     ]
                   }
                 },
@@ -47177,12 +47413,12 @@
             "name": "exclude",
             "in": "query",
             "schema": {
-              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo",
+              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug",
               "default": [],
               "type": "array",
               "items": {
                 "type": "string",
-                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels)\\/.*"
+                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels|blog)\\/.*"
               }
             },
             "required": false
