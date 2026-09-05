@@ -3489,7 +3489,7 @@
     "/api/organizations/{name}/settings/tokens": {
       "get": {
         "description": "List the access tokens of the organization's members. Team or Enterprise only.",
-        "summary": "List member access tokens",
+        "summary": "Member access tokens",
         "tags": [
           "orgs"
         ],
@@ -4067,7 +4067,7 @@
     "/api/organizations/{name}/audit-log/export": {
       "get": {
         "description": "Export the audit log events in JSON format for a Team or Enterprise organization. The export is limited to the last 100,000 events.",
-        "summary": "Export the audit log",
+        "summary": "Export audit log",
         "tags": [
           "orgs"
         ],
@@ -7470,7 +7470,7 @@
     "/api/organizations/{name}/settings/network-security": {
       "get": {
         "description": "Get the network security settings for an organization.",
-        "summary": "Get network security settings",
+        "summary": "Network security settings",
         "tags": [
           "orgs"
         ],
@@ -9164,7 +9164,7 @@
     "/api/organizations/{name}/scim/v2/ResourceTypes": {
       "get": {
         "description": "Returns the list of SCIM 2.0 resource types supported by this server (User and Group).",
-        "summary": "Get SCIM Resource Types",
+        "summary": "SCIM resource types",
         "tags": [
           "scim"
         ],
@@ -9329,7 +9329,7 @@
     "/api/organizations/{name}/scim/v2/Schemas/{schemaId}": {
       "get": {
         "description": "Returns a single SCIM 2.0 schema definition by its schema URI.",
-        "summary": "Get SCIM Schema by ID",
+        "summary": "Get SCIM schema",
         "tags": [
           "scim"
         ],
@@ -9684,7 +9684,7 @@
       },
       "post": {
         "description": "Creates a new user in the organization. If the user already exists, only `active` field will be updated to provision the user.",
-        "summary": "Create a SCIM user",
+        "summary": "Create SCIM user",
         "tags": [
           "scim"
         ],
@@ -9960,7 +9960,7 @@
     "/api/organizations/{name}/scim/v2/Users/{userId}": {
       "get": {
         "description": "Retrieves a SCIM user by their ID.",
-        "summary": "Get a SCIM user",
+        "summary": "Get SCIM user",
         "tags": [
           "scim"
         ],
@@ -10406,7 +10406,7 @@
       },
       "put": {
         "description": "Updates a provisioned user, you'll need to provide all their information fresh - just like setting them up for the first time. Any details you don't include will be automatically removed, so make sure to include everything they need to keep their account running smoothly. Setting `active` to `false` will deprovision the user from the organization.",
-        "summary": "Update a SCIM user",
+        "summary": "Update SCIM user",
         "tags": [
           "scim"
         ],
@@ -10685,7 +10685,7 @@
         ]
       },
       "delete": {
-        "summary": "Delete a SCIM user",
+        "summary": "Delete SCIM user",
         "tags": [
           "scim"
         ],
@@ -10942,7 +10942,7 @@
       },
       "post": {
         "description": "Creates a new group in the organization. The group name must be unique within the organization.",
-        "summary": "Create a SCIM group",
+        "summary": "Create SCIM group",
         "tags": [
           "scim"
         ],
@@ -11120,7 +11120,7 @@
     "/api/organizations/{name}/scim/v2/Groups/{groupId}": {
       "get": {
         "description": "Retrieves a group by its ID. If you provide the `excludedAttributes` parameter, the `members` attribute is not returned.",
-        "summary": "Get a SCIM group",
+        "summary": "Get SCIM group",
         "tags": [
           "scim"
         ],
@@ -11261,7 +11261,7 @@
       },
       "put": {
         "description": "Updates a group by its ID. The group name must be unique within the organization.",
-        "summary": "Update a SCIM group",
+        "summary": "Update SCIM group",
         "tags": [
           "scim"
         ],
@@ -11660,7 +11660,7 @@
         ]
       },
       "delete": {
-        "summary": "Delete a SCIM group",
+        "summary": "Delete SCIM group",
         "tags": [
           "scim"
         ],
@@ -12216,7 +12216,7 @@
     "/api/organizations/{name}/scim-provisioning/v2/Users/{userId}": {
       "get": {
         "description": "Retrieves a SCIM user by their ID for non-managed organizations.",
-        "summary": "Get a SCIM provisioning user",
+        "summary": "SCIM provisioning user",
         "tags": [
           "scim"
         ],
@@ -12657,7 +12657,7 @@
       },
       "put": {
         "description": "Updates a provisioned user's invitation for non-managed organizations. User profile fields are not editable via SCIM for non-managed organizations.",
-        "summary": "Update a SCIM user",
+        "summary": "Update SCIM user",
         "tags": [
           "scim"
         ],
@@ -13160,7 +13160,7 @@
       },
       "post": {
         "description": "Creates a new group in the organization. The group name must be unique within the organization.",
-        "summary": "Create a SCIM group",
+        "summary": "Create SCIM group",
         "tags": [
           "scim"
         ],
@@ -13338,7 +13338,7 @@
     "/api/organizations/{name}/scim-provisioning/v2/Groups/{groupId}": {
       "get": {
         "description": "Retrieves a group by its ID. If you provide the `excludedAttributes` parameter, the `members` attribute is not returned.",
-        "summary": "Get a SCIM group",
+        "summary": "Get SCIM group",
         "tags": [
           "scim"
         ],
@@ -13479,7 +13479,7 @@
       },
       "put": {
         "description": "Updates a group by its ID. The group name must be unique within the organization.",
-        "summary": "Update a SCIM group",
+        "summary": "Update SCIM group",
         "tags": [
           "scim"
         ],
@@ -13878,7 +13878,7 @@
         ]
       },
       "delete": {
-        "summary": "Delete a SCIM group",
+        "summary": "Delete SCIM group",
         "tags": [
           "scim"
         ],
@@ -14741,7 +14741,7 @@
                         "properties": {
                           "name": {
                             "description": "The name of the repository (defaults to a random name if not provided)",
-                            "default": "PUSzfnVt",
+                            "default": "XTTVceVd",
                             "type": "string",
                             "minLength": 1
                           },
@@ -14982,7 +14982,7 @@
     },
     "/api/agentic/provisioning/resources/{id}": {
       "get": {
-        "summary": "Get a resource by ID",
+        "summary": "Resource by ID",
         "tags": [
           "agentic-provisioning"
         ],
@@ -15782,7 +15782,7 @@
     },
     "/oauth/register": {
       "post": {
-        "summary": "Register a new OAuth app",
+        "summary": "Register OAuth app",
         "tags": [
           "oauth"
         ],
@@ -16516,7 +16516,7 @@
     },
     "/api/blog/{slug}/comment": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -17130,7 +17130,7 @@
     },
     "/api/blog/{slug}/comment/{commentId}/reply": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -17750,9 +17750,119 @@
         ]
       }
     },
+    "/api/blog/{slug}/comment/{commentId}/reaction": {
+      "post": {
+        "summary": "React to comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reaction": {
+                    "enum": [
+                      "🔥",
+                      "🚀",
+                      "👀",
+                      "❤️",
+                      "🤗",
+                      "😎",
+                      "➕",
+                      "🧠",
+                      "👍",
+                      "🤝",
+                      "😔",
+                      "🤯"
+                    ]
+                  },
+                  "action": {
+                    "enum": [
+                      "add",
+                      "remove"
+                    ]
+                  }
+                },
+                "required": [
+                  "reaction",
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/blog/{slug}/comment/{commentId}/edit": {
+      "post": {
+        "summary": "Update a comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 65536
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/blog/{namespace}/{slug}/comment": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -18374,7 +18484,7 @@
     },
     "/api/blog/{namespace}/{slug}/comment/{commentId}/reply": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -19002,9 +19112,135 @@
         ]
       }
     },
+    "/api/blog/{namespace}/{slug}/comment/{commentId}/reaction": {
+      "post": {
+        "summary": "React to comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reaction": {
+                    "enum": [
+                      "🔥",
+                      "🚀",
+                      "👀",
+                      "❤️",
+                      "🤗",
+                      "😎",
+                      "➕",
+                      "🧠",
+                      "👍",
+                      "🤝",
+                      "😔",
+                      "🤯"
+                    ]
+                  },
+                  "action": {
+                    "enum": [
+                      "add",
+                      "remove"
+                    ]
+                  }
+                },
+                "required": [
+                  "reaction",
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/blog/{namespace}/{slug}/comment/{commentId}/edit": {
+      "post": {
+        "summary": "Update a comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 65536
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/blog/{namespace}/{slug}/resource-group": {
       "get": {
-        "summary": "Get blog resource group",
+        "summary": "Blog resource group",
         "tags": [
           "blogs"
         ],
@@ -19061,7 +19297,7 @@
       },
       "post": {
         "description": "Assign, move, or unassign an organization-owned blog to a resource group. Pass null to unassign. User-owned blogs are not eligible.",
-        "summary": "Set blog resource group",
+        "summary": "Blog resource group",
         "tags": [
           "blogs"
         ],
@@ -20362,7 +20598,7 @@
     "/api/organizations/{name}/billing/usage-by-resource-group": {
       "get": {
         "description": "Get org usage breakdown per resource group, returned as a time-series of monthly periods. Window is [startDate, endDate], defaults to the current month. Both dates must fall within the last 12 months. Storage values are the peak observed within each monthly period.",
-        "summary": "Get resource group usage",
+        "summary": "Resource group usage",
         "tags": [
           "orgs"
         ],
@@ -20558,7 +20794,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-04T02:08:37.153Z",
+              "default": "2026-09-04T20:59:44.091Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -20571,7 +20807,7 @@
     "/api/organizations/{name}/billing/usage-by-inference-session": {
       "get": {
         "description": "Get org inference-provider usage broken down per session id, as a time-series of monthly periods.",
-        "summary": "Get session inference usage",
+        "summary": "Session inference usage",
         "tags": [
           "orgs"
         ],
@@ -20663,7 +20899,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-04T02:08:37.154Z",
+              "default": "2026-09-04T20:59:44.092Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -21176,7 +21412,7 @@
     "/api/settings/billing/usage-by-inference-session": {
       "get": {
         "description": "Get user inference-provider usage broken down per session id",
-        "summary": "Get session inference usage",
+        "summary": "Session inference usage",
         "tags": [
           "users"
         ],
@@ -21260,7 +21496,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-04T02:08:37.154Z",
+              "default": "2026-09-04T20:59:44.092Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z)$"
@@ -26364,7 +26600,7 @@
     },
     "/api/models/{namespace}/{repo}/compare/{compare}": {
       "get": {
-        "summary": "Get a compare rev",
+        "summary": "Get compare rev",
         "tags": [
           "models"
         ],
@@ -26419,7 +26655,7 @@
     },
     "/api/datasets/{namespace}/{repo}/compare/{compare}": {
       "get": {
-        "summary": "Get a compare rev",
+        "summary": "Get compare rev",
         "tags": [
           "datasets"
         ],
@@ -26474,7 +26710,7 @@
     },
     "/api/spaces/{namespace}/{repo}/compare/{compare}": {
       "get": {
-        "summary": "Get a compare rev",
+        "summary": "Get compare rev",
         "tags": [
           "spaces"
         ],
@@ -33598,7 +33834,7 @@
         ]
       },
       "post": {
-        "summary": "Create a new discussion",
+        "summary": "Create discussion",
         "tags": [
           "discussions"
         ],
@@ -39258,7 +39494,7 @@
     },
     "/api/{repoType}/{namespace}/{repo}/discussions/{num}/comment": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -40686,7 +40922,7 @@
     },
     "/api/{repoType}/{namespace}/{repo}/discussions/{num}/merge": {
       "post": {
-        "summary": "Merge a pull request",
+        "summary": "Merge pull request",
         "tags": [
           "discussions"
         ],
@@ -40864,6 +41100,176 @@
           },
           {
             "name": "num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/{repoType}/{namespace}/{repo}/discussions/{num}/comment/{commentId}/edit": {
+      "post": {
+        "summary": "Update a comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 65536
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "models",
+                "spaces",
+                "datasets",
+                "kernels"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/{repoType}/{namespace}/{repo}/discussions/{num}/comment/{commentId}/reaction": {
+      "post": {
+        "summary": "React to comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reaction": {
+                    "enum": [
+                      "🔥",
+                      "🚀",
+                      "👀",
+                      "❤️",
+                      "🤗",
+                      "😎",
+                      "➕",
+                      "🧠",
+                      "👍",
+                      "🤝",
+                      "😔",
+                      "🤯"
+                    ]
+                  },
+                  "action": {
+                    "enum": [
+                      "add",
+                      "remove"
+                    ]
+                  }
+                },
+                "required": [
+                  "reaction",
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "models",
+                "spaces",
+                "datasets",
+                "kernels"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
             "in": "path",
             "required": true,
             "schema": {
@@ -48405,7 +48811,7 @@
     },
     "/api/repos/create": {
       "post": {
-        "summary": "Create a new repository",
+        "summary": "Create repository",
         "tags": [
           "repos"
         ],
@@ -51391,7 +51797,7 @@
     "/api/models/{namespace}/{repo}/user-access-request/batch": {
       "post": {
         "description": "Accept, reject or reset to pending up to 100 access requests for a single gated repository in one call. The same `status` (and optional `rejectionReason`) is applied to every request in the list.",
-        "summary": "Batch handle access requests",
+        "summary": "Batch access requests",
         "tags": [
           "models"
         ],
@@ -51503,7 +51909,7 @@
     "/api/datasets/{namespace}/{repo}/user-access-request/batch": {
       "post": {
         "description": "Accept, reject or reset to pending up to 100 access requests for a single gated repository in one call. The same `status` (and optional `rejectionReason`) is applied to every request in the list.",
-        "summary": "Batch handle access requests",
+        "summary": "Batch access requests",
         "tags": [
           "datasets"
         ],
@@ -51818,6 +52224,145 @@
         ]
       }
     },
+    "/api/spaces/{namespace}/{repo}/hardware": {
+      "post": {
+        "summary": "Update hardware flavor",
+        "tags": [
+          "spaces"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "flavor": {
+                    "enum": [
+                      "cpu-basic",
+                      "cpu-upgrade",
+                      "cpu-performance",
+                      "cpu-xl",
+                      "sprx8",
+                      "zero-a10g",
+                      "t4-small",
+                      "t4-medium",
+                      "l4x1",
+                      "l4x4",
+                      "l40sx1",
+                      "l40sx4",
+                      "l40sx8",
+                      "a10g-small",
+                      "a10g-large",
+                      "a10g-largex2",
+                      "a10g-largex4",
+                      "a100-large",
+                      "a100x4",
+                      "a100x8",
+                      "h200",
+                      "h200x2",
+                      "h200x4",
+                      "h200x8",
+                      "rtx-pro-6000",
+                      "rtx-pro-6000x2",
+                      "rtx-pro-6000x4",
+                      "rtx-pro-6000x8",
+                      "inf2x6"
+                    ]
+                  },
+                  "sleepTimeSeconds": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "const": -1
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "flavor"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/spaces/{namespace}/{repo}/sleeptime": {
+      "post": {
+        "summary": "Set sleep time",
+        "tags": [
+          "spaces"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "seconds": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "const": -1
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "seconds"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/spaces/{namespace}/{repo}/logs/{logType}": {
       "get": {
         "description": "Get logs for a specific Space in a streaming fashion, with SSE protocol",
@@ -51910,6 +52455,50 @@
         "tags": [
           "spaces"
         ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/spaces/{namespace}/{repo}/dev-mode": {
+      "post": {
+        "summary": "Toggle dev mode",
+        "tags": [
+          "spaces"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "namespace",
@@ -54039,7 +54628,7 @@
     },
     "/api/papers/{paperId}/comment": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -54653,7 +55242,7 @@
     },
     "/api/papers/{paperId}/comment/{commentId}/reply": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -55273,6 +55862,116 @@
         ]
       }
     },
+    "/api/papers/{paperId}/comment/{commentId}/edit": {
+      "post": {
+        "summary": "Update a comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 65536
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/papers/{paperId}/comment/{commentId}/reaction": {
+      "post": {
+        "summary": "React to comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reaction": {
+                    "enum": [
+                      "🔥",
+                      "🚀",
+                      "👀",
+                      "❤️",
+                      "🤗",
+                      "😎",
+                      "➕",
+                      "🧠",
+                      "👍",
+                      "🤝",
+                      "😔",
+                      "🤯"
+                    ]
+                  },
+                  "action": {
+                    "enum": [
+                      "add",
+                      "remove"
+                    ]
+                  }
+                },
+                "required": [
+                  "reaction",
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/papers/{paperId}/links": {
       "post": {
         "description": "Update the project page, GitHub repository, or submitting organization for a paper. Requires the requester to be the paper author, the Daily Papers submitter, or a papers admin.",
@@ -55382,7 +56081,7 @@
     },
     "/api/posts/{username}/{postSlug}/comment": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -56004,7 +56703,7 @@
     },
     "/api/posts/{username}/{postSlug}/comment/{commentId}/reply": {
       "post": {
-        "summary": "Create a new comment",
+        "summary": "Create comment",
         "tags": [
           "discussions"
         ],
@@ -56602,6 +57301,132 @@
               }
             },
             "description": "New comment created"
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/posts/{username}/{postSlug}/comment/{commentId}/reaction": {
+      "post": {
+        "summary": "React to comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reaction": {
+                    "enum": [
+                      "🔥",
+                      "🚀",
+                      "👀",
+                      "❤️",
+                      "🤗",
+                      "😎",
+                      "➕",
+                      "🧠",
+                      "👍",
+                      "🤝",
+                      "😔",
+                      "🤯"
+                    ]
+                  },
+                  "action": {
+                    "enum": [
+                      "add",
+                      "remove"
+                    ]
+                  }
+                },
+                "required": [
+                  "reaction",
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/posts/{username}/{postSlug}/comment/{commentId}/edit": {
+      "post": {
+        "summary": "Update a comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 65536
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            }
           }
         },
         "parameters": [
@@ -74496,7 +75321,7 @@
     },
     "/api/collections/{namespace}/{slug}-{id}/resource-group": {
       "get": {
-        "summary": "Get collection resource group",
+        "summary": "Collection resource group",
         "tags": [
           "collections"
         ],
@@ -74561,7 +75386,7 @@
       },
       "post": {
         "description": "Assign, move, or unassign an organization-owned collection to a resource group. Pass null to unassign. User-owned collections are not eligible.",
-        "summary": "Set collection resource group",
+        "summary": "Collection resource group",
         "tags": [
           "collections"
         ],
@@ -74662,7 +75487,7 @@
     },
     "/api/collections/{namespace}/{slug}/resource-group": {
       "get": {
-        "summary": "Get collection resource group",
+        "summary": "Collection resource group",
         "tags": [
           "collections"
         ],
@@ -74719,7 +75544,7 @@
       },
       "post": {
         "description": "Assign, move, or unassign an organization-owned collection to a resource group. Pass null to unassign. User-owned collections are not eligible.",
-        "summary": "Set collection resource group",
+        "summary": "Collection resource group",
         "tags": [
           "collections"
         ],
@@ -79463,7 +80288,7 @@
     "/api/jobs/{namespace}/{jobId}/expose": {
       "put": {
         "description": "Replace the exposed ports of a running job, applied live (no re-run). Ports listed in `portsPublic` are reachable without any authentication.",
-        "summary": "Update job exposed ports",
+        "summary": "Job exposed ports",
         "tags": [
           "jobs"
         ],
@@ -79975,7 +80800,7 @@
     },
     "/api/scheduled-jobs/{namespace}": {
       "post": {
-        "summary": "Create a scheduled job",
+        "summary": "Create scheduled job",
         "tags": [
           "jobs"
         ],
@@ -81042,7 +81867,7 @@
     },
     "/api/scheduled-jobs/{namespace}/{jobId}": {
       "get": {
-        "summary": "Get a scheduled job",
+        "summary": "Get scheduled job",
         "tags": [
           "jobs"
         ],
@@ -81455,7 +82280,7 @@
         ]
       },
       "delete": {
-        "summary": "Delete a scheduled job",
+        "summary": "Delete scheduled job",
         "tags": [
           "jobs"
         ],
@@ -81481,7 +82306,7 @@
     },
     "/api/scheduled-jobs/{namespace}/{jobId}/suspend": {
       "post": {
-        "summary": "Suspend a scheduled job",
+        "summary": "Suspend scheduled job",
         "tags": [
           "jobs"
         ],
@@ -81507,7 +82332,7 @@
     },
     "/api/scheduled-jobs/{namespace}/{jobId}/resume": {
       "post": {
-        "summary": "Resume a scheduled job",
+        "summary": "Resume scheduled job",
         "tags": [
           "jobs"
         ],
@@ -82468,7 +83293,7 @@
     "/api/scheduled-jobs/{namespace}/{jobId}/labels": {
       "put": {
         "description": "Replace user-provided labels on a scheduled job",
-        "summary": "Update scheduled job labels",
+        "summary": "Scheduled job labels",
         "tags": [
           "jobs"
         ],
