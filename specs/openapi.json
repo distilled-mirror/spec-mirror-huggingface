@@ -8791,15 +8791,11 @@
                   "type": "object",
                   "properties": {
                     "enforceAuth": {
-                      "anyOf": [
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "type": "string",
-                          "const": "pending"
-                        }
-                      ]
+                      "type": "boolean"
+                    },
+                    "areCidrRangesApproved": {
+                      "type": "boolean",
+                      "description": "Whether the declared ipRanges match the admin-validated CIDR ranges"
                     },
                     "enforceIpRestriction": {
                       "type": "boolean"
@@ -8889,6 +8885,7 @@
                   },
                   "required": [
                     "enforceAuth",
+                    "areCidrRangesApproved",
                     "enforceIpRestriction",
                     "highRateLimits",
                     "ipRanges",
@@ -9038,15 +9035,11 @@
                   "type": "object",
                   "properties": {
                     "enforceAuth": {
-                      "anyOf": [
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "type": "string",
-                          "const": "pending"
-                        }
-                      ]
+                      "type": "boolean"
+                    },
+                    "areCidrRangesApproved": {
+                      "type": "boolean",
+                      "description": "Whether the declared ipRanges match the admin-validated CIDR ranges"
                     },
                     "enforceIpRestriction": {
                       "type": "boolean"
@@ -9136,6 +9129,7 @@
                   },
                   "required": [
                     "enforceAuth",
+                    "areCidrRangesApproved",
                     "enforceIpRestriction",
                     "highRateLimits",
                     "ipRanges",
@@ -16172,7 +16166,7 @@
                         "type": "object",
                         "properties": {
                           "name": {
-                            "default": "vssdgjRd",
+                            "default": "boagJZpI",
                             "description": "The name of the repository (defaults to a random name if not provided)",
                             "type": "string",
                             "minLength": 1
@@ -22498,7 +22492,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-08T16:28:27.099Z",
+              "default": "2026-09-10T00:34:20.763Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -22603,7 +22597,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-08T16:28:27.100Z",
+              "default": "2026-09-10T00:34:20.763Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23200,7 +23194,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-08T16:28:27.100Z",
+              "default": "2026-09-10T00:34:20.763Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -81855,6 +81849,10 @@
                       "us",
                       "eu"
                     ]
+                  },
+                  "container": {
+                    "description": "Create a container (Docker image) repository usable with the HF container registry.",
+                    "type": "boolean"
                   }
                 },
                 "description": "Bucket creation options"
