@@ -324,6 +324,34 @@
               "ports"
             ],
             "additionalProperties": false
+          },
+          "network": {
+            "description": "Network group the job belongs to.",
+            "type": "object",
+            "properties": {
+              "group": {
+                "type": "string",
+                "maxLength": 46,
+                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                "description": "Group name, scoped to the job's owner and resource group."
+              },
+              "aliases": {
+                "default": [],
+                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 34,
+                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                }
+              }
+            },
+            "required": [
+              "group",
+              "aliases"
+            ],
+            "additionalProperties": false
           }
         },
         "required": [
@@ -2160,6 +2188,32 @@
                               }
                             }
                           },
+                          "network": {
+                            "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                            "type": "object",
+                            "properties": {
+                              "group": {
+                                "type": "string",
+                                "maxLength": 46,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                                "description": "Group name, scoped to the job's owner and resource group."
+                              },
+                              "aliases": {
+                                "default": [],
+                                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 34,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            },
+                            "required": [
+                              "group"
+                            ]
+                          },
                           "resourceGroupId": {
                             "type": "string",
                             "minLength": 24,
@@ -2381,6 +2435,32 @@
                                 "type": "boolean"
                               }
                             }
+                          },
+                          "network": {
+                            "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                            "type": "object",
+                            "properties": {
+                              "group": {
+                                "type": "string",
+                                "maxLength": 46,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                                "description": "Group name, scoped to the job's owner and resource group."
+                              },
+                              "aliases": {
+                                "default": [],
+                                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 34,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            },
+                            "required": [
+                              "group"
+                            ]
                           },
                           "resourceGroupId": {
                             "type": "string",
@@ -3393,6 +3473,32 @@
                               }
                             }
                           },
+                          "network": {
+                            "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                            "type": "object",
+                            "properties": {
+                              "group": {
+                                "type": "string",
+                                "maxLength": 46,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                                "description": "Group name, scoped to the job's owner and resource group."
+                              },
+                              "aliases": {
+                                "default": [],
+                                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 34,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            },
+                            "required": [
+                              "group"
+                            ]
+                          },
                           "resourceGroupId": {
                             "type": "string",
                             "minLength": 24,
@@ -3614,6 +3720,32 @@
                                 "type": "boolean"
                               }
                             }
+                          },
+                          "network": {
+                            "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                            "type": "object",
+                            "properties": {
+                              "group": {
+                                "type": "string",
+                                "maxLength": 46,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                                "description": "Group name, scoped to the job's owner and resource group."
+                              },
+                              "aliases": {
+                                "default": [],
+                                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 34,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            },
+                            "required": [
+                              "group"
+                            ]
                           },
                           "resourceGroupId": {
                             "type": "string",
@@ -16166,7 +16298,7 @@
                         "type": "object",
                         "properties": {
                           "name": {
-                            "default": "boagJZpI",
+                            "default": "ZczviFMF",
                             "description": "The name of the repository (defaults to a random name if not provided)",
                             "type": "string",
                             "minLength": 1
@@ -21804,464 +21936,6 @@
         }
       }
     },
-    "/api/organizations/{name}/billing/usage": {
-      "get": {
-        "description": "Get org usage for a given period",
-        "summary": "Get org usage",
-        "tags": [
-          "orgs"
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$schema": "https://json-schema.org/draft/2020-12/schema",
-                  "type": "object",
-                  "properties": {
-                    "usage": {
-                      "type": "object",
-                      "propertyNames": {
-                        "type": "string",
-                        "enum": [
-                          "Endpoints",
-                          "Spaces"
-                        ]
-                      },
-                      "additionalProperties": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "entityId": {
-                              "type": "string",
-                              "minLength": 24,
-                              "maxLength": 24,
-                              "pattern": "^[0-9a-f]{24}$",
-                              "description": "A hex string of 24 characters representing an ObjectId."
-                            },
-                            "label": {
-                              "type": [
-                                "string",
-                                "null"
-                              ]
-                            },
-                            "product": {
-                              "type": "string",
-                              "enum": [
-                                "hf/repository-storage",
-                                "jobs/cpu-basic/minutes",
-                                "jobs/cpu-upgrade/minutes",
-                                "jobs/cpu-performance/minutes",
-                                "jobs/cpu-xl/minutes",
-                                "jobs/sprx8/minutes",
-                                "jobs/t4-small/minutes",
-                                "jobs/t4-medium/minutes",
-                                "jobs/a10g-small/minutes",
-                                "jobs/a10g-large/minutes",
-                                "jobs/a10g-largex2/minutes",
-                                "jobs/a10g-largex4/minutes",
-                                "jobs/a100-large/minutes",
-                                "jobs/a100x4/minutes",
-                                "jobs/a100x8/minutes",
-                                "jobs/h100/minutes",
-                                "jobs/h100x8/minutes",
-                                "jobs/h200/minutes",
-                                "jobs/h200x2/minutes",
-                                "jobs/h200x4/minutes",
-                                "jobs/h200x8/minutes",
-                                "jobs/rtx-pro-6000/minutes",
-                                "jobs/rtx-pro-6000x2/minutes",
-                                "jobs/rtx-pro-6000x4/minutes",
-                                "jobs/rtx-pro-6000x8/minutes",
-                                "jobs/l4x1/minutes",
-                                "jobs/l4x4/minutes",
-                                "jobs/l40sx1/minutes",
-                                "jobs/l40sx4/minutes",
-                                "jobs/l40sx8/minutes",
-                                "jobs/v5e-2x4/minutes",
-                                "jobs/v5e-2x2/minutes",
-                                "jobs/v5e-1x1/minutes",
-                                "jobs/inf2x6/minutes",
-                                "spaces/zero-a10g/minutes",
-                                "spaces/cpu-basic/minutes",
-                                "spaces/cpu-upgrade/minutes",
-                                "spaces/cpu-performance/minutes",
-                                "spaces/cpu-xl/minutes",
-                                "spaces/sprx8/minutes",
-                                "spaces/t4-small/minutes",
-                                "spaces/t4-medium/minutes",
-                                "spaces/a10g-small/minutes",
-                                "spaces/a10g-large/minutes",
-                                "spaces/a10g-largex2/minutes",
-                                "spaces/a10g-largex4/minutes",
-                                "spaces/a100-large/minutes",
-                                "spaces/a100x4/minutes",
-                                "spaces/a100x8/minutes",
-                                "spaces/h100/minutes",
-                                "spaces/h100x8/minutes",
-                                "spaces/h200/minutes",
-                                "spaces/h200x2/minutes",
-                                "spaces/h200x4/minutes",
-                                "spaces/h200x8/minutes",
-                                "spaces/rtx-pro-6000/minutes",
-                                "spaces/rtx-pro-6000x2/minutes",
-                                "spaces/rtx-pro-6000x4/minutes",
-                                "spaces/rtx-pro-6000x8/minutes",
-                                "spaces/l4x1/minutes",
-                                "spaces/l4x4/minutes",
-                                "spaces/l40sx1/minutes",
-                                "spaces/l40sx4/minutes",
-                                "spaces/l40sx8/minutes",
-                                "spaces/inf2x6/minutes",
-                                "spaces/v5e-2x4/minutes",
-                                "spaces/v5e-2x2/minutes",
-                                "spaces/v5e-1x1/minutes",
-                                "spaces/storage-small/minutes",
-                                "spaces/storage-medium/minutes",
-                                "spaces/storage-large/minutes",
-                                "endpoints/azure/intel-xeon/x1",
-                                "endpoints/azure/intel-xeon/x2",
-                                "endpoints/azure/intel-xeon/x4",
-                                "endpoints/azure/intel-xeon/x8",
-                                "endpoints/aws/intel-icl/x1",
-                                "endpoints/aws/intel-icl/x2",
-                                "endpoints/aws/intel-icl/x4",
-                                "endpoints/aws/intel-icl/x8",
-                                "endpoints/aws/intel-spr/x1",
-                                "endpoints/aws/intel-spr/x2",
-                                "endpoints/aws/intel-spr/x4",
-                                "endpoints/aws/intel-spr/x8",
-                                "endpoints/aws/intel-spr/x16",
-                                "endpoints/aws/intel-spr-overcommitted/x16",
-                                "endpoints/aws/nvidia-t4/x1",
-                                "endpoints/aws/nvidia-t4/x4",
-                                "endpoints/aws/nvidia-l4/x1",
-                                "endpoints/aws/nvidia-l4/x4",
-                                "endpoints/aws/nvidia-l40s/x1",
-                                "endpoints/aws/nvidia-l40s/x4",
-                                "endpoints/aws/nvidia-l40s/x8",
-                                "endpoints/aws/nvidia-a10g/x1",
-                                "endpoints/aws/nvidia-a10g/x4",
-                                "endpoints/aws/nvidia-a100/x1",
-                                "endpoints/aws/nvidia-a100/x2",
-                                "endpoints/aws/nvidia-a100/x4",
-                                "endpoints/aws/nvidia-a100/x8",
-                                "endpoints/aws/nvidia-h100/x1",
-                                "endpoints/aws/nvidia-h100/x2",
-                                "endpoints/aws/nvidia-h100/x4",
-                                "endpoints/aws/nvidia-h100/x8",
-                                "endpoints/aws/nvidia-h200/x1",
-                                "endpoints/aws/nvidia-h200/x2",
-                                "endpoints/aws/nvidia-h200/x4",
-                                "endpoints/aws/nvidia-h200/x8",
-                                "endpoints/aws/nvidia-b200/x1",
-                                "endpoints/aws/nvidia-b200/x2",
-                                "endpoints/aws/nvidia-b200/x4",
-                                "endpoints/aws/nvidia-b200/x8",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x1",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x2",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x4",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x8",
-                                "endpoints/aws/inf2/x1",
-                                "endpoints/aws/inf2/x1-large",
-                                "endpoints/aws/inf2/x12",
-                                "endpoints/gcp/intel-spr/x1",
-                                "endpoints/gcp/intel-spr/x2",
-                                "endpoints/gcp/intel-spr/x4",
-                                "endpoints/gcp/intel-spr/x8",
-                                "endpoints/gcp/nvidia-t4/x1",
-                                "endpoints/gcp/nvidia-l4/x1",
-                                "endpoints/gcp/nvidia-l4/x4",
-                                "endpoints/gcp/nvidia-a100/x1",
-                                "endpoints/gcp/nvidia-a100/x2",
-                                "endpoints/gcp/nvidia-a100/x4",
-                                "endpoints/gcp/nvidia-a100/x8",
-                                "endpoints/gcp/nvidia-h100/x1",
-                                "endpoints/gcp/nvidia-h100/x2",
-                                "endpoints/gcp/nvidia-h100/x4",
-                                "endpoints/gcp/nvidia-h100/x8",
-                                "endpoints/gcp/v5e/1x1",
-                                "endpoints/gcp/v5e/2x2",
-                                "endpoints/gcp/v5e/2x4"
-                              ]
-                            },
-                            "quantity": {
-                              "type": "number"
-                            },
-                            "startedAt": {
-                              "type": "string",
-                              "format": "date-time",
-                              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                            },
-                            "stoppedAt": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "format": "date-time",
-                                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                                },
-                                {
-                                  "type": "null"
-                                }
-                              ]
-                            },
-                            "freeGrant": {
-                              "type": "boolean"
-                            },
-                            "productPrettyName": {
-                              "type": "string"
-                            },
-                            "unitLabel": {
-                              "type": [
-                                "string",
-                                "null"
-                              ]
-                            },
-                            "totalCostMicroUSD": {
-                              "type": "number"
-                            },
-                            "unitCostMicroUSD": {
-                              "type": "number"
-                            },
-                            "active": {
-                              "type": "boolean"
-                            }
-                          },
-                          "required": [
-                            "entityId",
-                            "label",
-                            "product",
-                            "quantity",
-                            "productPrettyName",
-                            "unitLabel",
-                            "totalCostMicroUSD",
-                            "unitCostMicroUSD",
-                            "active"
-                          ],
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "period": {
-                      "type": "object",
-                      "properties": {
-                        "_id": {
-                          "type": "string",
-                          "minLength": 24,
-                          "maxLength": 24,
-                          "pattern": "^[0-9a-f]{24}$",
-                          "description": "A hex string of 24 characters representing an ObjectId."
-                        },
-                        "entityId": {
-                          "type": "string",
-                          "minLength": 24,
-                          "maxLength": 24,
-                          "pattern": "^[0-9a-f]{24}$",
-                          "description": "A hex string of 24 characters representing an ObjectId."
-                        },
-                        "entityType": {
-                          "type": "string",
-                          "enum": [
-                            "user",
-                            "org"
-                          ]
-                        },
-                        "entityName": {
-                          "type": "string"
-                        },
-                        "periodStart": {
-                          "type": "string",
-                          "format": "date-time",
-                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                        },
-                        "periodEnd": {
-                          "type": "string",
-                          "format": "date-time",
-                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                        },
-                        "invoice": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "const": "stripe"
-                                },
-                                "id": {
-                                  "type": "string"
-                                },
-                                "amountDueCents": {
-                                  "type": "number"
-                                },
-                                "totalCents": {
-                                  "type": "number"
-                                },
-                                "status": {
-                                  "type": "string",
-                                  "enum": [
-                                    "draft",
-                                    "open",
-                                    "paid",
-                                    "uncollectible",
-                                    "void",
-                                    "unpaid"
-                                  ]
-                                },
-                                "dueDate": {
-                                  "type": "string",
-                                  "format": "date-time",
-                                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                                },
-                                "collectionMethod": {
-                                  "type": "string",
-                                  "enum": [
-                                    "charge_automatically",
-                                    "send_invoice"
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "id",
-                                "amountDueCents",
-                                "totalCents",
-                                "status",
-                                "dueDate"
-                              ],
-                              "additionalProperties": false
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "const": "no-invoice"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "const": "no-invoice"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "id"
-                              ],
-                              "additionalProperties": false
-                            }
-                          ]
-                        },
-                        "charges": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "_id": {
-                                "type": "string",
-                                "minLength": 24,
-                                "maxLength": 24,
-                                "pattern": "^[0-9a-f]{24}$",
-                                "description": "A hex string of 24 characters representing an ObjectId."
-                              },
-                              "createdAt": {
-                                "type": "string",
-                                "format": "date-time",
-                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                              },
-                              "dueDate": {
-                                "type": "string",
-                                "format": "date-time",
-                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                              },
-                              "usageAtChargeTimeMicroUSD": {
-                                "type": "number"
-                              },
-                              "amountCents": {
-                                "type": "number"
-                              },
-                              "billedThrough": {
-                                "type": "string",
-                                "enum": [
-                                  "stripe-payment-intent"
-                                ]
-                              },
-                              "paymentIntentId": {
-                                "type": "string"
-                              },
-                              "paymentIntentStatus": {
-                                "type": "string",
-                                "enum": [
-                                  "canceled",
-                                  "processing",
-                                  "requires_action",
-                                  "requires_capture",
-                                  "requires_confirmation",
-                                  "requires_payment_method",
-                                  "succeeded"
-                                ]
-                              }
-                            },
-                            "required": [
-                              "_id",
-                              "createdAt",
-                              "dueDate",
-                              "usageAtChargeTimeMicroUSD",
-                              "amountCents",
-                              "billedThrough",
-                              "paymentIntentId",
-                              "paymentIntentStatus"
-                            ],
-                            "additionalProperties": false
-                          }
-                        }
-                      },
-                      "required": [
-                        "_id",
-                        "entityId",
-                        "entityType",
-                        "entityName",
-                        "periodStart",
-                        "periodEnd"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "usage",
-                    "period"
-                  ],
-                  "additionalProperties": false
-                }
-              }
-            },
-            "description": "Usage and period information"
-          }
-        },
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "periodId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "minLength": 24,
-              "maxLength": 24,
-              "pattern": "^[0-9a-f]{24}$",
-              "description": "A hex string of 24 characters representing an ObjectId."
-            },
-            "required": false
-          }
-        ]
-      }
-    },
     "/api/organizations/{name}/billing/usage-v2": {
       "get": {
         "description": "Get org usage for a given period",
@@ -22492,7 +22166,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-10T00:34:20.763Z",
+              "default": "2026-09-10T16:55:28.906Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -22597,7 +22271,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-10T00:34:20.763Z",
+              "default": "2026-09-10T16:55:28.906Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -22622,456 +22296,6 @@
             "schema": {
               "type": "string"
             }
-          }
-        ]
-      }
-    },
-    "/api/settings/billing/usage": {
-      "get": {
-        "description": "Get user usage for a given period",
-        "summary": "Get user usage",
-        "tags": [
-          "users"
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$schema": "https://json-schema.org/draft/2020-12/schema",
-                  "type": "object",
-                  "properties": {
-                    "usage": {
-                      "type": "object",
-                      "propertyNames": {
-                        "type": "string",
-                        "enum": [
-                          "Endpoints",
-                          "Spaces"
-                        ]
-                      },
-                      "additionalProperties": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "entityId": {
-                              "type": "string",
-                              "minLength": 24,
-                              "maxLength": 24,
-                              "pattern": "^[0-9a-f]{24}$",
-                              "description": "A hex string of 24 characters representing an ObjectId."
-                            },
-                            "label": {
-                              "type": [
-                                "string",
-                                "null"
-                              ]
-                            },
-                            "product": {
-                              "type": "string",
-                              "enum": [
-                                "hf/repository-storage",
-                                "jobs/cpu-basic/minutes",
-                                "jobs/cpu-upgrade/minutes",
-                                "jobs/cpu-performance/minutes",
-                                "jobs/cpu-xl/minutes",
-                                "jobs/sprx8/minutes",
-                                "jobs/t4-small/minutes",
-                                "jobs/t4-medium/minutes",
-                                "jobs/a10g-small/minutes",
-                                "jobs/a10g-large/minutes",
-                                "jobs/a10g-largex2/minutes",
-                                "jobs/a10g-largex4/minutes",
-                                "jobs/a100-large/minutes",
-                                "jobs/a100x4/minutes",
-                                "jobs/a100x8/minutes",
-                                "jobs/h100/minutes",
-                                "jobs/h100x8/minutes",
-                                "jobs/h200/minutes",
-                                "jobs/h200x2/minutes",
-                                "jobs/h200x4/minutes",
-                                "jobs/h200x8/minutes",
-                                "jobs/rtx-pro-6000/minutes",
-                                "jobs/rtx-pro-6000x2/minutes",
-                                "jobs/rtx-pro-6000x4/minutes",
-                                "jobs/rtx-pro-6000x8/minutes",
-                                "jobs/l4x1/minutes",
-                                "jobs/l4x4/minutes",
-                                "jobs/l40sx1/minutes",
-                                "jobs/l40sx4/minutes",
-                                "jobs/l40sx8/minutes",
-                                "jobs/v5e-2x4/minutes",
-                                "jobs/v5e-2x2/minutes",
-                                "jobs/v5e-1x1/minutes",
-                                "jobs/inf2x6/minutes",
-                                "spaces/zero-a10g/minutes",
-                                "spaces/cpu-basic/minutes",
-                                "spaces/cpu-upgrade/minutes",
-                                "spaces/cpu-performance/minutes",
-                                "spaces/cpu-xl/minutes",
-                                "spaces/sprx8/minutes",
-                                "spaces/t4-small/minutes",
-                                "spaces/t4-medium/minutes",
-                                "spaces/a10g-small/minutes",
-                                "spaces/a10g-large/minutes",
-                                "spaces/a10g-largex2/minutes",
-                                "spaces/a10g-largex4/minutes",
-                                "spaces/a100-large/minutes",
-                                "spaces/a100x4/minutes",
-                                "spaces/a100x8/minutes",
-                                "spaces/h100/minutes",
-                                "spaces/h100x8/minutes",
-                                "spaces/h200/minutes",
-                                "spaces/h200x2/minutes",
-                                "spaces/h200x4/minutes",
-                                "spaces/h200x8/minutes",
-                                "spaces/rtx-pro-6000/minutes",
-                                "spaces/rtx-pro-6000x2/minutes",
-                                "spaces/rtx-pro-6000x4/minutes",
-                                "spaces/rtx-pro-6000x8/minutes",
-                                "spaces/l4x1/minutes",
-                                "spaces/l4x4/minutes",
-                                "spaces/l40sx1/minutes",
-                                "spaces/l40sx4/minutes",
-                                "spaces/l40sx8/minutes",
-                                "spaces/inf2x6/minutes",
-                                "spaces/v5e-2x4/minutes",
-                                "spaces/v5e-2x2/minutes",
-                                "spaces/v5e-1x1/minutes",
-                                "spaces/storage-small/minutes",
-                                "spaces/storage-medium/minutes",
-                                "spaces/storage-large/minutes",
-                                "endpoints/azure/intel-xeon/x1",
-                                "endpoints/azure/intel-xeon/x2",
-                                "endpoints/azure/intel-xeon/x4",
-                                "endpoints/azure/intel-xeon/x8",
-                                "endpoints/aws/intel-icl/x1",
-                                "endpoints/aws/intel-icl/x2",
-                                "endpoints/aws/intel-icl/x4",
-                                "endpoints/aws/intel-icl/x8",
-                                "endpoints/aws/intel-spr/x1",
-                                "endpoints/aws/intel-spr/x2",
-                                "endpoints/aws/intel-spr/x4",
-                                "endpoints/aws/intel-spr/x8",
-                                "endpoints/aws/intel-spr/x16",
-                                "endpoints/aws/intel-spr-overcommitted/x16",
-                                "endpoints/aws/nvidia-t4/x1",
-                                "endpoints/aws/nvidia-t4/x4",
-                                "endpoints/aws/nvidia-l4/x1",
-                                "endpoints/aws/nvidia-l4/x4",
-                                "endpoints/aws/nvidia-l40s/x1",
-                                "endpoints/aws/nvidia-l40s/x4",
-                                "endpoints/aws/nvidia-l40s/x8",
-                                "endpoints/aws/nvidia-a10g/x1",
-                                "endpoints/aws/nvidia-a10g/x4",
-                                "endpoints/aws/nvidia-a100/x1",
-                                "endpoints/aws/nvidia-a100/x2",
-                                "endpoints/aws/nvidia-a100/x4",
-                                "endpoints/aws/nvidia-a100/x8",
-                                "endpoints/aws/nvidia-h100/x1",
-                                "endpoints/aws/nvidia-h100/x2",
-                                "endpoints/aws/nvidia-h100/x4",
-                                "endpoints/aws/nvidia-h100/x8",
-                                "endpoints/aws/nvidia-h200/x1",
-                                "endpoints/aws/nvidia-h200/x2",
-                                "endpoints/aws/nvidia-h200/x4",
-                                "endpoints/aws/nvidia-h200/x8",
-                                "endpoints/aws/nvidia-b200/x1",
-                                "endpoints/aws/nvidia-b200/x2",
-                                "endpoints/aws/nvidia-b200/x4",
-                                "endpoints/aws/nvidia-b200/x8",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x1",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x2",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x4",
-                                "endpoints/aws/nvidia-rtx-pro-6000/x8",
-                                "endpoints/aws/inf2/x1",
-                                "endpoints/aws/inf2/x1-large",
-                                "endpoints/aws/inf2/x12",
-                                "endpoints/gcp/intel-spr/x1",
-                                "endpoints/gcp/intel-spr/x2",
-                                "endpoints/gcp/intel-spr/x4",
-                                "endpoints/gcp/intel-spr/x8",
-                                "endpoints/gcp/nvidia-t4/x1",
-                                "endpoints/gcp/nvidia-l4/x1",
-                                "endpoints/gcp/nvidia-l4/x4",
-                                "endpoints/gcp/nvidia-a100/x1",
-                                "endpoints/gcp/nvidia-a100/x2",
-                                "endpoints/gcp/nvidia-a100/x4",
-                                "endpoints/gcp/nvidia-a100/x8",
-                                "endpoints/gcp/nvidia-h100/x1",
-                                "endpoints/gcp/nvidia-h100/x2",
-                                "endpoints/gcp/nvidia-h100/x4",
-                                "endpoints/gcp/nvidia-h100/x8",
-                                "endpoints/gcp/v5e/1x1",
-                                "endpoints/gcp/v5e/2x2",
-                                "endpoints/gcp/v5e/2x4"
-                              ]
-                            },
-                            "quantity": {
-                              "type": "number"
-                            },
-                            "startedAt": {
-                              "type": "string",
-                              "format": "date-time",
-                              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                            },
-                            "stoppedAt": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "format": "date-time",
-                                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                                },
-                                {
-                                  "type": "null"
-                                }
-                              ]
-                            },
-                            "freeGrant": {
-                              "type": "boolean"
-                            },
-                            "productPrettyName": {
-                              "type": "string"
-                            },
-                            "unitLabel": {
-                              "type": [
-                                "string",
-                                "null"
-                              ]
-                            },
-                            "totalCostMicroUSD": {
-                              "type": "number"
-                            },
-                            "unitCostMicroUSD": {
-                              "type": "number"
-                            },
-                            "active": {
-                              "type": "boolean"
-                            }
-                          },
-                          "required": [
-                            "entityId",
-                            "label",
-                            "product",
-                            "quantity",
-                            "productPrettyName",
-                            "unitLabel",
-                            "totalCostMicroUSD",
-                            "unitCostMicroUSD",
-                            "active"
-                          ],
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "period": {
-                      "type": "object",
-                      "properties": {
-                        "_id": {
-                          "type": "string",
-                          "minLength": 24,
-                          "maxLength": 24,
-                          "pattern": "^[0-9a-f]{24}$",
-                          "description": "A hex string of 24 characters representing an ObjectId."
-                        },
-                        "entityId": {
-                          "type": "string",
-                          "minLength": 24,
-                          "maxLength": 24,
-                          "pattern": "^[0-9a-f]{24}$",
-                          "description": "A hex string of 24 characters representing an ObjectId."
-                        },
-                        "entityType": {
-                          "type": "string",
-                          "enum": [
-                            "user",
-                            "org"
-                          ]
-                        },
-                        "entityName": {
-                          "type": "string"
-                        },
-                        "periodStart": {
-                          "type": "string",
-                          "format": "date-time",
-                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                        },
-                        "periodEnd": {
-                          "type": "string",
-                          "format": "date-time",
-                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                        },
-                        "invoice": {
-                          "oneOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "const": "stripe"
-                                },
-                                "id": {
-                                  "type": "string"
-                                },
-                                "amountDueCents": {
-                                  "type": "number"
-                                },
-                                "totalCents": {
-                                  "type": "number"
-                                },
-                                "status": {
-                                  "type": "string",
-                                  "enum": [
-                                    "draft",
-                                    "open",
-                                    "paid",
-                                    "uncollectible",
-                                    "void",
-                                    "unpaid"
-                                  ]
-                                },
-                                "dueDate": {
-                                  "type": "string",
-                                  "format": "date-time",
-                                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                                },
-                                "collectionMethod": {
-                                  "type": "string",
-                                  "enum": [
-                                    "charge_automatically",
-                                    "send_invoice"
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "id",
-                                "amountDueCents",
-                                "totalCents",
-                                "status",
-                                "dueDate"
-                              ],
-                              "additionalProperties": false
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "const": "no-invoice"
-                                },
-                                "id": {
-                                  "type": "string",
-                                  "const": "no-invoice"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "id"
-                              ],
-                              "additionalProperties": false
-                            }
-                          ]
-                        },
-                        "charges": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "_id": {
-                                "type": "string",
-                                "minLength": 24,
-                                "maxLength": 24,
-                                "pattern": "^[0-9a-f]{24}$",
-                                "description": "A hex string of 24 characters representing an ObjectId."
-                              },
-                              "createdAt": {
-                                "type": "string",
-                                "format": "date-time",
-                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                              },
-                              "dueDate": {
-                                "type": "string",
-                                "format": "date-time",
-                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                              },
-                              "usageAtChargeTimeMicroUSD": {
-                                "type": "number"
-                              },
-                              "amountCents": {
-                                "type": "number"
-                              },
-                              "billedThrough": {
-                                "type": "string",
-                                "enum": [
-                                  "stripe-payment-intent"
-                                ]
-                              },
-                              "paymentIntentId": {
-                                "type": "string"
-                              },
-                              "paymentIntentStatus": {
-                                "type": "string",
-                                "enum": [
-                                  "canceled",
-                                  "processing",
-                                  "requires_action",
-                                  "requires_capture",
-                                  "requires_confirmation",
-                                  "requires_payment_method",
-                                  "succeeded"
-                                ]
-                              }
-                            },
-                            "required": [
-                              "_id",
-                              "createdAt",
-                              "dueDate",
-                              "usageAtChargeTimeMicroUSD",
-                              "amountCents",
-                              "billedThrough",
-                              "paymentIntentId",
-                              "paymentIntentStatus"
-                            ],
-                            "additionalProperties": false
-                          }
-                        }
-                      },
-                      "required": [
-                        "_id",
-                        "entityId",
-                        "entityType",
-                        "entityName",
-                        "periodStart",
-                        "periodEnd"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "usage",
-                    "period"
-                  ],
-                  "additionalProperties": false
-                }
-              }
-            },
-            "description": "Usage and period information"
-          }
-        },
-        "parameters": [
-          {
-            "name": "periodId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "minLength": 24,
-              "maxLength": 24,
-              "pattern": "^[0-9a-f]{24}$",
-              "description": "A hex string of 24 characters representing an ObjectId."
-            },
-            "required": false
           }
         ]
       }
@@ -23194,7 +22418,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-10T00:34:20.763Z",
+              "default": "2026-09-10T16:55:28.906Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -83311,6 +82535,34 @@
                         ],
                         "additionalProperties": false
                       },
+                      "network": {
+                        "description": "Network group the job belongs to.",
+                        "type": "object",
+                        "properties": {
+                          "group": {
+                            "type": "string",
+                            "maxLength": 46,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                            "description": "Group name, scoped to the job's owner and resource group."
+                          },
+                          "aliases": {
+                            "default": [],
+                            "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                            "maxItems": 20,
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "maxLength": 34,
+                              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                            }
+                          }
+                        },
+                        "required": [
+                          "group",
+                          "aliases"
+                        ],
+                        "additionalProperties": false
+                      },
                       "type": {
                         "type": "string",
                         "const": "job"
@@ -83889,6 +83141,32 @@
                           }
                         }
                       },
+                      "network": {
+                        "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                        "type": "object",
+                        "properties": {
+                          "group": {
+                            "type": "string",
+                            "maxLength": 46,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                            "description": "Group name, scoped to the job's owner and resource group."
+                          },
+                          "aliases": {
+                            "default": [],
+                            "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                            "maxItems": 20,
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "maxLength": 34,
+                              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                            }
+                          }
+                        },
+                        "required": [
+                          "group"
+                        ]
+                      },
                       "resourceGroupId": {
                         "type": "string",
                         "minLength": 24,
@@ -84111,6 +83389,32 @@
                           }
                         }
                       },
+                      "network": {
+                        "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                        "type": "object",
+                        "properties": {
+                          "group": {
+                            "type": "string",
+                            "maxLength": 46,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                            "description": "Group name, scoped to the job's owner and resource group."
+                          },
+                          "aliases": {
+                            "default": [],
+                            "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                            "maxItems": 20,
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "maxLength": 34,
+                              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                            }
+                          }
+                        },
+                        "required": [
+                          "group"
+                        ]
+                      },
                       "resourceGroupId": {
                         "type": "string",
                         "minLength": 24,
@@ -84320,6 +83624,34 @@
                       },
                       "required": [
                         "ports"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "network": {
+                      "description": "Network group the job belongs to.",
+                      "type": "object",
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "maxLength": 46,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                          "description": "Group name, scoped to the job's owner and resource group."
+                        },
+                        "aliases": {
+                          "default": [],
+                          "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                          "maxItems": 20,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "maxLength": 34,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      },
+                      "required": [
+                        "group",
+                        "aliases"
                       ],
                       "additionalProperties": false
                     },
@@ -84876,6 +84208,34 @@
                       },
                       "required": [
                         "ports"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "network": {
+                      "description": "Network group the job belongs to.",
+                      "type": "object",
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "maxLength": 46,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                          "description": "Group name, scoped to the job's owner and resource group."
+                        },
+                        "aliases": {
+                          "default": [],
+                          "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                          "maxItems": 20,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "maxLength": 34,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      },
+                      "required": [
+                        "group",
+                        "aliases"
                       ],
                       "additionalProperties": false
                     },
@@ -85460,6 +84820,34 @@
                       ],
                       "additionalProperties": false
                     },
+                    "network": {
+                      "description": "Network group the job belongs to.",
+                      "type": "object",
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "maxLength": 46,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                          "description": "Group name, scoped to the job's owner and resource group."
+                        },
+                        "aliases": {
+                          "default": [],
+                          "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                          "maxItems": 20,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "maxLength": 34,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      },
+                      "required": [
+                        "group",
+                        "aliases"
+                      ],
+                      "additionalProperties": false
+                    },
                     "type": {
                       "type": "string",
                       "const": "job"
@@ -85947,6 +85335,34 @@
                       },
                       "required": [
                         "ports"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "network": {
+                      "description": "Network group the job belongs to.",
+                      "type": "object",
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "maxLength": 46,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                          "description": "Group name, scoped to the job's owner and resource group."
+                        },
+                        "aliases": {
+                          "default": [],
+                          "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                          "maxItems": 20,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "maxLength": 34,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      },
+                      "required": [
+                        "group",
+                        "aliases"
                       ],
                       "additionalProperties": false
                     },
@@ -86466,6 +85882,34 @@
                       },
                       "required": [
                         "ports"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "network": {
+                      "description": "Network group the job belongs to.",
+                      "type": "object",
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "maxLength": 46,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                          "description": "Group name, scoped to the job's owner and resource group."
+                        },
+                        "aliases": {
+                          "default": [],
+                          "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                          "maxItems": 20,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "maxLength": 34,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      },
+                      "required": [
+                        "group",
+                        "aliases"
                       ],
                       "additionalProperties": false
                     },
@@ -86993,6 +86437,34 @@
                       ],
                       "additionalProperties": false
                     },
+                    "network": {
+                      "description": "Network group the job belongs to.",
+                      "type": "object",
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "maxLength": 46,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                          "description": "Group name, scoped to the job's owner and resource group."
+                        },
+                        "aliases": {
+                          "default": [],
+                          "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                          "maxItems": 20,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "maxLength": 34,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      },
+                      "required": [
+                        "group",
+                        "aliases"
+                      ],
+                      "additionalProperties": false
+                    },
                     "type": {
                       "type": "string",
                       "const": "job"
@@ -87506,6 +86978,32 @@
                               }
                             }
                           },
+                          "network": {
+                            "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                            "type": "object",
+                            "properties": {
+                              "group": {
+                                "type": "string",
+                                "maxLength": 46,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                                "description": "Group name, scoped to the job's owner and resource group."
+                              },
+                              "aliases": {
+                                "default": [],
+                                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 34,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            },
+                            "required": [
+                              "group"
+                            ]
+                          },
                           "resourceGroupId": {
                             "type": "string",
                             "minLength": 24,
@@ -87727,6 +87225,32 @@
                                 "type": "boolean"
                               }
                             }
+                          },
+                          "network": {
+                            "description": "Opt-in network group. Jobs of the same owner and resource group sharing a group are placed together and reach each other on every port. Two environment variables are set in the container: `HF_NETWORK_GROUP_HOSTNAME`, a hostname resolving to every member of the group, and `HF_NETWORK_GROUP_PREFIX`, to which an alias is appended to get that alias' hostname.",
+                            "type": "object",
+                            "properties": {
+                              "group": {
+                                "type": "string",
+                                "maxLength": 46,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                                "description": "Group name, scoped to the job's owner and resource group."
+                              },
+                              "aliases": {
+                                "default": [],
+                                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 34,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            },
+                            "required": [
+                              "group"
+                            ]
                           },
                           "resourceGroupId": {
                             "type": "string",
@@ -88065,6 +87589,34 @@
                           },
                           "required": [
                             "ports"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "network": {
+                          "description": "Network group the job belongs to.",
+                          "type": "object",
+                          "properties": {
+                            "group": {
+                              "type": "string",
+                              "maxLength": 46,
+                              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                              "description": "Group name, scoped to the job's owner and resource group."
+                            },
+                            "aliases": {
+                              "default": [],
+                              "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                              "maxItems": 20,
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "maxLength": 34,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                              }
+                            }
+                          },
+                          "required": [
+                            "group",
+                            "aliases"
                           ],
                           "additionalProperties": false
                         },
@@ -88483,6 +88035,34 @@
                             },
                             "required": [
                               "ports"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "network": {
+                            "description": "Network group the job belongs to.",
+                            "type": "object",
+                            "properties": {
+                              "group": {
+                                "type": "string",
+                                "maxLength": 46,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                                "description": "Group name, scoped to the job's owner and resource group."
+                              },
+                              "aliases": {
+                                "default": [],
+                                "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                                "maxItems": 20,
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "maxLength": 34,
+                                  "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                                }
+                              }
+                            },
+                            "required": [
+                              "group",
+                              "aliases"
                             ],
                             "additionalProperties": false
                           },
@@ -88914,6 +88494,34 @@
                           ],
                           "additionalProperties": false
                         },
+                        "network": {
+                          "description": "Network group the job belongs to.",
+                          "type": "object",
+                          "properties": {
+                            "group": {
+                              "type": "string",
+                              "maxLength": 46,
+                              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                              "description": "Group name, scoped to the job's owner and resource group."
+                            },
+                            "aliases": {
+                              "default": [],
+                              "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                              "maxItems": 20,
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "maxLength": 34,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                              }
+                            }
+                          },
+                          "required": [
+                            "group",
+                            "aliases"
+                          ],
+                          "additionalProperties": false
+                        },
                         "resourceGroup": {
                           "type": "object",
                           "properties": {
@@ -89306,6 +88914,34 @@
                       },
                       "required": [
                         "ports"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "network": {
+                      "description": "Network group the job belongs to.",
+                      "type": "object",
+                      "properties": {
+                        "group": {
+                          "type": "string",
+                          "maxLength": 46,
+                          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                          "description": "Group name, scoped to the job's owner and resource group."
+                        },
+                        "aliases": {
+                          "default": [],
+                          "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                          "maxItems": 20,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "maxLength": 34,
+                            "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                          }
+                        }
+                      },
+                      "required": [
+                        "group",
+                        "aliases"
                       ],
                       "additionalProperties": false
                     },
@@ -89946,6 +89582,34 @@
                           ],
                           "additionalProperties": false
                         },
+                        "network": {
+                          "description": "Network group the job belongs to.",
+                          "type": "object",
+                          "properties": {
+                            "group": {
+                              "type": "string",
+                              "maxLength": 46,
+                              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                              "description": "Group name, scoped to the job's owner and resource group."
+                            },
+                            "aliases": {
+                              "default": [],
+                              "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                              "maxItems": 20,
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "maxLength": 34,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                              }
+                            }
+                          },
+                          "required": [
+                            "group",
+                            "aliases"
+                          ],
+                          "additionalProperties": false
+                        },
                         "resourceGroup": {
                           "type": "object",
                           "properties": {
@@ -90398,6 +90062,34 @@
                           },
                           "required": [
                             "ports"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "network": {
+                          "description": "Network group the job belongs to.",
+                          "type": "object",
+                          "properties": {
+                            "group": {
+                              "type": "string",
+                              "maxLength": 46,
+                              "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+                              "description": "Group name, scoped to the job's owner and resource group."
+                            },
+                            "aliases": {
+                              "default": [],
+                              "description": "Roles this job answers to. An alias names a role, not a job: several members may claim the same alias, which then resolves to all of them, and a member may claim several. Peers get the hostname by appending the alias to the `HF_NETWORK_GROUP_PREFIX` environment variable, which already ends with a separator.",
+                              "maxItems": 20,
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "maxLength": 34,
+                                "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+                              }
+                            }
+                          },
+                          "required": [
+                            "group",
+                            "aliases"
                           ],
                           "additionalProperties": false
                         },
