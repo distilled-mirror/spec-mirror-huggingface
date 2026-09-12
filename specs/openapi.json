@@ -1045,8 +1045,7 @@
                       "type": "string",
                       "minLength": 24,
                       "maxLength": 24,
-                      "pattern": "^[0-9a-f]{24}$",
-                      "description": "A hex string of 24 characters representing an ObjectId."
+                      "pattern": "^[0-9a-fA-F]{24}$"
                     }
                   }
                 }
@@ -4671,6 +4670,168 @@
               }
             },
             "description": "Paper authorship claim result, including the claimed paper id"
+          }
+        }
+      }
+    },
+    "/api/settings/inference-providers": {
+      "post": {
+        "summary": "Reorder inference providers",
+        "tags": [
+          "inference-providers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "enum": [
+                    "baseten",
+                    "cohere",
+                    "cerebras",
+                    "deepinfra",
+                    "fal-ai",
+                    "featherless-ai",
+                    "fireworks-ai",
+                    "groq",
+                    "hf-inference",
+                    "novita",
+                    "nscale",
+                    "ovhcloud",
+                    "publicai",
+                    "replicate",
+                    "scaleway",
+                    "together",
+                    "wavespeed",
+                    "zai-org"
+                  ]
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "position": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "enabled",
+                    "position"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/inference-providers/api-key": {
+      "post": {
+        "summary": "Set provider key",
+        "tags": [
+          "inference-providers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "enum": [
+                      "baseten",
+                      "cohere",
+                      "cerebras",
+                      "deepinfra",
+                      "fal-ai",
+                      "featherless-ai",
+                      "fireworks-ai",
+                      "groq",
+                      "novita",
+                      "nscale",
+                      "ovhcloud",
+                      "publicai",
+                      "replicate",
+                      "scaleway",
+                      "together",
+                      "wavespeed",
+                      "zai-org"
+                    ]
+                  },
+                  "apiKey": {
+                    "type": "string",
+                    "maxLength": 1024
+                  }
+                },
+                "required": [
+                  "provider",
+                  "apiKey"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/inference-providers/default-billing-entity": {
+      "put": {
+        "summary": "Default billing entity",
+        "tags": [
+          "inference-providers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "orgId": {
+                    "type": "string",
+                    "minLength": 24,
+                    "maxLength": 24,
+                    "pattern": "^[0-9a-fA-F]{24}$"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/settings/inference-providers/usage-limits": {
+      "put": {
+        "summary": "Set spending limit",
+        "tags": [
+          "inference-providers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "spendingLimitCents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 200000
+                  }
+                },
+                "required": [
+                  "spendingLimitCents"
+                ]
+              }
+            }
           }
         }
       }
@@ -16298,7 +16459,7 @@
                         "type": "object",
                         "properties": {
                           "name": {
-                            "default": "ZczviFMF",
+                            "default": "JhFdgbgD",
                             "description": "The name of the repository (defaults to a random name if not provided)",
                             "type": "string",
                             "minLength": 1
@@ -19537,6 +19698,55 @@
         ]
       }
     },
+    "/api/blog/{slug}/comment/{commentId}/hide": {
+      "post": {
+        "summary": "Hide comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "enum": [
+                      "Spam",
+                      "Abuse",
+                      "Graphic Content",
+                      "Resolved",
+                      "Off-Topic",
+                      "Low Quality"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/blog/{slug}/comment/{commentId}/edit": {
       "post": {
         "summary": "Update a comment",
@@ -21021,6 +21231,63 @@
         ]
       }
     },
+    "/api/blog/{namespace}/{slug}/comment/{commentId}/hide": {
+      "post": {
+        "summary": "Hide comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "enum": [
+                      "Spam",
+                      "Abuse",
+                      "Graphic Content",
+                      "Resolved",
+                      "Off-Topic",
+                      "Low Quality"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/blog/{namespace}/{slug}/comment/{commentId}/edit": {
       "post": {
         "summary": "Update a comment",
@@ -21241,6 +21508,48 @@
             "schema": {
               "type": "string"
             }
+          }
+        ]
+      }
+    },
+    "/api/blog/zh": {
+      "get": {
+        "summary": "List blogs",
+        "tags": [
+          "blogs"
+        ],
+        "parameters": [
+          {
+            "name": "p",
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "required": false
+          },
+          {
+            "name": "community_sort",
+            "in": "query",
+            "schema": {
+              "default": "trending",
+              "type": "string",
+              "enum": [
+                "trending",
+                "recent"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
           }
         ]
       }
@@ -22166,7 +22475,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-10T16:55:28.906Z",
+              "default": "2026-09-11T12:52:22.649Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -22271,7 +22580,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-10T16:55:28.906Z",
+              "default": "2026-09-11T12:52:22.650Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -22418,7 +22727,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-10T16:55:28.906Z",
+              "default": "2026-09-11T12:52:22.650Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -22993,7 +23302,7 @@
               "type": "string",
               "minLength": 24,
               "maxLength": 24,
-              "pattern": "^[0-9a-f]{24}$"
+              "pattern": "^[0-9a-fA-F]{24}$"
             },
             "required": false
           }
@@ -24249,6 +24558,166 @@
                 "write"
               ]
             }
+          }
+        ]
+      }
+    },
+    "/api/models/{namespace}/{repo}/likers": {
+      "get": {
+        "summary": "List likers",
+        "tags": [
+          "models"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "likedAt"
+                ]
+              }
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/datasets/{namespace}/{repo}/likers": {
+      "get": {
+        "summary": "List likers",
+        "tags": [
+          "datasets"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "likedAt"
+                ]
+              }
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/spaces/{namespace}/{repo}/likers": {
+      "get": {
+        "summary": "List likers",
+        "tags": [
+          "spaces"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "likedAt"
+                ]
+              }
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/kernels/{namespace}/{repo}/likers": {
+      "get": {
+        "summary": "List likers",
+        "tags": [
+          "kernels"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "likedAt"
+                ]
+              }
+            },
+            "required": false
           }
         ]
       }
@@ -31176,8 +31645,7 @@
                         "type": "string",
                         "minLength": 24,
                         "maxLength": 24,
-                        "pattern": "^[0-9a-f]{24}$",
-                        "description": "A hex string of 24 characters representing an ObjectId."
+                        "pattern": "^[0-9a-fA-F]{24}$"
                       },
                       {
                         "type": "null"
@@ -31331,8 +31799,7 @@
                         "type": "string",
                         "minLength": 24,
                         "maxLength": 24,
-                        "pattern": "^[0-9a-f]{24}$",
-                        "description": "A hex string of 24 characters representing an ObjectId."
+                        "pattern": "^[0-9a-fA-F]{24}$"
                       },
                       {
                         "type": "null"
@@ -31486,8 +31953,7 @@
                         "type": "string",
                         "minLength": 24,
                         "maxLength": 24,
-                        "pattern": "^[0-9a-f]{24}$",
-                        "description": "A hex string of 24 characters representing an ObjectId."
+                        "pattern": "^[0-9a-fA-F]{24}$"
                       },
                       {
                         "type": "null"
@@ -31641,8 +32107,7 @@
                         "type": "string",
                         "minLength": 24,
                         "maxLength": 24,
-                        "pattern": "^[0-9a-f]{24}$",
-                        "description": "A hex string of 24 characters representing an ObjectId."
+                        "pattern": "^[0-9a-fA-F]{24}$"
                       },
                       {
                         "type": "null"
@@ -43798,6 +44263,76 @@
         ]
       }
     },
+    "/api/{repoType}/{namespace}/{repo}/discussions/{num}/ignore": {
+      "post": {
+        "summary": "Toggle ignore discussion",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "add",
+                      "remove"
+                    ]
+                  }
+                },
+                "required": [
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "models",
+                "spaces",
+                "datasets",
+                "kernels"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/{repoType}/{namespace}/{repo}/discussions/{num}/comment/{commentId}/edit": {
       "post": {
         "summary": "Update a comment",
@@ -43820,6 +44355,85 @@
                 "required": [
                   "content"
                 ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "models",
+                "spaces",
+                "datasets",
+                "kernels"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/{repoType}/{namespace}/{repo}/discussions/{num}/comment/{commentId}/hide": {
+      "post": {
+        "summary": "Hide comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "enum": [
+                      "Spam",
+                      "Abuse",
+                      "Graphic Content",
+                      "Resolved",
+                      "Off-Topic",
+                      "Low Quality"
+                    ]
+                  }
+                }
               }
             }
           }
@@ -45186,6 +45800,36 @@
             }
           }
         ]
+      }
+    },
+    "/api/kernels/access-request/approve": {
+      "post": {
+        "summary": "Approve kernel access",
+        "tags": [
+          "kernels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "namespace": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sendEmail": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "namespace"
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "/api/datasets/{namespace}/{repo}/leaderboard": {
@@ -50729,6 +51373,89 @@
         ]
       }
     },
+    "/api/search/full-text": {
+      "get": {
+        "summary": "Full-text search",
+        "tags": [
+          "repo-search"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "default": "",
+              "type": "string",
+              "maxLength": 250
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "default": 20,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "required": false
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "default": 0,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "required": false
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "dataset",
+                    "model",
+                    "space",
+                    "bucket",
+                    "kernel"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "dataset",
+                      "model",
+                      "space",
+                      "bucket",
+                      "kernel"
+                    ]
+                  }
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "required": false
+          }
+        ]
+      }
+    },
     "/api/spaces/hardware": {
       "get": {
         "description": "Get available space hardware",
@@ -51335,17 +52062,10 @@
                   "resourceGroupId": {
                     "anyOf": [
                       {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "minLength": 24,
-                            "maxLength": 24,
-                            "pattern": "^[0-9a-fA-F]{24}$"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-fA-F]{24}$"
                       },
                       {
                         "type": "null"
@@ -55071,7 +55791,7 @@
                     "type": "string",
                     "minLength": 24,
                     "maxLength": 24,
-                    "pattern": "^[0-9a-f]{24}$"
+                    "pattern": "^[0-9a-fA-F]{24}$"
                   },
                   "user": {
                     "description": "Either userId or user must be provided",
@@ -55136,7 +55856,7 @@
                     "type": "string",
                     "minLength": 24,
                     "maxLength": 24,
-                    "pattern": "^[0-9a-f]{24}$"
+                    "pattern": "^[0-9a-fA-F]{24}$"
                   },
                   "user": {
                     "description": "Either userId or user must be provided",
@@ -55220,7 +55940,7 @@
                           "type": "string",
                           "minLength": 24,
                           "maxLength": 24,
-                          "pattern": "^[0-9a-f]{24}$"
+                          "pattern": "^[0-9a-fA-F]{24}$"
                         },
                         "user": {
                           "description": "Either userId or user must be provided",
@@ -55334,7 +56054,7 @@
                           "type": "string",
                           "minLength": 24,
                           "maxLength": 24,
-                          "pattern": "^[0-9a-f]{24}$"
+                          "pattern": "^[0-9a-fA-F]{24}$"
                         },
                         "user": {
                           "description": "Either userId or user must be provided",
@@ -55428,8 +56148,7 @@
                     "type": "string",
                     "minLength": 24,
                     "maxLength": 24,
-                    "pattern": "^[0-9a-f]{24}$",
-                    "description": "A hex string of 24 characters representing an ObjectId."
+                    "pattern": "^[0-9a-fA-F]{24}$"
                   },
                   "user": {
                     "type": "string"
@@ -55478,8 +56197,7 @@
                     "type": "string",
                     "minLength": 24,
                     "maxLength": 24,
-                    "pattern": "^[0-9a-f]{24}$",
-                    "description": "A hex string of 24 characters representing an ObjectId."
+                    "pattern": "^[0-9a-fA-F]{24}$"
                   },
                   "user": {
                     "type": "string"
@@ -55913,6 +56631,180 @@
             "schema": {
               "type": "string"
             }
+          }
+        ]
+      }
+    },
+    "/api/spaces/{namespace}/{repo}/custom-domain": {
+      "post": {
+        "summary": "Set custom domain",
+        "tags": [
+          "spaces"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "pattern": "^([a-z0-9]+(-[a-z0-9_]+)*\\.)+[a-z]{2,}$"
+                  }
+                },
+                "required": [
+                  "domain"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/spaces/semantic-search": {
+      "get": {
+        "summary": "Semantic search",
+        "tags": [
+          "spaces"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 250
+            },
+            "required": false
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "image-generation",
+                "video-generation",
+                "text-generation",
+                "language-translation",
+                "speech-synthesis",
+                "voice-cloning",
+                "face-recognition",
+                "object-detection",
+                "pose-estimation",
+                "text-analysis",
+                "sentiment-analysis",
+                "question-answering",
+                "code-generation",
+                "data-visualization",
+                "3d-modeling",
+                "image-editing",
+                "background-removal",
+                "image-upscaling",
+                "ocr",
+                "document-analysis",
+                "visual-qa",
+                "image-captioning",
+                "chatbots",
+                "text-summarization",
+                "music-generation",
+                "medical-imaging",
+                "financial-analysis",
+                "game-ai",
+                "model-benchmarking",
+                "fine-tuning-tools",
+                "dataset-creation",
+                "anomaly-detection",
+                "recommendation-systems",
+                "character-animation",
+                "style-transfer",
+                "agent-environment",
+                "image",
+                "other"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "includeNonRunning",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "name": "sdk",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "gradio",
+                  "docker",
+                  "static",
+                  "streamlit"
+                ]
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "agents",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/spaces/featured": {
+      "get": {
+        "summary": "Featured spaces",
+        "tags": [
+          "spaces"
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
           }
         ]
       }
@@ -59499,6 +60391,55 @@
         ]
       }
     },
+    "/api/papers/{paperId}/comment/{commentId}/hide": {
+      "post": {
+        "summary": "Hide comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "enum": [
+                      "Spam",
+                      "Abuse",
+                      "Graphic Content",
+                      "Resolved",
+                      "Off-Topic",
+                      "Low Quality"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/papers/{paperId}/comment/{commentId}/reaction": {
       "post": {
         "summary": "React to comment",
@@ -61078,6 +62019,63 @@
                   "reaction",
                   "action"
                 ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/posts/{username}/{postSlug}/comment/{commentId}/hide": {
+      "post": {
+        "summary": "Hide comment",
+        "tags": [
+          "discussions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "enum": [
+                      "Spam",
+                      "Abuse",
+                      "Graphic Content",
+                      "Resolved",
+                      "Off-Topic",
+                      "Low Quality"
+                    ]
+                  }
+                }
               }
             }
           }
@@ -75492,8 +76490,7 @@
                       "type": "string",
                       "minLength": 24,
                       "maxLength": 24,
-                      "pattern": "^[0-9a-f]{24}$",
-                      "description": "A hex string of 24 characters representing an ObjectId."
+                      "pattern": "^[0-9a-fA-F]{24}$"
                     },
                     "data": {
                       "type": "object",
@@ -75581,8 +76578,7 @@
                       "type": "string",
                       "minLength": 24,
                       "maxLength": 24,
-                      "pattern": "^[0-9a-f]{24}$",
-                      "description": "A hex string of 24 characters representing an ObjectId."
+                      "pattern": "^[0-9a-fA-F]{24}$"
                     },
                     "data": {
                       "type": "object",
@@ -80778,8 +81774,7 @@
                         "type": "string",
                         "minLength": 24,
                         "maxLength": 24,
-                        "pattern": "^[0-9a-f]{24}$",
-                        "description": "A hex string of 24 characters representing an ObjectId."
+                        "pattern": "^[0-9a-fA-F]{24}$"
                       },
                       {
                         "type": "null"
@@ -80938,8 +81933,7 @@
                         "type": "string",
                         "minLength": 24,
                         "maxLength": 24,
-                        "pattern": "^[0-9a-f]{24}$",
-                        "description": "A hex string of 24 characters representing an ObjectId."
+                        "pattern": "^[0-9a-fA-F]{24}$"
                       },
                       {
                         "type": "null"
@@ -90201,6 +91195,374 @@
           },
           {
             "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/partners/{provider}/models": {
+      "get": {
+        "description": "List the model mappings of an inference provider.",
+        "summary": "List provider mappings",
+        "tags": [
+          "inference-providers"
+        ],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "baseten",
+                "cohere",
+                "cerebras",
+                "deepinfra",
+                "fal-ai",
+                "featherless-ai",
+                "fireworks-ai",
+                "groq",
+                "hf-inference",
+                "novita",
+                "nscale",
+                "ovhcloud",
+                "publicai",
+                "replicate",
+                "scaleway",
+                "together",
+                "wavespeed",
+                "zai-org"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "live",
+                "staging",
+                "error"
+              ]
+            },
+            "required": false
+          }
+        ]
+      },
+      "post": {
+        "description": "Register a model mapping for your inference provider. Requires a write token of the provider organization.",
+        "summary": "Create provider mapping",
+        "tags": [
+          "inference-providers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "default": "single-model",
+                        "type": "string",
+                        "const": "single-model"
+                      },
+                      "hfModel": {
+                        "type": "string",
+                        "maxLength": 96
+                      },
+                      "providerModel": {
+                        "type": "string",
+                        "maxLength": 128
+                      },
+                      "status": {
+                        "default": "staging",
+                        "type": "string",
+                        "enum": [
+                          "live",
+                          "staging",
+                          "error"
+                        ]
+                      },
+                      "task": {
+                        "type": "string",
+                        "enum": [
+                          "conversational",
+                          "text-classification",
+                          "token-classification",
+                          "table-question-answering",
+                          "question-answering",
+                          "zero-shot-classification",
+                          "translation",
+                          "summarization",
+                          "feature-extraction",
+                          "text-generation",
+                          "fill-mask",
+                          "sentence-similarity",
+                          "text-to-speech",
+                          "text-to-audio",
+                          "automatic-speech-recognition",
+                          "audio-to-audio",
+                          "audio-classification",
+                          "audio-text-to-text",
+                          "voice-activity-detection",
+                          "depth-estimation",
+                          "image-classification",
+                          "object-detection",
+                          "image-segmentation",
+                          "text-to-image",
+                          "image-to-text",
+                          "image-to-image",
+                          "image-to-video",
+                          "unconditional-image-generation",
+                          "video-classification",
+                          "reinforcement-learning",
+                          "robotics",
+                          "tabular-classification",
+                          "tabular-regression",
+                          "tabular-to-text",
+                          "table-to-text",
+                          "multiple-choice",
+                          "text-ranking",
+                          "text-retrieval",
+                          "time-series-forecasting",
+                          "text-to-video",
+                          "image-text-to-text",
+                          "image-text-to-image",
+                          "image-text-to-video",
+                          "visual-question-answering",
+                          "document-question-answering",
+                          "zero-shot-image-classification",
+                          "graph-ml",
+                          "mask-generation",
+                          "zero-shot-object-detection",
+                          "text-to-3d",
+                          "image-to-3d",
+                          "image-feature-extraction",
+                          "video-text-to-text",
+                          "keypoint-detection",
+                          "visual-document-retrieval",
+                          "any-to-any",
+                          "video-to-video"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "hfModel",
+                      "providerModel",
+                      "task"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "const": "tag-filter"
+                      },
+                      "providerModel": {
+                        "type": "string",
+                        "maxLength": 128
+                      },
+                      "status": {
+                        "default": "staging",
+                        "type": "string",
+                        "enum": [
+                          "live",
+                          "staging",
+                          "error"
+                        ]
+                      },
+                      "task": {
+                        "type": "string",
+                        "enum": [
+                          "conversational",
+                          "text-classification",
+                          "token-classification",
+                          "table-question-answering",
+                          "question-answering",
+                          "zero-shot-classification",
+                          "translation",
+                          "summarization",
+                          "feature-extraction",
+                          "text-generation",
+                          "fill-mask",
+                          "sentence-similarity",
+                          "text-to-speech",
+                          "text-to-audio",
+                          "automatic-speech-recognition",
+                          "audio-to-audio",
+                          "audio-classification",
+                          "audio-text-to-text",
+                          "voice-activity-detection",
+                          "depth-estimation",
+                          "image-classification",
+                          "object-detection",
+                          "image-segmentation",
+                          "text-to-image",
+                          "image-to-text",
+                          "image-to-image",
+                          "image-to-video",
+                          "unconditional-image-generation",
+                          "video-classification",
+                          "reinforcement-learning",
+                          "robotics",
+                          "tabular-classification",
+                          "tabular-regression",
+                          "tabular-to-text",
+                          "table-to-text",
+                          "multiple-choice",
+                          "text-ranking",
+                          "text-retrieval",
+                          "time-series-forecasting",
+                          "text-to-video",
+                          "image-text-to-text",
+                          "image-text-to-image",
+                          "image-text-to-video",
+                          "visual-question-answering",
+                          "document-question-answering",
+                          "zero-shot-image-classification",
+                          "graph-ml",
+                          "mask-generation",
+                          "zero-shot-object-detection",
+                          "text-to-3d",
+                          "image-to-3d",
+                          "image-feature-extraction",
+                          "video-text-to-text",
+                          "keypoint-detection",
+                          "visual-document-retrieval",
+                          "any-to-any",
+                          "video-to-video"
+                        ]
+                      },
+                      "tags": {
+                        "minItems": 1,
+                        "maxItems": 10,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "maxLength": 128
+                        }
+                      },
+                      "adapterType": {
+                        "type": "string",
+                        "const": "lora"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "providerModel",
+                      "task",
+                      "tags",
+                      "adapterType"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "baseten",
+                "cohere",
+                "cerebras",
+                "deepinfra",
+                "fal-ai",
+                "featherless-ai",
+                "fireworks-ai",
+                "groq",
+                "hf-inference",
+                "novita",
+                "nscale",
+                "ovhcloud",
+                "publicai",
+                "replicate",
+                "scaleway",
+                "together",
+                "wavespeed",
+                "zai-org"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/api/partners/{provider}/models/{mappingId}/status": {
+      "put": {
+        "description": "Update the status of one of your inference provider's model mappings.",
+        "summary": "Update mapping status",
+        "tags": [
+          "inference-providers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "live",
+                      "staging",
+                      "error"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "baseten",
+                "cohere",
+                "cerebras",
+                "deepinfra",
+                "fal-ai",
+                "featherless-ai",
+                "fireworks-ai",
+                "groq",
+                "hf-inference",
+                "novita",
+                "nscale",
+                "ovhcloud",
+                "publicai",
+                "replicate",
+                "scaleway",
+                "together",
+                "wavespeed",
+                "zai-org"
+              ]
+            }
+          },
+          {
+            "name": "mappingId",
             "in": "path",
             "required": true,
             "schema": {
