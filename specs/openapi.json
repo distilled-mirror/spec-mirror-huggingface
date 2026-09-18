@@ -37,7 +37,8 @@
               "model",
               "space",
               "bucket",
-              "kernel"
+              "kernel",
+              "container"
             ]
           }
         },
@@ -459,6 +460,11 @@
       "description": "Git-free storage buckets for files, powered by Xet. Buckets provide simple file storage without git versioning."
     },
     {
+      "name": "containers",
+      "x-displayName": "Containers",
+      "description": "Container image repositories, usable with the Hugging Face container registry (`docker push` / `docker pull`). Backed by bucket storage: the file endpoints mirror the bucket ones. Also includes the registry token endpoint used by `docker login`."
+    },
+    {
       "name": "notifications",
       "x-displayName": "Notifications",
       "description": "The following endpoints fetch Hub notifications."
@@ -502,11 +508,6 @@
       "name": "agents",
       "x-displayName": "Agents",
       "description": "The following endpoints provide information about AI agents using the Hub."
-    },
-    {
-      "name": "container",
-      "x-displayName": "Container Registry",
-      "description": "The following endpoints back the HuggingFace container registry, e.g. `docker login` token minting."
     }
   ],
   "paths": {
@@ -957,7 +958,8 @@
                 "model",
                 "space",
                 "bucket",
-                "kernel"
+                "kernel",
+                "container"
               ]
             },
             "required": false
@@ -1083,7 +1085,8 @@
                 "model",
                 "space",
                 "bucket",
-                "kernel"
+                "kernel",
+                "container"
               ]
             },
             "required": false
@@ -1220,7 +1223,8 @@
                 "model",
                 "space",
                 "bucket",
-                "kernel"
+                "kernel",
+                "container"
               ]
             },
             "required": false
@@ -1875,6 +1879,7 @@
                                 "space",
                                 "bucket",
                                 "kernel",
+                                "container",
                                 "user",
                                 "org"
                               ]
@@ -1952,6 +1957,7 @@
                             "space",
                             "bucket",
                             "kernel",
+                            "container",
                             "user",
                             "org"
                           ]
@@ -2789,6 +2795,7 @@
                                   "space",
                                   "bucket",
                                   "kernel",
+                                  "container",
                                   "user",
                                   "org"
                                 ]
@@ -3144,6 +3151,7 @@
                                   "space",
                                   "bucket",
                                   "kernel",
+                                  "container",
                                   "user",
                                   "org"
                                 ]
@@ -3237,6 +3245,7 @@
                             "space",
                             "bucket",
                             "kernel",
+                            "container",
                             "user",
                             "org"
                           ]
@@ -4074,6 +4083,7 @@
                                   "space",
                                   "bucket",
                                   "kernel",
+                                  "container",
                                   "user",
                                   "org"
                                 ]
@@ -4471,6 +4481,7 @@
                                   "space",
                                   "bucket",
                                   "kernel",
+                                  "container",
                                   "user",
                                   "org"
                                 ]
@@ -4857,7 +4868,8 @@
                           "model",
                           "space",
                           "bucket",
-                          "kernel"
+                          "kernel",
+                          "container"
                         ]
                       },
                       "updatedAt": {
@@ -4915,7 +4927,8 @@
                 "model",
                 "space",
                 "bucket",
-                "kernel"
+                "kernel",
+                "container"
               ]
             },
             "required": false
@@ -5126,6 +5139,7 @@
                                         "space",
                                         "bucket",
                                         "kernel",
+                                        "container",
                                         "collection",
                                         "org",
                                         "user",
@@ -5369,7 +5383,8 @@
                           "model",
                           "space",
                           "bucket",
-                          "kernel"
+                          "kernel",
+                          "container"
                         ]
                       },
                       "updatedAt": {
@@ -5435,7 +5450,8 @@
                 "model",
                 "space",
                 "bucket",
-                "kernel"
+                "kernel",
+                "container"
               ]
             },
             "required": false
@@ -6124,7 +6140,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               "name": {
@@ -6519,7 +6536,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               "name": {
@@ -6943,7 +6961,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               "name": {
@@ -7360,7 +7379,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               "name": {
@@ -7710,7 +7730,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               "name": {
@@ -8091,7 +8112,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               "name": {
@@ -8451,7 +8473,8 @@
                                     "model",
                                     "space",
                                     "bucket",
-                                    "kernel"
+                                    "kernel",
+                                    "container"
                                   ]
                                 },
                                 "name": {
@@ -8895,7 +8918,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               "name": {
@@ -9111,7 +9135,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               {
@@ -9146,7 +9171,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               {
@@ -9252,7 +9278,8 @@
                                 "model",
                                 "space",
                                 "bucket",
-                                "kernel"
+                                "kernel",
+                                "container"
                               ]
                             },
                             {
@@ -9286,7 +9313,8 @@
                                 "model",
                                 "space",
                                 "bucket",
-                                "kernel"
+                                "kernel",
+                                "container"
                               ]
                             },
                             {
@@ -9355,7 +9383,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               {
@@ -9390,7 +9419,8 @@
                                   "model",
                                   "space",
                                   "bucket",
-                                  "kernel"
+                                  "kernel",
+                                  "container"
                                 ]
                               },
                               {
@@ -16278,7 +16308,7 @@
         "description": "Mints a short-lived EdDSA JWT for the HuggingFace container registry, verifiable via the JWK at `/api/keys/jwt`.",
         "summary": "Registry token",
         "tags": [
-          "container"
+          "containers"
         ],
         "responses": {
           "200": {
@@ -20045,6 +20075,7 @@
                                                   "space",
                                                   "bucket",
                                                   "kernel",
+                                                  "container",
                                                   "collection",
                                                   "org",
                                                   "user",
@@ -20546,7 +20577,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-16T09:52:58.553Z",
+              "default": "2026-09-17T15:44:50.150Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20651,7 +20682,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-16T09:52:58.554Z",
+              "default": "2026-09-17T15:44:50.150Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20798,7 +20829,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-16T09:52:58.554Z",
+              "default": "2026-09-17T15:44:50.150Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21313,7 +21344,8 @@
                               "model",
                               "space",
                               "bucket",
-                              "kernel"
+                              "kernel",
+                              "container"
                             ]
                           }
                         },
@@ -24109,9 +24141,9 @@
                       "type": {
                         "type": "string",
                         "enum": [
-                          "dataset",
                           "model",
                           "space",
+                          "dataset",
                           "kernel"
                         ]
                       },
@@ -24332,9 +24364,9 @@
                       "type": {
                         "type": "string",
                         "enum": [
-                          "dataset",
                           "model",
                           "space",
+                          "dataset",
                           "kernel"
                         ]
                       },
@@ -24555,9 +24587,9 @@
                       "type": {
                         "type": "string",
                         "enum": [
-                          "dataset",
                           "model",
                           "space",
+                          "dataset",
                           "kernel"
                         ]
                       },
@@ -24778,9 +24810,9 @@
                       "type": {
                         "type": "string",
                         "enum": [
-                          "dataset",
                           "model",
                           "space",
+                          "dataset",
                           "kernel"
                         ]
                       },
@@ -25001,9 +25033,9 @@
                       "type": {
                         "type": "string",
                         "enum": [
-                          "dataset",
                           "model",
                           "space",
+                          "dataset",
                           "kernel"
                         ]
                       },
@@ -28500,6 +28532,83 @@
         ]
       }
     },
+    "/api/containers/{namespace}/{repo}/xet-write-token": {
+      "get": {
+        "description": "Get a write short-lived access token for XET upload",
+        "summary": "Xet write token",
+        "tags": [
+          "containers"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "casUrl": {
+                      "type": "string"
+                    },
+                    "exp": {
+                      "type": "number"
+                    },
+                    "accessToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "casUrl",
+                    "exp",
+                    "accessToken"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The response from the getXetWriteAccessToken endpoint.",
+            "headers": {
+              "X-Xet-Cas-Url": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                }
+              },
+              "X-Xet-Token-Expiration": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                }
+              },
+              "X-Xet-Access-Token": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/models/{namespace}/{repo}/xet-read-token/{rev}": {
       "get": {
         "description": "Get a read short-lived access token for XET",
@@ -28761,6 +28870,83 @@
         "summary": "Xet read token",
         "tags": [
           "buckets"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "casUrl": {
+                      "type": "string"
+                    },
+                    "exp": {
+                      "type": "number"
+                    },
+                    "accessToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "casUrl",
+                    "exp",
+                    "accessToken"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The response from the getXetReadAccessToken endpoint.",
+            "headers": {
+              "X-Xet-Cas-Url": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                }
+              },
+              "X-Xet-Token-Expiration": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                }
+              },
+              "X-Xet-Access-Token": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/containers/{namespace}/{repo}/xet-read-token": {
+      "get": {
+        "description": "Get a read short-lived access token for XET",
+        "summary": "Xet read token",
+        "tags": [
+          "containers"
         ],
         "responses": {
           "200": {
@@ -29750,7 +29936,8 @@
                         "model",
                         "space",
                         "bucket",
-                        "kernel"
+                        "kernel",
+                        "container"
                       ]
                     },
                     "private": {
@@ -29904,7 +30091,8 @@
                         "model",
                         "space",
                         "bucket",
-                        "kernel"
+                        "kernel",
+                        "container"
                       ]
                     },
                     "private": {
@@ -30058,7 +30246,8 @@
                         "model",
                         "space",
                         "bucket",
-                        "kernel"
+                        "kernel",
+                        "container"
                       ]
                     },
                     "private": {
@@ -30212,7 +30401,8 @@
                         "model",
                         "space",
                         "bucket",
-                        "kernel"
+                        "kernel",
+                        "container"
                       ]
                     },
                     "private": {
@@ -45311,6 +45501,9 @@
                                   },
                                   "isTraces": {
                                     "type": "boolean"
+                                  },
+                                  "isEnvironment": {
+                                    "type": "boolean"
                                   }
                                 },
                                 "required": [
@@ -46559,9 +46752,9 @@
               "type": "string",
               "enum": [
                 "all",
-                "dataset",
                 "model",
-                "space"
+                "space",
+                "dataset"
               ]
             },
             "required": false
@@ -47625,7 +47818,8 @@
                     "model",
                     "space",
                     "bucket",
-                    "kernel"
+                    "kernel",
+                    "container"
                   ]
                 },
                 {
@@ -48339,7 +48533,8 @@
                           "model",
                           "space",
                           "bucket",
-                          "kernel"
+                          "kernel",
+                          "container"
                         ]
                       },
                       {
@@ -49405,7 +49600,8 @@
                     "model",
                     "space",
                     "bucket",
-                    "kernel"
+                    "kernel",
+                    "container"
                   ]
                 },
                 {
@@ -49499,7 +49695,8 @@
                     "model",
                     "space",
                     "bucket",
-                    "kernel"
+                    "kernel",
+                    "container"
                   ]
                 },
                 {
@@ -49511,7 +49708,8 @@
                       "model",
                       "space",
                       "bucket",
-                      "kernel"
+                      "kernel",
+                      "container"
                     ]
                   }
                 }
@@ -51474,7 +51672,8 @@
                       "model",
                       "space",
                       "bucket",
-                      "kernel"
+                      "kernel",
+                      "container"
                     ]
                   }
                 },
@@ -53287,7 +53486,8 @@
                         "enum": [
                           "accepted",
                           "rejected",
-                          "pending"
+                          "pending",
+                          "reset"
                         ]
                       },
                       "fields": {
@@ -53357,7 +53557,8 @@
               "enum": [
                 "pending",
                 "accepted",
-                "rejected"
+                "rejected",
+                "reset"
               ]
             }
           },
@@ -53729,7 +53930,8 @@
                         "enum": [
                           "accepted",
                           "rejected",
-                          "pending"
+                          "pending",
+                          "reset"
                         ]
                       },
                       "fields": {
@@ -53799,7 +54001,8 @@
               "enum": [
                 "pending",
                 "accepted",
-                "rejected"
+                "rejected",
+                "reset"
               ]
             }
           },
@@ -53877,10 +54080,15 @@
                     "enum": [
                       "accepted",
                       "rejected",
-                      "pending"
+                      "pending",
+                      "reset"
                     ]
                   },
                   "rejectionReason": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "resetReason": {
                     "type": "string",
                     "maxLength": 200
                   }
@@ -53942,10 +54150,15 @@
                     "enum": [
                       "accepted",
                       "rejected",
-                      "pending"
+                      "pending",
+                      "reset"
                     ]
                   },
                   "rejectionReason": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "resetReason": {
                     "type": "string",
                     "maxLength": 200
                   }
@@ -53979,7 +54192,7 @@
     },
     "/api/models/{namespace}/{repo}/user-access-request/batch": {
       "post": {
-        "description": "Accept, reject or reset to pending up to 100 access requests for a single gated repository in one call. The same `status` (and optional `rejectionReason`) is applied to every request in the list.",
+        "description": "Accept, reject, reset or set back to pending up to 100 access requests for a single gated repository in one call. The same `status` (and optional `rejectionReason` or `resetReason`) is applied to every request in the list.",
         "summary": "Batch access requests",
         "tags": [
           "models"
@@ -53996,10 +54209,15 @@
                     "enum": [
                       "accepted",
                       "rejected",
-                      "pending"
+                      "pending",
+                      "reset"
                     ]
                   },
                   "rejectionReason": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "resetReason": {
                     "type": "string",
                     "maxLength": 200
                   },
@@ -54093,7 +54311,7 @@
     },
     "/api/datasets/{namespace}/{repo}/user-access-request/batch": {
       "post": {
-        "description": "Accept, reject or reset to pending up to 100 access requests for a single gated repository in one call. The same `status` (and optional `rejectionReason`) is applied to every request in the list.",
+        "description": "Accept, reject, reset or set back to pending up to 100 access requests for a single gated repository in one call. The same `status` (and optional `rejectionReason` or `resetReason`) is applied to every request in the list.",
         "summary": "Batch access requests",
         "tags": [
           "datasets"
@@ -54110,10 +54328,15 @@
                     "enum": [
                       "accepted",
                       "rejected",
-                      "pending"
+                      "pending",
+                      "reset"
                     ]
                   },
                   "rejectionReason": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "resetReason": {
                     "type": "string",
                     "maxLength": 200
                   },
@@ -56345,6 +56568,9 @@
                             "type": "boolean"
                           },
                           "isTraces": {
+                            "type": "boolean"
+                          },
+                          "isEnvironment": {
                             "type": "boolean"
                           }
                         },
@@ -60751,6 +60977,9 @@
                               "isTraces": {
                                 "type": "boolean"
                               },
+                              "isEnvironment": {
+                                "type": "boolean"
+                              },
                               "type": {
                                 "type": "string",
                                 "const": "dataset"
@@ -62431,7 +62660,10 @@
                               },
                               "repoType": {
                                 "type": "string",
-                                "const": "bucket"
+                                "enum": [
+                                  "bucket",
+                                  "container"
+                                ]
                               },
                               "adminTags": {
                                 "type": "array",
@@ -63177,6 +63409,9 @@
                                     "type": "boolean"
                                   },
                                   "isTraces": {
+                                    "type": "boolean"
+                                  },
+                                  "isEnvironment": {
                                     "type": "boolean"
                                   },
                                   "type": {
@@ -64859,7 +65094,10 @@
                                   },
                                   "repoType": {
                                     "type": "string",
-                                    "const": "bucket"
+                                    "enum": [
+                                      "bucket",
+                                      "container"
+                                    ]
                                   },
                                   "adminTags": {
                                     "type": "array",
@@ -65554,6 +65792,9 @@
                               "isTraces": {
                                 "type": "boolean"
                               },
+                              "isEnvironment": {
+                                "type": "boolean"
+                              },
                               "type": {
                                 "type": "string",
                                 "const": "dataset"
@@ -67234,7 +67475,10 @@
                               },
                               "repoType": {
                                 "type": "string",
-                                "const": "bucket"
+                                "enum": [
+                                  "bucket",
+                                  "container"
+                                ]
                               },
                               "adminTags": {
                                 "type": "array",
@@ -67972,6 +68216,9 @@
                                     "type": "boolean"
                                   },
                                   "isTraces": {
+                                    "type": "boolean"
+                                  },
+                                  "isEnvironment": {
                                     "type": "boolean"
                                   },
                                   "type": {
@@ -69654,7 +69901,10 @@
                                   },
                                   "repoType": {
                                     "type": "string",
-                                    "const": "bucket"
+                                    "enum": [
+                                      "bucket",
+                                      "container"
+                                    ]
                                   },
                                   "adminTags": {
                                     "type": "array",
@@ -70376,6 +70626,9 @@
                               "isTraces": {
                                 "type": "boolean"
                               },
+                              "isEnvironment": {
+                                "type": "boolean"
+                              },
                               "type": {
                                 "type": "string",
                                 "const": "dataset"
@@ -72056,7 +72309,10 @@
                               },
                               "repoType": {
                                 "type": "string",
-                                "const": "bucket"
+                                "enum": [
+                                  "bucket",
+                                  "container"
+                                ]
                               },
                               "adminTags": {
                                 "type": "array",
@@ -72755,6 +73011,9 @@
                               "isTraces": {
                                 "type": "boolean"
                               },
+                              "isEnvironment": {
+                                "type": "boolean"
+                              },
                               "type": {
                                 "type": "string",
                                 "const": "dataset"
@@ -74435,7 +74694,10 @@
                               },
                               "repoType": {
                                 "type": "string",
-                                "const": "bucket"
+                                "enum": [
+                                  "bucket",
+                                  "container"
+                                ]
                               },
                               "adminTags": {
                                 "type": "array",
@@ -75521,6 +75783,9 @@
                               "isTraces": {
                                 "type": "boolean"
                               },
+                              "isEnvironment": {
+                                "type": "boolean"
+                              },
                               "type": {
                                 "type": "string",
                                 "const": "dataset"
@@ -77201,7 +77466,10 @@
                               },
                               "repoType": {
                                 "type": "string",
-                                "const": "bucket"
+                                "enum": [
+                                  "bucket",
+                                  "container"
+                                ]
                               },
                               "adminTags": {
                                 "type": "array",
@@ -77848,6 +78116,9 @@
                                       "type": "boolean"
                                     },
                                     "isTraces": {
+                                      "type": "boolean"
+                                    },
+                                    "isEnvironment": {
                                       "type": "boolean"
                                     },
                                     "type": {
@@ -79530,7 +79801,10 @@
                                     },
                                     "repoType": {
                                       "type": "string",
-                                      "const": "bucket"
+                                      "enum": [
+                                        "bucket",
+                                        "container"
+                                      ]
                                     },
                                     "adminTags": {
                                       "type": "array",
@@ -80186,10 +80460,6 @@
                       "us",
                       "eu"
                     ]
-                  },
-                  "container": {
-                    "description": "Create a container (Docker image) repository usable with the HF container registry.",
-                    "type": "boolean"
                   }
                 },
                 "description": "Bucket creation options"
@@ -80359,7 +80629,354 @@
                     },
                     "repoType": {
                       "type": "string",
-                      "const": "bucket"
+                      "enum": [
+                        "bucket",
+                        "container"
+                      ]
+                    },
+                    "adminTags": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "disabled": {
+                      "type": "object",
+                      "properties": {
+                        "reason": {
+                          "type": "string"
+                        },
+                        "hideReadme": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "reason"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "cdnRegions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "provider": {
+                            "type": "string",
+                            "enum": [
+                              "gcp",
+                              "aws"
+                            ]
+                          },
+                          "region": {
+                            "type": "string",
+                            "enum": [
+                              "us",
+                              "eu"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "provider",
+                          "region"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "resourceGroup": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$",
+                          "description": "A hex string of 24 characters representing an ObjectId."
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "numUsers": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "author",
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "size",
+                    "totalFiles",
+                    "repoType",
+                    "cdnRegions"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Bucket overview information"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/containers/{namespace}/{repo}": {
+      "post": {
+        "summary": "Create bucket",
+        "tags": [
+          "containers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "private": {
+                    "description": "Bucket visibility. Defaults to public",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ]
+                  },
+                  "resourceGroupId": {
+                    "type": "string",
+                    "minLength": 24,
+                    "maxLength": 24,
+                    "pattern": "^[0-9a-fA-F]{24}$"
+                  },
+                  "cdn": {
+                    "description": "CDN pre-warming regions",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "provider": {
+                          "type": "string",
+                          "enum": [
+                            "gcp",
+                            "aws"
+                          ]
+                        },
+                        "region": {
+                          "type": "string",
+                          "enum": [
+                            "us",
+                            "eu"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "provider",
+                        "region"
+                      ]
+                    }
+                  },
+                  "region": {
+                    "description": "The region where the bucket is hosted.",
+                    "type": "string",
+                    "enum": [
+                      "us",
+                      "eu"
+                    ]
+                  }
+                },
+                "description": "Bucket creation options"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "name",
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Bucket created, url is given"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "url",
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Bucket already exists, url is given"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete bucket",
+        "tags": [
+          "containers"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "summary": "Get bucket details",
+        "tags": [
+          "containers"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "private": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                      "description": "Moves on every successful change to the bucket's files. Poll it to know when to re-list instead of re-listing every path."
+                    },
+                    "size": {
+                      "type": "number",
+                      "description": "The amount of storage used by the bucket in bytes"
+                    },
+                    "totalFiles": {
+                      "type": "number",
+                      "description": "The total number of files in the bucket"
+                    },
+                    "repoType": {
+                      "type": "string",
+                      "enum": [
+                        "bucket",
+                        "container"
+                      ]
                     },
                     "adminTags": {
                       "type": "array",
@@ -80587,6 +81204,122 @@
         ]
       }
     },
+    "/api/containers/{namespace}/{repo}/settings": {
+      "put": {
+        "summary": "Update bucket settings",
+        "tags": [
+          "containers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "private": {
+                    "type": [
+                      "boolean",
+                      "string"
+                    ]
+                  },
+                  "cdnRegions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "provider": {
+                          "type": "string",
+                          "enum": [
+                            "gcp",
+                            "aws"
+                          ]
+                        },
+                        "region": {
+                          "type": "string",
+                          "enum": [
+                            "us",
+                            "eu"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "provider",
+                        "region"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "private": {
+                      "type": "boolean"
+                    },
+                    "cdnRegions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "provider": {
+                            "type": "string",
+                            "enum": [
+                              "gcp",
+                              "aws"
+                            ]
+                          },
+                          "region": {
+                            "type": "string",
+                            "enum": [
+                              "us",
+                              "eu"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "provider",
+                          "region"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The updated bucket settings."
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/buckets/{namespace}": {
       "get": {
         "summary": "List namespace buckets",
@@ -80643,7 +81376,183 @@
                       },
                       "repoType": {
                         "type": "string",
-                        "const": "bucket"
+                        "enum": [
+                          "bucket",
+                          "container"
+                        ]
+                      },
+                      "adminTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "disabled": {
+                        "type": "object",
+                        "properties": {
+                          "reason": {
+                            "type": "string"
+                          },
+                          "hideReadme": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "reason"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "cdnRegions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "provider": {
+                              "type": "string",
+                              "enum": [
+                                "gcp",
+                                "aws"
+                              ]
+                            },
+                            "region": {
+                              "type": "string",
+                              "enum": [
+                                "us",
+                                "eu"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "provider",
+                            "region"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "resourceGroup": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 24,
+                            "maxLength": 24,
+                            "pattern": "^[0-9a-f]{24}$",
+                            "description": "A hex string of 24 characters representing an ObjectId."
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "numUsers": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "_id",
+                      "author",
+                      "id",
+                      "createdAt",
+                      "updatedAt",
+                      "size",
+                      "totalFiles",
+                      "repoType",
+                      "cdnRegions"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Bucket overview information"
+                  }
+                }
+              }
+            },
+            "description": "List of buckets"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/containers/{namespace}": {
+      "get": {
+        "summary": "List namespace buckets",
+        "tags": [
+          "containers"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$",
+                        "description": "A hex string of 24 characters representing an ObjectId."
+                      },
+                      "author": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "private": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ]
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                        "description": "Moves on every successful change to the bucket's files. Poll it to know when to re-list instead of re-listing every path."
+                      },
+                      "size": {
+                        "type": "number",
+                        "description": "The amount of storage used by the bucket in bytes"
+                      },
+                      "totalFiles": {
+                        "type": "number",
+                        "description": "The total number of files in the bucket"
+                      },
+                      "repoType": {
+                        "type": "string",
+                        "enum": [
+                          "bucket",
+                          "container"
+                        ]
                       },
                       "adminTags": {
                         "type": "array",
@@ -80916,12 +81825,316 @@
         ]
       }
     },
+    "/containers/{namespace}/{repo}/resolve/{path}": {
+      "get": {
+        "description": "Returns file metadata including size, hash, and links to XET authentication",
+        "summary": "Get file metadata",
+        "tags": [
+          "containers"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "hash": {
+                      "type": "string",
+                      "description": "The XET hash of the file"
+                    },
+                    "refreshUrl": {
+                      "type": "string",
+                      "description": "The XET auth URL for the file"
+                    },
+                    "reconstructionUrl": {
+                      "type": "string",
+                      "description": "The XET reconstruction URL for the file"
+                    },
+                    "etag": {
+                      "type": "string",
+                      "description": "The ETag of the file"
+                    },
+                    "size": {
+                      "type": "number",
+                      "description": "The size of the file"
+                    },
+                    "contentType": {
+                      "description": "The content type of the file",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "hash",
+                    "refreshUrl",
+                    "reconstructionUrl",
+                    "etag",
+                    "size"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "XET file info returned when the Accept header is set to `application/vnd.xet-fileinfo+json`. Otherwise, a 302 redirect is returned."
+          },
+          "302": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema"
+                }
+              }
+            },
+            "description": "Redirection to file on the xet bridge (default when no specific Accept header is set)"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "File path required"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Bucket or file not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Wildcard path parameter"
+            }
+          },
+          {
+            "name": "noContentDisposition",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "download",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "description": "Returns json information about the XET file info",
+              "type": "string",
+              "const": "application/vnd.xet-fileinfo+json"
+            }
+          }
+        ]
+      }
+    },
     "/api/buckets/{namespace}/{repo}/batch": {
       "post": {
         "description": "Accepts NDJSON (newline-delimited JSON) where each line is an addFile, copyFile, or deleteFile instruction.\nAll add/copy operations must come before all delete operations.\n\nJSON-lines payload:\n```json\n\t'{\"type\":\"addFile\",\"path\":\"...\",\"xetHash\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"copyFile\",\"path\":\"...\",\"xetHash\":\"...\",\"sourceRepoType\":\"...\",\"sourceRepoId\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"deleteFile\",\"path\":\"...\"}'\n```",
         "summary": "Batch file operations",
         "tags": [
           "buckets"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "True if all operations succeeded"
+                    },
+                    "processed": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991,
+                      "description": "Total number of operations attempted"
+                    },
+                    "succeeded": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991,
+                      "description": "Number of successful operations"
+                    },
+                    "failed": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "File path that failed"
+                          },
+                          "error": {
+                            "type": "string",
+                            "description": "Error message"
+                          }
+                        },
+                        "required": [
+                          "path",
+                          "error"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "description": "List of failed operations"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "processed",
+                    "succeeded",
+                    "failed"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Batch operation status"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "True if all operations succeeded"
+                    },
+                    "processed": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991,
+                      "description": "Total number of operations attempted"
+                    },
+                    "succeeded": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991,
+                      "description": "Number of successful operations"
+                    },
+                    "failed": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "description": "File path that failed"
+                          },
+                          "error": {
+                            "type": "string",
+                            "description": "Error message"
+                          }
+                        },
+                        "required": [
+                          "path",
+                          "error"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "description": "List of failed operations"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "processed",
+                    "succeeded",
+                    "failed"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Batch operation status"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/containers/{namespace}/{repo}/batch": {
+      "post": {
+        "description": "Accepts NDJSON (newline-delimited JSON) where each line is an addFile, copyFile, or deleteFile instruction.\nAll add/copy operations must come before all delete operations.\n\nJSON-lines payload:\n```json\n\t'{\"type\":\"addFile\",\"path\":\"...\",\"xetHash\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"copyFile\",\"path\":\"...\",\"xetHash\":\"...\",\"sourceRepoType\":\"...\",\"sourceRepoId\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"deleteFile\",\"path\":\"...\"}'\n```",
+        "summary": "Batch file operations",
+        "tags": [
+          "containers"
         ],
         "responses": {
           "200": {
@@ -81223,9 +82436,171 @@
         ]
       }
     },
+    "/api/containers/{namespace}/{repo}/tree/{path}": {
+      "get": {
+        "summary": "List files",
+        "tags": [
+          "containers"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "file",
+                          "directory"
+                        ]
+                      },
+                      "path": {
+                        "type": "string"
+                      },
+                      "size": {
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "xetHash": {
+                        "description": "Not defined for directories",
+                        "type": "string"
+                      },
+                      "mtime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "mtimeNanos": {
+                        "description": "Sub-millisecond remainder of mtime, in nanoseconds (0–999_999)",
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "uploadedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "contentType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "path",
+                      "uploadedAt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            "description": "List of files and directories",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                },
+                "description": "Pagination link header"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Wildcard path parameter"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "default": 1000,
+              "maximum": 5000,
+              "type": "integer",
+              "minimum": 1
+            },
+            "required": false
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "description": "Pagination cursor",
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "recursive",
+            "in": "query",
+            "schema": {
+              "description": "When false, returns collapsed directory entries instead of listing all files recursively. The number of entries returned can then be less than the limit, but there will always be a pagination link if there are more entries. Note: non-recursive listing hasn't a strong consistency guarantees.",
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "default": "path",
+              "description": "Sort order. `path` (default) sorts lexicographically; `uploadedAt` sorts by most recent upload first. In recursive mode `uploadedAt` is only supported at the bucket root (no path prefix). In non-recursive mode, only supported at root or exact folder prefixes.",
+              "type": "string",
+              "enum": [
+                "path",
+                "uploadedAt"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "schema": {
+              "description": "Sort direction. Defaults to `asc` for `path` and `desc` for `uploadedAt`.",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false
+          }
+        ]
+      }
+    },
     "/api/buckets/{namespace}/{repo}/events": {
       "get": {
-        "description": "Server-sent events (`Accept: text/event-stream`) of the bucket's file changes, so clients can stop polling `/tree`.\n\nEvents:\n- `ready`: `{\"cursor\"}` — replay (if any) is done, live changes follow. `cursor` may be absent if the feed has seen no change yet.\n- `changes`: `{\"cursor\", \"changes\": [{\"path\", \"op\": \"add\" | \"update\" | \"delete\", \"size\"?, \"xetHash\"?, \"uploadedAt\"?, \"mtime\"?, \"mtimeNanos\"?}], \"dirs\": [...]}` — a batch of changes coalesced over ~200ms; `dirs` are the distinct parent directories of the changed paths (`\"\"` for the root). An `update` only carries the fields that changed (an identical re-upload has just `uploadedAt`); `mtime`/`mtimeNanos` are `null` when a re-upload cleared them. `xetHash` is omitted without content read access.\n- `reset`: `{\"reason\": \"cursor_too_old\"}` — the requested `cursor`/`since` is older than what the server buffers (about 15 minutes); the stream ends and the client must re-list.\n- `reconnect`: `{\"cursor\"}` — sent after 20 minutes or when the server shuts down (deploys), then the stream ends; reconnect with that cursor. Treat any other end of the stream the same way: reconnect with the last cursor you received.\n\nA `: ping` comment is sent every 30s. Resume with `?cursor=` (exclusive) or `?since=` (inclusive); without either, only live changes are sent.",
+        "description": "Server-sent events (`Accept: text/event-stream`) of the bucket's file changes, so clients can stop polling `/tree`.\n\nEvents:\n- `ready`: `{\"cursor\"}` — replay (if any) is done, live changes follow. `cursor` may be absent if the feed has seen no change yet.\n- `changes`: `{\"cursor\", \"changes\": [{\"path\", \"op\": \"add\" | \"update\" | \"delete\", \"size\"?, \"xetHash\"?, \"uploadedAt\"?, \"mtime\"?, \"mtimeNanos\"?}]}` — a batch of changes coalesced over ~200ms. An `update` only carries the fields that changed (an identical re-upload has just `uploadedAt`); `mtime`/`mtimeNanos` are `null` when a re-upload cleared them. `xetHash` is omitted without content read access.\n- `reset`: `{\"reason\": \"cursor_too_old\"}` — the requested `cursor`/`since` is older than what the server buffers (about 15 minutes); the stream ends and the client must re-list.\n- `reconnect`: `{\"cursor\"}` — sent after 20 minutes or when the server shuts down (deploys), then the stream ends; reconnect with that cursor. Treat any other end of the stream the same way: reconnect with the last cursor you received.\n\nA `: ping` comment is sent every 30s. Resume with `?cursor=` (exclusive) or `?since=` (inclusive); without either, only live changes are sent.",
         "summary": "Follow changes",
         "tags": [
           "buckets"
@@ -81297,6 +82672,123 @@
         "summary": "List paths info",
         "tags": [
           "buckets"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "paths": {
+                    "anyOf": [
+                      {
+                        "maxItems": 2000,
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "paths"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "file",
+                          "directory"
+                        ]
+                      },
+                      "path": {
+                        "type": "string"
+                      },
+                      "size": {
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "xetHash": {
+                        "description": "Not defined for directories",
+                        "type": "string"
+                      },
+                      "mtime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "mtimeNanos": {
+                        "description": "Sub-millisecond remainder of mtime, in nanoseconds (0–999_999)",
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "uploadedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "contentType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "path",
+                      "uploadedAt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            "description": "List of found files (missing paths are omitted)"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/containers/{namespace}/{repo}/paths-info": {
+      "post": {
+        "summary": "List paths info",
+        "tags": [
+          "containers"
         ],
         "requestBody": {
           "content": {
