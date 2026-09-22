@@ -1422,6 +1422,9 @@
                       "arxiv_paper_activity": {
                         "type": "boolean"
                       },
+                      "content_access_policy_request": {
+                        "type": "boolean"
+                      },
                       "daily_papers_digest": {
                         "type": "boolean"
                       },
@@ -9351,11 +9354,15 @@
                   "type": "object",
                   "properties": {
                     "enforceAuth": {
-                      "type": "boolean"
-                    },
-                    "areCidrRangesApproved": {
-                      "type": "boolean",
-                      "description": "Whether the declared ipRanges match the admin-validated CIDR ranges"
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "string",
+                          "const": "pending"
+                        }
+                      ]
                     },
                     "enforceIpRestriction": {
                       "type": "boolean"
@@ -9443,17 +9450,21 @@
                     },
                     "keepReposMetadataVisible": {
                       "type": "boolean"
+                    },
+                    "areCidrRangesApproved": {
+                      "type": "boolean",
+                      "description": "Whether the declared ipRanges match the admin-validated CIDR ranges"
                     }
                   },
                   "required": [
                     "enforceAuth",
-                    "areCidrRangesApproved",
                     "enforceIpRestriction",
                     "highRateLimits",
                     "ipRanges",
                     "blockedContents",
                     "allowedContents",
-                    "keepReposMetadataVisible"
+                    "keepReposMetadataVisible",
+                    "areCidrRangesApproved"
                   ],
                   "additionalProperties": false
                 }
@@ -20577,7 +20588,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-18T14:43:45.667Z",
+              "default": "2026-09-22T01:00:42.182Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20682,7 +20693,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-18T14:43:45.667Z",
+              "default": "2026-09-22T01:00:42.182Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20829,7 +20840,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-18T14:43:45.668Z",
+              "default": "2026-09-22T01:00:42.182Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -42971,7 +42982,11 @@
                                   "enum": [
                                     "2.8",
                                     "2.9",
-                                    "2.10"
+                                    "2.10",
+                                    "2.11",
+                                    "2.12",
+                                    "2.13",
+                                    "2.14"
                                   ]
                                 }
                               },
@@ -43109,7 +43124,7 @@
                               "version": {
                                 "type": "string"
                               },
-                              "sha": {
+                              "commit": {
                                 "type": "string"
                               },
                               "dirty": {
