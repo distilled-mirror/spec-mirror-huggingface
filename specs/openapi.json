@@ -20588,7 +20588,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-22T01:00:42.182Z",
+              "default": "2026-09-22T15:41:11.366Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20693,7 +20693,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-22T01:00:42.182Z",
+              "default": "2026-09-22T15:41:11.366Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20840,7 +20840,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-22T01:00:42.182Z",
+              "default": "2026-09-22T15:41:11.366Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -47026,6 +47026,31 @@
                     "bucketsCount": {
                       "type": "number"
                     },
+                    "containers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "private": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "containersCount": {
+                      "type": "number"
+                    },
                     "kernels": {
                       "type": "array",
                       "items": {
@@ -47098,6 +47123,8 @@
                     "collectionsCount",
                     "buckets",
                     "bucketsCount",
+                    "containers",
+                    "containersCount",
                     "kernels",
                     "kernelsCount",
                     "blogs",
@@ -47371,6 +47398,7 @@
                     "cancertathomev2",
                     "cartesia_pytorch",
                     "cartesia_mlx",
+                    "causilo",
                     "ccpfn",
                     "champ",
                     "chatterbox",
@@ -47418,6 +47446,7 @@
                     "fme",
                     "gemma.cpp",
                     "geometry-crafter",
+                    "gliformer",
                     "gliner",
                     "gliner2",
                     "glm-tts",
@@ -47587,6 +47616,7 @@
                     "voicecraft",
                     "voxcpm",
                     "vui",
+                    "vqweb",
                     "vibevoice",
                     "videox_fun",
                     "wan2.2",
@@ -47623,6 +47653,7 @@
                       "paper",
                       "collection",
                       "bucket",
+                      "container",
                       "kernel",
                       "blog"
                     ]
@@ -47783,12 +47814,12 @@
             "name": "exclude",
             "in": "query",
             "schema": {
-              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug",
+              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, containers/containerName, kernels/repo, blog/blogSlug",
               "default": [],
               "type": "array",
               "items": {
                 "type": "string",
-                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels|blog)\\/.*"
+                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|containers|kernels|blog)\\/.*"
               }
             },
             "required": false
@@ -48131,6 +48162,7 @@
                           "cancertathomev2",
                           "cartesia_pytorch",
                           "cartesia_mlx",
+                          "causilo",
                           "ccpfn",
                           "champ",
                           "chatterbox",
@@ -48178,6 +48210,7 @@
                           "fme",
                           "gemma.cpp",
                           "geometry-crafter",
+                          "gliformer",
                           "gliner",
                           "gliner2",
                           "glm-tts",
@@ -48347,6 +48380,7 @@
                           "voicecraft",
                           "voxcpm",
                           "vui",
+                          "vqweb",
                           "vibevoice",
                           "videox_fun",
                           "wan2.2",
@@ -48378,6 +48412,7 @@
                             "paper",
                             "collection",
                             "bucket",
+                            "container",
                             "kernel",
                             "blog"
                           ]
@@ -48518,12 +48553,12 @@
                     "description": "Comma-separated or array of pipeline types"
                   },
                   "exclude": {
-                    "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug",
+                    "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, containers/containerName, kernels/repo, blog/blogSlug",
                     "default": [],
                     "type": "array",
                     "items": {
                       "type": "string",
-                      "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels|blog)\\/.*"
+                      "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|containers|kernels|blog)\\/.*"
                     }
                   },
                   "namespace": {
@@ -48808,6 +48843,31 @@
                     "bucketsCount": {
                       "type": "number"
                     },
+                    "containers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "private": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "containersCount": {
+                      "type": "number"
+                    },
                     "kernels": {
                       "type": "array",
                       "items": {
@@ -48880,6 +48940,8 @@
                     "collectionsCount",
                     "buckets",
                     "bucketsCount",
+                    "containers",
+                    "containersCount",
                     "kernels",
                     "kernelsCount",
                     "blogs",
@@ -49153,6 +49215,7 @@
                     "cancertathomev2",
                     "cartesia_pytorch",
                     "cartesia_mlx",
+                    "causilo",
                     "ccpfn",
                     "champ",
                     "chatterbox",
@@ -49200,6 +49263,7 @@
                     "fme",
                     "gemma.cpp",
                     "geometry-crafter",
+                    "gliformer",
                     "gliner",
                     "gliner2",
                     "glm-tts",
@@ -49369,6 +49433,7 @@
                     "voicecraft",
                     "voxcpm",
                     "vui",
+                    "vqweb",
                     "vibevoice",
                     "videox_fun",
                     "wan2.2",
@@ -49405,6 +49470,7 @@
                       "paper",
                       "collection",
                       "bucket",
+                      "container",
                       "kernel",
                       "blog"
                     ]
@@ -49565,12 +49631,12 @@
             "name": "exclude",
             "in": "query",
             "schema": {
-              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug",
+              "description": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, containers/containerName, kernels/repo, blog/blogSlug",
               "default": [],
               "type": "array",
               "items": {
                 "type": "string",
-                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|kernels|blog)\\/.*"
+                "pattern": "^(spaces|models|datasets|papers|collections|users|orgs|buckets|containers|kernels|blog)\\/.*"
               }
             },
             "required": false
@@ -62654,6 +62720,13 @@
                                   "null"
                                 ]
                               },
+                              "description": {
+                                "description": "Free-text description of the bucket / container image",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time",
@@ -65088,6 +65161,13 @@
                                       "null"
                                     ]
                                   },
+                                  "description": {
+                                    "description": "Free-text description of the bucket / container image",
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
                                   "createdAt": {
                                     "type": "string",
                                     "format": "date-time",
@@ -67466,6 +67546,13 @@
                               "private": {
                                 "type": [
                                   "boolean",
+                                  "null"
+                                ]
+                              },
+                              "description": {
+                                "description": "Free-text description of the bucket / container image",
+                                "type": [
+                                  "string",
                                   "null"
                                 ]
                               },
@@ -69892,6 +69979,13 @@
                                   "private": {
                                     "type": [
                                       "boolean",
+                                      "null"
+                                    ]
+                                  },
+                                  "description": {
+                                    "description": "Free-text description of the bucket / container image",
+                                    "type": [
+                                      "string",
                                       "null"
                                     ]
                                   },
@@ -72303,6 +72397,13 @@
                                   "null"
                                 ]
                               },
+                              "description": {
+                                "description": "Free-text description of the bucket / container image",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time",
@@ -74685,6 +74786,13 @@
                               "private": {
                                 "type": [
                                   "boolean",
+                                  "null"
+                                ]
+                              },
+                              "description": {
+                                "description": "Free-text description of the bucket / container image",
+                                "type": [
+                                  "string",
                                   "null"
                                 ]
                               },
@@ -77460,6 +77568,13 @@
                                   "null"
                                 ]
                               },
+                              "description": {
+                                "description": "Free-text description of the bucket / container image",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time",
@@ -79795,6 +79910,13 @@
                                         "null"
                                       ]
                                     },
+                                    "description": {
+                                      "description": "Free-text description of the bucket / container image",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time",
@@ -80475,6 +80597,11 @@
                       "us",
                       "eu"
                     ]
+                  },
+                  "description": {
+                    "description": "Free-text description.",
+                    "type": "string",
+                    "maxLength": 500
                   }
                 },
                 "description": "Bucket creation options"
@@ -80620,6 +80747,13 @@
                     "private": {
                       "type": [
                         "boolean",
+                        "null"
+                      ]
+                    },
+                    "description": {
+                      "description": "Free-text description of the bucket / container image",
+                      "type": [
+                        "string",
                         "null"
                       ]
                     },
@@ -80819,6 +80953,11 @@
                       "us",
                       "eu"
                     ]
+                  },
+                  "description": {
+                    "description": "Free-text description.",
+                    "type": "string",
+                    "maxLength": 500
                   }
                 },
                 "description": "Bucket creation options"
@@ -80964,6 +81103,13 @@
                     "private": {
                       "type": [
                         "boolean",
+                        "null"
+                      ]
+                    },
+                    "description": {
+                      "description": "Free-text description of the bucket / container image",
+                      "type": [
+                        "string",
                         "null"
                       ]
                     },
@@ -81370,6 +81516,13 @@
                           "null"
                         ]
                       },
+                      "description": {
+                        "description": "Free-text description of the bucket / container image",
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time",
@@ -81540,6 +81693,13 @@
                       "private": {
                         "type": [
                           "boolean",
+                          "null"
+                        ]
+                      },
+                      "description": {
+                        "description": "Free-text description of the bucket / container image",
+                        "type": [
+                          "string",
                           "null"
                         ]
                       },
