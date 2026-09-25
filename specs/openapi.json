@@ -20588,7 +20588,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-24T02:00:46.825Z",
+              "default": "2026-09-24T09:37:49.806Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20693,7 +20693,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-24T02:00:46.825Z",
+              "default": "2026-09-24T09:37:49.807Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20840,7 +20840,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-24T02:00:46.825Z",
+              "default": "2026-09-24T09:37:49.807Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -82775,7 +82775,7 @@
     },
     "/api/buckets/{namespace}/{repo}/events": {
       "get": {
-        "description": "Server-sent events (`Accept: text/event-stream`) of the bucket's file changes, so clients can stop polling `/tree`.\n\nEvents:\n- `ready`: `{\"cursor\"}` — replay (if any) is done, live changes follow. `cursor` may be absent if the feed has seen no change yet.\n- `changes`: `{\"cursor\", \"changes\": [{\"path\", \"op\": \"add\" | \"update\" | \"delete\", \"size\"?, \"xetHash\"?, \"uploadedAt\"?, \"mtime\"?, \"mtimeNanos\"?}]}` — a batch of changes coalesced over ~200ms. An `update` only carries the fields that changed (an identical re-upload has just `uploadedAt`); `mtime`/`mtimeNanos` are `null` when a re-upload cleared them. `xetHash` is omitted without content read access.\n- `reset`: `{\"reason\": \"cursor_too_old\"}` — the requested `cursor`/`since` is older than what the server buffers (about 15 minutes); the stream ends and the client must re-list.\n- `reconnect`: `{\"cursor\"}` — sent after 20 minutes or when the server shuts down (deploys), then the stream ends; reconnect with that cursor. Treat any other end of the stream the same way: reconnect with the last cursor you received.\n\nA `: ping` comment is sent every 30s. Resume with `?cursor=` (exclusive) or `?since=` (inclusive); without either, only live changes are sent.",
+        "description": "Server-sent events (`Accept: text/event-stream`) of the bucket's file changes, so clients can stop polling `/tree`.\n\nEvents:\n- `ready`: `{\"cursor\"}` — replay (if any) is done, live changes follow. `cursor` may be absent if the feed has seen no change yet.\n- `changes`: `{\"cursor\", \"changes\": [{\"path\", \"op\": \"add\" | \"update\" | \"delete\", \"size\"?, \"xetHash\"?, \"uploadedAt\"?, \"mtime\"?, \"mtimeNanos\"?}]}` — a batch of changes coalesced over ~200ms. An `update` only carries the fields that changed (an identical re-upload has just `uploadedAt`); `mtime`/`mtimeNanos` are `null` when a re-upload cleared them. `xetHash` is omitted without content read access.\n- `reset`: `{\"reason\": \"cursor_too_old\"}` — the requested `cursor`/`since` is older than what the server buffers (about 15 minutes); the stream ends and the client must re-list. A `since` at or after the bucket's `updatedAt` never resets, however old.\n- `reconnect`: `{\"cursor\"}` — sent after 20 minutes or when the server shuts down (deploys), then the stream ends; reconnect with that cursor. Treat any other end of the stream the same way: reconnect with the last cursor you received.\n\nA `: ping` comment is sent every 30s. Resume with `?cursor=` (exclusive) or `?since=` (inclusive); without either, only live changes are sent.",
         "summary": "Follow changes",
         "tags": [
           "buckets"
