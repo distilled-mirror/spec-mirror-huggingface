@@ -2482,6 +2482,17 @@
                   "jobSourceId": {
                     "type": "string"
                   },
+                  "secrets": {
+                    "description": "Secrets of the job started by the webhook, used together with `jobSourceId`: the source job's own secrets are never copied. On update, listed keys are replaced, an empty value removes a secret, and omitted keys keep their stored value.",
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z][_a-zA-Z0-9]*$"
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
                   "domains": {
                     "minItems": 1,
                     "type": "array",
@@ -3769,6 +3780,17 @@
                   },
                   "jobSourceId": {
                     "type": "string"
+                  },
+                  "secrets": {
+                    "description": "Secrets of the job started by the webhook, used together with `jobSourceId`: the source job's own secrets are never copied. On update, listed keys are replaced, an empty value removes a secret, and omitted keys keep their stored value.",
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z][_a-zA-Z0-9]*$"
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
                   },
                   "domains": {
                     "minItems": 1,
@@ -20588,7 +20610,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-24T09:37:49.806Z",
+              "default": "2026-09-25T09:37:05.147Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20693,7 +20715,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-24T09:37:49.807Z",
+              "default": "2026-09-25T09:37:05.148Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20840,7 +20862,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-24T09:37:49.807Z",
+              "default": "2026-09-25T09:37:05.148Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
