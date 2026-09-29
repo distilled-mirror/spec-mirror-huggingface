@@ -6136,6 +6136,16 @@
                               "no_access"
                             ]
                           },
+                          "orgRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access"
+                            ]
+                          },
                           "addedBy": {
                             "type": "string"
                           }
@@ -6146,7 +6156,8 @@
                           "fullname",
                           "name",
                           "avatarUrl",
-                          "role"
+                          "role",
+                          "orgRole"
                         ],
                         "additionalProperties": false
                       }
@@ -6532,6 +6543,16 @@
                               "no_access"
                             ]
                           },
+                          "orgRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access"
+                            ]
+                          },
                           "addedBy": {
                             "type": "string"
                           }
@@ -6542,7 +6563,8 @@
                           "fullname",
                           "name",
                           "avatarUrl",
-                          "role"
+                          "role",
+                          "orgRole"
                         ],
                         "additionalProperties": false
                       }
@@ -6957,6 +6979,16 @@
                               "no_access"
                             ]
                           },
+                          "orgRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access"
+                            ]
+                          },
                           "addedBy": {
                             "type": "string"
                           }
@@ -6967,7 +6999,8 @@
                           "fullname",
                           "name",
                           "avatarUrl",
-                          "role"
+                          "role",
+                          "orgRole"
                         ],
                         "additionalProperties": false
                       }
@@ -7375,6 +7408,16 @@
                               "no_access"
                             ]
                           },
+                          "orgRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access"
+                            ]
+                          },
                           "addedBy": {
                             "type": "string"
                           }
@@ -7385,7 +7428,8 @@
                           "fullname",
                           "name",
                           "avatarUrl",
-                          "role"
+                          "role",
+                          "orgRole"
                         ],
                         "additionalProperties": false
                       }
@@ -7726,6 +7770,16 @@
                               "no_access"
                             ]
                           },
+                          "orgRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access"
+                            ]
+                          },
                           "addedBy": {
                             "type": "string"
                           }
@@ -7736,7 +7790,8 @@
                           "fullname",
                           "name",
                           "avatarUrl",
-                          "role"
+                          "role",
+                          "orgRole"
                         ],
                         "additionalProperties": false
                       }
@@ -8108,6 +8163,16 @@
                               "no_access"
                             ]
                           },
+                          "orgRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access"
+                            ]
+                          },
                           "addedBy": {
                             "type": "string"
                           }
@@ -8118,7 +8183,8 @@
                           "fullname",
                           "name",
                           "avatarUrl",
-                          "role"
+                          "role",
+                          "orgRole"
                         ],
                         "additionalProperties": false
                       }
@@ -8469,6 +8535,16 @@
                                 "no_access"
                               ]
                             },
+                            "orgRole": {
+                              "type": "string",
+                              "enum": [
+                                "admin",
+                                "write",
+                                "contributor",
+                                "read",
+                                "no_access"
+                              ]
+                            },
                             "addedBy": {
                               "type": "string"
                             }
@@ -8479,7 +8555,8 @@
                             "fullname",
                             "name",
                             "avatarUrl",
-                            "role"
+                            "role",
+                            "orgRole"
                           ],
                           "additionalProperties": false
                         }
@@ -8914,6 +8991,16 @@
                               "no_access"
                             ]
                           },
+                          "orgRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access"
+                            ]
+                          },
                           "addedBy": {
                             "type": "string"
                           }
@@ -8924,7 +9011,8 @@
                           "fullname",
                           "name",
                           "avatarUrl",
-                          "role"
+                          "role",
+                          "orgRole"
                         ],
                         "additionalProperties": false
                       }
@@ -20610,7 +20698,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-25T09:35:22.145Z",
+              "default": "2026-09-28T14:25:36.494Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20715,7 +20803,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-25T09:35:22.145Z",
+              "default": "2026-09-28T14:25:36.495Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20862,7 +20950,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-25T09:35:22.145Z",
+              "default": "2026-09-28T14:25:36.495Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -33214,6 +33302,84 @@
         "summary": "Get security status",
         "tags": [
           "spaces"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "scansDone": {
+                      "type": "boolean"
+                    },
+                    "filesWithIssues": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string"
+                          },
+                          "level": {
+                            "type": "string",
+                            "enum": [
+                              "unscanned",
+                              "safe",
+                              "queued",
+                              "error",
+                              "caution",
+                              "suspicious",
+                              "unsafe"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "path",
+                          "level"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "scansDone",
+                    "filesWithIssues"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The security status of the repo"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/kernels/{namespace}/{repo}/scan": {
+      "get": {
+        "description": "Get the security status of a repo",
+        "summary": "Get security status",
+        "tags": [
+          "kernels"
         ],
         "responses": {
           "200": {
