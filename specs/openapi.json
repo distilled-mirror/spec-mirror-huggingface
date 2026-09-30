@@ -183,7 +183,8 @@
                     "enum": [
                       "NO_CREDITS",
                       "NO_SUBSCRIPTION",
-                      "RESOURCE_GROUP_LIMIT"
+                      "RESOURCE_GROUP_LIMIT",
+                      "SPEND_LIMIT"
                     ]
                   },
                   {
@@ -20698,7 +20699,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-28T14:25:36.494Z",
+              "default": "2026-09-29T15:22:49.805Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20803,7 +20804,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-28T14:25:36.495Z",
+              "default": "2026-09-29T15:22:49.805Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20950,7 +20951,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-28T14:25:36.495Z",
+              "default": "2026-09-29T15:22:49.805Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -47630,6 +47631,7 @@
                     "fasttext",
                     "fixer",
                     "flair",
+                    "flexray",
                     "flextab",
                     "fme",
                     "gemma.cpp",
@@ -47644,6 +47646,7 @@
                     "habibi-tts",
                     "hallo",
                     "minimax-h3",
+                    "mect",
                     "hermes",
                     "holomotion",
                     "hezar",
@@ -47660,6 +47663,7 @@
                     "infinite-you",
                     "intellifold",
                     "ising-decoding",
+                    "jev-style",
                     "keras",
                     "tf-keras",
                     "keras-hub",
@@ -47694,6 +47698,7 @@
                     "merlin",
                     "medvae",
                     "mflux",
+                    "microduck",
                     "mitie",
                     "ml-agents",
                     "ml-sharp",
@@ -48394,6 +48399,7 @@
                           "fasttext",
                           "fixer",
                           "flair",
+                          "flexray",
                           "flextab",
                           "fme",
                           "gemma.cpp",
@@ -48408,6 +48414,7 @@
                           "habibi-tts",
                           "hallo",
                           "minimax-h3",
+                          "mect",
                           "hermes",
                           "holomotion",
                           "hezar",
@@ -48424,6 +48431,7 @@
                           "infinite-you",
                           "intellifold",
                           "ising-decoding",
+                          "jev-style",
                           "keras",
                           "tf-keras",
                           "keras-hub",
@@ -48458,6 +48466,7 @@
                           "merlin",
                           "medvae",
                           "mflux",
+                          "microduck",
                           "mitie",
                           "ml-agents",
                           "ml-sharp",
@@ -49447,6 +49456,7 @@
                     "fasttext",
                     "fixer",
                     "flair",
+                    "flexray",
                     "flextab",
                     "fme",
                     "gemma.cpp",
@@ -49461,6 +49471,7 @@
                     "habibi-tts",
                     "hallo",
                     "minimax-h3",
+                    "mect",
                     "hermes",
                     "holomotion",
                     "hezar",
@@ -49477,6 +49488,7 @@
                     "infinite-you",
                     "intellifold",
                     "ising-decoding",
+                    "jev-style",
                     "keras",
                     "tf-keras",
                     "keras-hub",
@@ -49511,6 +49523,7 @@
                     "merlin",
                     "medvae",
                     "mflux",
+                    "microduck",
                     "mitie",
                     "ml-agents",
                     "ml-sharp",
@@ -83775,7 +83788,8 @@
                                 "enum": [
                                   "NO_CREDITS",
                                   "NO_SUBSCRIPTION",
-                                  "RESOURCE_GROUP_LIMIT"
+                                  "RESOURCE_GROUP_LIMIT",
+                                  "SPEND_LIMIT"
                                 ]
                               },
                               {
@@ -84867,7 +84881,8 @@
                               "enum": [
                                 "NO_CREDITS",
                                 "NO_SUBSCRIPTION",
-                                "RESOURCE_GROUP_LIMIT"
+                                "RESOURCE_GROUP_LIMIT",
+                                "SPEND_LIMIT"
                               ]
                             },
                             {
@@ -85451,7 +85466,8 @@
                               "enum": [
                                 "NO_CREDITS",
                                 "NO_SUBSCRIPTION",
-                                "RESOURCE_GROUP_LIMIT"
+                                "RESOURCE_GROUP_LIMIT",
+                                "SPEND_LIMIT"
                               ]
                             },
                             {
@@ -86060,7 +86076,8 @@
                               "enum": [
                                 "NO_CREDITS",
                                 "NO_SUBSCRIPTION",
-                                "RESOURCE_GROUP_LIMIT"
+                                "RESOURCE_GROUP_LIMIT",
+                                "SPEND_LIMIT"
                               ]
                             },
                             {
@@ -86578,7 +86595,8 @@
                               "enum": [
                                 "NO_CREDITS",
                                 "NO_SUBSCRIPTION",
-                                "RESOURCE_GROUP_LIMIT"
+                                "RESOURCE_GROUP_LIMIT",
+                                "SPEND_LIMIT"
                               ]
                             },
                             {
@@ -87125,7 +87143,8 @@
                               "enum": [
                                 "NO_CREDITS",
                                 "NO_SUBSCRIPTION",
-                                "RESOURCE_GROUP_LIMIT"
+                                "RESOURCE_GROUP_LIMIT",
+                                "SPEND_LIMIT"
                               ]
                             },
                             {
@@ -87677,7 +87696,8 @@
                               "enum": [
                                 "NO_CREDITS",
                                 "NO_SUBSCRIPTION",
-                                "RESOURCE_GROUP_LIMIT"
+                                "RESOURCE_GROUP_LIMIT",
+                                "SPEND_LIMIT"
                               ]
                             },
                             {
@@ -90157,7 +90177,8 @@
                               "enum": [
                                 "NO_CREDITS",
                                 "NO_SUBSCRIPTION",
-                                "RESOURCE_GROUP_LIMIT"
+                                "RESOURCE_GROUP_LIMIT",
+                                "SPEND_LIMIT"
                               ]
                             },
                             {
