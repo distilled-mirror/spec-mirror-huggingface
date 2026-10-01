@@ -1709,14 +1709,14 @@
                                 "propertyNames": {
                                   "type": "string",
                                   "maxLength": 100,
-                                  "pattern": "^[a-zA-Z0-9._-]+$"
+                                  "pattern": "^[a-zA-Z0-9_-]+$"
                                 },
                                 "additionalProperties": {
                                   "type": "string",
                                   "maxLength": 100,
-                                  "pattern": "^[a-zA-Z0-9._-]*$"
+                                  "pattern": "^[a-zA-Z0-9_-]*$"
                                 },
-                                "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                               },
                               "secrets": {
                                 "type": "array",
@@ -1827,14 +1827,14 @@
                                 "propertyNames": {
                                   "type": "string",
                                   "maxLength": 100,
-                                  "pattern": "^[a-zA-Z0-9._-]+$"
+                                  "pattern": "^[a-zA-Z0-9_-]+$"
                                 },
                                 "additionalProperties": {
                                   "type": "string",
                                   "maxLength": 100,
-                                  "pattern": "^[a-zA-Z0-9._-]*$"
+                                  "pattern": "^[a-zA-Z0-9_-]*$"
                                 },
-                                "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                               },
                               "secrets": {
                                 "type": "array",
@@ -2100,14 +2100,14 @@
                             "propertyNames": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]+$"
+                              "pattern": "^[a-zA-Z0-9_-]+$"
                             },
                             "additionalProperties": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]*$"
+                              "pattern": "^[a-zA-Z0-9_-]*$"
                             },
-                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                           },
                           "volumes": {
                             "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -2348,14 +2348,14 @@
                             "propertyNames": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]+$"
+                              "pattern": "^[a-zA-Z0-9_-]+$"
                             },
                             "additionalProperties": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]*$"
+                              "pattern": "^[a-zA-Z0-9_-]*$"
                             },
-                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                           },
                           "volumes": {
                             "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -2636,14 +2636,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -2754,14 +2754,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -2992,14 +2992,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -3110,14 +3110,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -3399,14 +3399,14 @@
                             "propertyNames": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]+$"
+                              "pattern": "^[a-zA-Z0-9_-]+$"
                             },
                             "additionalProperties": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]*$"
+                              "pattern": "^[a-zA-Z0-9_-]*$"
                             },
-                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                           },
                           "volumes": {
                             "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -3647,14 +3647,14 @@
                             "propertyNames": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]+$"
+                              "pattern": "^[a-zA-Z0-9_-]+$"
                             },
                             "additionalProperties": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]*$"
+                              "pattern": "^[a-zA-Z0-9_-]*$"
                             },
-                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                           },
                           "volumes": {
                             "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -3935,14 +3935,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -4053,14 +4053,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -4333,14 +4333,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -4451,14 +4451,14 @@
                                   "propertyNames": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]+$"
+                                    "pattern": "^[a-zA-Z0-9_-]+$"
                                   },
                                   "additionalProperties": {
                                     "type": "string",
                                     "maxLength": 100,
-                                    "pattern": "^[a-zA-Z0-9._-]*$"
+                                    "pattern": "^[a-zA-Z0-9_-]*$"
                                   },
-                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                                  "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                                 },
                                 "secrets": {
                                   "type": "array",
@@ -20699,7 +20699,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-29T15:22:49.805Z",
+              "default": "2026-09-30T13:24:22.129Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20804,7 +20804,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-29T15:22:49.805Z",
+              "default": "2026-09-30T13:24:22.129Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20951,7 +20951,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-29T15:22:49.805Z",
+              "default": "2026-09-30T13:24:22.129Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -83911,14 +83911,14 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "pattern": "^[a-zA-Z0-9._-]+=[a-zA-Z0-9._-]*$",
+                  "pattern": "^[a-zA-Z0-9_-]+=[a-zA-Z0-9_-]*$",
                   "description": "Filter jobs by label. Format: 'key=value' (e.g., 'environment=production')."
                 },
                 {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "pattern": "^[a-zA-Z0-9._-]+=[a-zA-Z0-9._-]*$",
+                    "pattern": "^[a-zA-Z0-9_-]+=[a-zA-Z0-9_-]*$",
                     "description": "Filter jobs by label. Format: 'key=value' (e.g., 'environment=production')."
                   }
                 }
@@ -84102,14 +84102,14 @@
                         "propertyNames": {
                           "type": "string",
                           "maxLength": 100,
-                          "pattern": "^[a-zA-Z0-9._-]+$"
+                          "pattern": "^[a-zA-Z0-9_-]+$"
                         },
                         "additionalProperties": {
                           "type": "string",
                           "maxLength": 100,
-                          "pattern": "^[a-zA-Z0-9._-]*$"
+                          "pattern": "^[a-zA-Z0-9_-]*$"
                         },
-                        "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                        "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                       },
                       "volumes": {
                         "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -84350,14 +84350,14 @@
                         "propertyNames": {
                           "type": "string",
                           "maxLength": 100,
-                          "pattern": "^[a-zA-Z0-9._-]+$"
+                          "pattern": "^[a-zA-Z0-9_-]+$"
                         },
                         "additionalProperties": {
                           "type": "string",
                           "maxLength": 100,
-                          "pattern": "^[a-zA-Z0-9._-]*$"
+                          "pattern": "^[a-zA-Z0-9_-]*$"
                         },
-                        "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                        "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                       },
                       "volumes": {
                         "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -86730,12 +86730,12 @@
                     "propertyNames": {
                       "type": "string",
                       "maxLength": 100,
-                      "pattern": "^[a-zA-Z0-9._-]+$"
+                      "pattern": "^[a-zA-Z0-9_-]+$"
                     },
                     "additionalProperties": {
                       "type": "string",
                       "maxLength": 100,
-                      "pattern": "^[a-zA-Z0-9._-]*$"
+                      "pattern": "^[a-zA-Z0-9_-]*$"
                     },
                     "description": "The new labels to set on the job. Replaces all existing labels."
                   }
@@ -87945,14 +87945,14 @@
                             "propertyNames": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]+$"
+                              "pattern": "^[a-zA-Z0-9_-]+$"
                             },
                             "additionalProperties": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]*$"
+                              "pattern": "^[a-zA-Z0-9_-]*$"
                             },
-                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                           },
                           "volumes": {
                             "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -88193,14 +88193,14 @@
                             "propertyNames": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]+$"
+                              "pattern": "^[a-zA-Z0-9_-]+$"
                             },
                             "additionalProperties": {
                               "type": "string",
                               "maxLength": 100,
-                              "pattern": "^[a-zA-Z0-9._-]*$"
+                              "pattern": "^[a-zA-Z0-9_-]*$"
                             },
-                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores."
+                            "description": "Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dashes, and underscores."
                           },
                           "volumes": {
                             "description": "HuggingFace Buckets or Repos to mount as volumes in the job container.",
@@ -89238,7 +89238,7 @@
             "schema": {
               "description": "Filter scheduled jobs by label. Format: 'key=value' (e.g., 'environment=production').",
               "type": "string",
-              "pattern": "^[a-zA-Z0-9._-]+=[a-zA-Z0-9._-]*$"
+              "pattern": "^[a-zA-Z0-9_-]+=[a-zA-Z0-9_-]*$"
             },
             "required": false
           }
@@ -90806,12 +90806,12 @@
                     "propertyNames": {
                       "type": "string",
                       "maxLength": 100,
-                      "pattern": "^[a-zA-Z0-9._-]+$"
+                      "pattern": "^[a-zA-Z0-9_-]+$"
                     },
                     "additionalProperties": {
                       "type": "string",
                       "maxLength": 100,
-                      "pattern": "^[a-zA-Z0-9._-]*$"
+                      "pattern": "^[a-zA-Z0-9_-]*$"
                     },
                     "description": "The new labels to set on the job. Replaces all existing labels."
                   }
