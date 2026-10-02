@@ -5200,6 +5200,7 @@
                                       "repo.config.secrets.write",
                                       "repo.access.read",
                                       "repo.access.write",
+                                      "repo.contribute.write",
                                       "repo.write",
                                       "discussion.write",
                                       "post.write",
@@ -9824,6 +9825,7 @@
                               "type": "string",
                               "enum": [
                                 "repo.content.read",
+                                "repo.contribute.write",
                                 "repo.write",
                                 "inference.serverless.write",
                                 "inference.endpoints.infer.write",
@@ -9987,6 +9989,7 @@
                       "type": "string",
                       "enum": [
                         "repo.content.read",
+                        "repo.contribute.write",
                         "repo.write",
                         "inference.serverless.write",
                         "inference.endpoints.infer.write",
@@ -10212,6 +10215,7 @@
                       "type": "string",
                       "enum": [
                         "repo.content.read",
+                        "repo.contribute.write",
                         "repo.write",
                         "inference.serverless.write",
                         "inference.endpoints.infer.write",
@@ -20353,6 +20357,9 @@
                               "canPay": {
                                 "type": "boolean"
                               },
+                              "spendLimitReached": {
+                                "type": "boolean"
+                              },
                               "billingMode": {
                                 "type": "string",
                                 "enum": [
@@ -20688,7 +20695,7 @@
             "name": "startDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-01T00:00:00.000Z",
+              "default": "2026-10-01T00:00:00.000Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20699,7 +20706,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-30T13:24:22.129Z",
+              "default": "2026-10-01T20:56:49.572Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20793,7 +20800,7 @@
             "name": "startDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-01T00:00:00.000Z",
+              "default": "2026-10-01T00:00:00.000Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20804,7 +20811,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-30T13:24:22.129Z",
+              "default": "2026-10-01T20:56:49.572Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20940,7 +20947,7 @@
             "name": "startDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-01T00:00:00.000Z",
+              "default": "2026-10-01T00:00:00.000Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20951,7 +20958,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-09-30T13:24:22.129Z",
+              "default": "2026-10-01T20:56:49.572Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -80752,10 +80759,18 @@
                 "type": "object",
                 "properties": {
                   "private": {
-                    "description": "Bucket visibility. Defaults to public",
+                    "description": "Bucket visibility. Defaults to public. Cannot be specified along with visibility.",
                     "type": [
                       "boolean",
                       "null"
+                    ]
+                  },
+                  "visibility": {
+                    "description": "Bucket visibility. Cannot be specified along with private.",
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "public"
                     ]
                   },
                   "resourceGroupId": {
@@ -81108,10 +81123,18 @@
                 "type": "object",
                 "properties": {
                   "private": {
-                    "description": "Bucket visibility. Defaults to public",
+                    "description": "Bucket visibility. Defaults to public. Cannot be specified along with visibility.",
                     "type": [
                       "boolean",
                       "null"
+                    ]
+                  },
+                  "visibility": {
+                    "description": "Bucket visibility. Cannot be specified along with private.",
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "public"
                     ]
                   },
                   "resourceGroupId": {
