@@ -20706,7 +20706,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-02T15:41:29.690Z",
+              "default": "2026-10-04T17:42:33.359Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20811,7 +20811,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-02T15:41:29.690Z",
+              "default": "2026-10-04T17:42:33.360Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20958,7 +20958,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-02T15:41:29.690Z",
+              "default": "2026-10-04T17:42:33.360Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -47571,12 +47571,14 @@
                 {
                   "type": "string",
                   "enum": [
+                    "aadya-neural",
                     "acestep",
                     "adapter-transformers",
                     "allennlp",
                     "aneforge",
                     "anemoi",
                     "araclip",
+                    "asimov",
                     "aviation-ner",
                     "asteroid",
                     "audiocraft",
@@ -47641,6 +47643,7 @@
                     "flexray",
                     "flextab",
                     "fme",
+                    "gaussianformer",
                     "gemma.cpp",
                     "geometry-crafter",
                     "gliformer",
@@ -47682,6 +47685,7 @@
                     "k2",
                     "lyra-2.0",
                     "lagernvs",
+                    "laya",
                     "ltx",
                     "lightning-ir",
                     "litert",
@@ -48339,12 +48343,14 @@
                       {
                         "type": "string",
                         "enum": [
+                          "aadya-neural",
                           "acestep",
                           "adapter-transformers",
                           "allennlp",
                           "aneforge",
                           "anemoi",
                           "araclip",
+                          "asimov",
                           "aviation-ner",
                           "asteroid",
                           "audiocraft",
@@ -48409,6 +48415,7 @@
                           "flexray",
                           "flextab",
                           "fme",
+                          "gaussianformer",
                           "gemma.cpp",
                           "geometry-crafter",
                           "gliformer",
@@ -48450,6 +48457,7 @@
                           "k2",
                           "lyra-2.0",
                           "lagernvs",
+                          "laya",
                           "ltx",
                           "lightning-ir",
                           "litert",
@@ -49396,12 +49404,14 @@
                 {
                   "type": "string",
                   "enum": [
+                    "aadya-neural",
                     "acestep",
                     "adapter-transformers",
                     "allennlp",
                     "aneforge",
                     "anemoi",
                     "araclip",
+                    "asimov",
                     "aviation-ner",
                     "asteroid",
                     "audiocraft",
@@ -49466,6 +49476,7 @@
                     "flexray",
                     "flextab",
                     "fme",
+                    "gaussianformer",
                     "gemma.cpp",
                     "geometry-crafter",
                     "gliformer",
@@ -49507,6 +49518,7 @@
                     "k2",
                     "lyra-2.0",
                     "lagernvs",
+                    "laya",
                     "ltx",
                     "lightning-ir",
                     "litert",
@@ -52155,6 +52167,67 @@
               }
             },
             "description": "SQL console embed deleted successfully"
+          }
+        },
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "datasets"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/{repoType}/{namespace}/{repo}/sql-console/embed/{id}/hide": {
+      "post": {
+        "description": "Hide a SQL Console embed from the dataset's community queries. Requires write access to the dataset.",
+        "summary": "Hide embed",
+        "tags": [
+          "sql-console"
+        ],
+        "responses": {
+          "204": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "SQL console embed hidden successfully"
           }
         },
         "parameters": [
