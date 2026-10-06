@@ -20706,7 +20706,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-04T17:42:33.359Z",
+              "default": "2026-10-05T14:57:49.902Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20811,10 +20811,149 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-04T17:42:33.360Z",
+              "default": "2026-10-05T14:57:49.903Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "required": false
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/billing/usage/inference": {
+      "get": {
+        "description": "Get org inference-provider usage per member, model and provider, returned as a time-series of daily periods. Window is [startDate, endDate], defaults to the current month. Both dates must fall within the last 12 months. Returns up to `limit` periods, follow the `Link` header for the next ones. Requests are included up to 2 hours after they are made.",
+        "summary": "Inference usage",
+        "tags": [
+          "orgs"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "usage": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "user": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "model": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "provider": {
+                              "type": "string"
+                            },
+                            "requestCount": {
+                              "type": "number"
+                            },
+                            "costCents": {
+                              "type": "number"
+                            },
+                            "inputTokens": {
+                              "type": "number"
+                            },
+                            "outputTokens": {
+                              "type": "number"
+                            },
+                            "cachedInputTokens": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "user",
+                            "model",
+                            "provider",
+                            "requestCount",
+                            "costCents",
+                            "inputTokens",
+                            "outputTokens",
+                            "cachedInputTokens"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": [
+                      "period",
+                      "usage"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            "description": "Org inference-provider usage per member, model and provider, indexed by daily period",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "string"
+                },
+                "description": "Link header for pagination, can contain a `rel=\"next\"` link"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "default": "2026-10-01T00:00:00.000Z",
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "required": false
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "default": "2026-10-05T14:57:49.903Z",
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "default": 7,
+              "description": "Number of daily periods per page",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 31
             },
             "required": false
           }
@@ -20958,7 +21097,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-04T17:42:33.360Z",
+              "default": "2026-10-05T14:57:49.903Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -82176,6 +82315,10 @@
                     "contentType": {
                       "description": "The content type of the file",
                       "type": "string"
+                    },
+                    "uploadedAt": {
+                      "type": "string",
+                      "description": "ISO 8601 timestamp of when the file was added to the bucket"
                     }
                   },
                   "required": [
@@ -82183,7 +82326,8 @@
                     "refreshUrl",
                     "reconstructionUrl",
                     "etag",
-                    "size"
+                    "size",
+                    "uploadedAt"
                   ],
                   "additionalProperties": false
                 }
@@ -82335,6 +82479,10 @@
                     "contentType": {
                       "description": "The content type of the file",
                       "type": "string"
+                    },
+                    "uploadedAt": {
+                      "type": "string",
+                      "description": "ISO 8601 timestamp of when the file was added to the bucket"
                     }
                   },
                   "required": [
@@ -82342,7 +82490,8 @@
                     "refreshUrl",
                     "reconstructionUrl",
                     "etag",
-                    "size"
+                    "size",
+                    "uploadedAt"
                   ],
                   "additionalProperties": false
                 }
