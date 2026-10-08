@@ -6150,6 +6150,12 @@
                           },
                           "addedBy": {
                             "type": "string"
+                          },
+                          "roleSetBy": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           }
                         },
                         "required": [
@@ -6557,6 +6563,12 @@
                           },
                           "addedBy": {
                             "type": "string"
+                          },
+                          "roleSetBy": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           }
                         },
                         "required": [
@@ -6993,6 +7005,12 @@
                           },
                           "addedBy": {
                             "type": "string"
+                          },
+                          "roleSetBy": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           }
                         },
                         "required": [
@@ -7422,6 +7440,12 @@
                           },
                           "addedBy": {
                             "type": "string"
+                          },
+                          "roleSetBy": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           }
                         },
                         "required": [
@@ -7784,6 +7808,12 @@
                           },
                           "addedBy": {
                             "type": "string"
+                          },
+                          "roleSetBy": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           }
                         },
                         "required": [
@@ -7997,7 +8027,7 @@
         ]
       },
       "patch": {
-        "description": "Change the role of a user in a resource group.\n\nRequires the org to have a Team plan or higher.",
+        "description": "Change the role of a user in a resource group. In a SCIM-managed resource group, pass `resetToScimRole` to undo a manual role change and restore the role mapped from the user's SCIM groups.\n\nRequires the org to have a Team plan or higher.",
         "summary": "Change user role",
         "tags": [
           "resource-groups"
@@ -8007,21 +8037,38 @@
             "application/json": {
               "schema": {
                 "$schema": "https://json-schema.org/draft/2020-12/schema",
-                "type": "object",
-                "properties": {
-                  "role": {
-                    "type": "string",
-                    "enum": [
-                      "admin",
-                      "write",
-                      "contributor",
-                      "read",
-                      "no_access"
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "admin",
+                          "write",
+                          "contributor",
+                          "read",
+                          "no_access"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "role"
                     ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "resetToScimRole": {
+                        "type": "boolean",
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "resetToScimRole"
+                    ],
+                    "description": "Reset the role to the one mapped from SCIM groups"
                   }
-                },
-                "required": [
-                  "role"
                 ]
               }
             }
@@ -8177,6 +8224,12 @@
                           },
                           "addedBy": {
                             "type": "string"
+                          },
+                          "roleSetBy": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           }
                         },
                         "required": [
@@ -8549,6 +8602,12 @@
                             },
                             "addedBy": {
                               "type": "string"
+                            },
+                            "roleSetBy": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
                             }
                           },
                           "required": [
@@ -9005,6 +9064,12 @@
                           },
                           "addedBy": {
                             "type": "string"
+                          },
+                          "roleSetBy": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           }
                         },
                         "required": [
@@ -13803,10 +13868,7 @@
                   },
                   "userName": {
                     "type": "string",
-                    "minLength": 2,
-                    "maxLength": 42,
-                    "pattern": "^\\b(?!\\d+$)(?![0-9a-fA-F]{24}$)([a-zA-Z0-9]|-(?!-))+\\b$",
-                    "description": "Username of the existing Hugging Face user"
+                    "description": "IdP username. Ignored: the user is matched by confirmed email"
                   },
                   "emails": {
                     "minItems": 1,
@@ -19858,6 +19920,9 @@
                       "text": {
                         "type": "string"
                       },
+                      "text_plain": {
+                        "type": "string"
+                      },
                       "product": {
                         "type": "string"
                       },
@@ -19885,6 +19950,7 @@
                       "_vectors",
                       "heading1",
                       "text",
+                      "text_plain",
                       "product",
                       "source_page_url",
                       "source_page_title"
@@ -20036,12 +20102,6 @@
                           "hierarchy_lvl6": {
                             "type": "string"
                           },
-                          "content": {
-                            "type": "string"
-                          },
-                          "anchor": {
-                            "type": "string"
-                          },
                           "_formatted": {
                             "type": "object",
                             "properties": {
@@ -20070,9 +20130,6 @@
                                 "type": "string"
                               },
                               "content": {
-                                "type": "string"
-                              },
-                              "anchor": {
                                 "type": "string"
                               }
                             },
@@ -20701,7 +20758,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-06T16:58:01.829Z",
+              "default": "2026-10-08T02:11:12.867Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20806,7 +20863,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-06T16:58:01.829Z",
+              "default": "2026-10-08T02:11:12.867Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20933,7 +20990,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-06T16:58:01.830Z",
+              "default": "2026-10-08T02:11:12.867Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21092,7 +21149,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-06T16:58:01.830Z",
+              "default": "2026-10-08T02:11:12.867Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
