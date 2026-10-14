@@ -5356,6 +5356,24 @@
             },
             "required": false
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -5382,6 +5400,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -5593,6 +5625,24 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -5905,6 +5955,24 @@
               "type": "string"
             },
             "required": false
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -6360,6 +6428,24 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       },
       "delete": {
@@ -6406,6 +6492,24 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -6772,6 +6876,24 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -7215,6 +7337,24 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -7650,6 +7790,24 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -8025,6 +8183,24 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -8442,6 +8618,24 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -8804,6 +8998,24 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -9266,6 +9478,24 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -9404,6 +9634,24 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -9661,6 +9909,24 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -9725,6 +9991,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -9805,6 +10085,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -9987,6 +10281,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       },
       "delete": {
@@ -10023,6 +10331,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -10208,6 +10530,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -10254,6 +10590,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -10423,6 +10773,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -10504,6 +10868,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -10811,6 +11189,24 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -10998,6 +11394,12 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          }
         ]
       }
     },
@@ -11082,6 +11484,12 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          }
         ]
       }
     },
@@ -11162,6 +11570,12 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       }
@@ -11248,6 +11662,12 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       }
@@ -11523,6 +11943,12 @@
               "type": "string"
             },
             "required": false
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       },
@@ -11801,6 +12227,12 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          }
         ]
       }
     },
@@ -11996,6 +12428,12 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       },
@@ -12256,6 +12694,12 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       },
@@ -12540,6 +12984,12 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          }
         ]
       },
       "delete": {
@@ -12575,6 +13025,12 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       }
@@ -12800,6 +13256,12 @@
             },
             "required": false
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          }
         ]
       },
       "post": {
@@ -12978,6 +13440,12 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          }
         ]
       }
     },
@@ -13123,6 +13591,12 @@
               "const": "members"
             },
             "required": false
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       },
@@ -13312,6 +13786,12 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       },
@@ -13530,6 +14010,12 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          }
         ]
       },
       "delete": {
@@ -13565,6 +14051,12 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
           }
         ]
       }
@@ -13841,6 +14333,20 @@
             },
             "required": false
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       },
       "post": {
@@ -14087,6 +14593,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -14282,6 +14802,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -14534,6 +15068,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       },
       "put": {
@@ -14773,6 +15321,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       },
       "delete": {
@@ -14819,6 +15381,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -15044,6 +15620,20 @@
             },
             "required": false
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       },
       "post": {
@@ -15222,6 +15812,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       }
     },
@@ -15367,6 +15971,20 @@
               "const": "members"
             },
             "required": false
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -15556,6 +16174,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       },
@@ -15774,6 +16406,20 @@
               "type": "string"
             }
           }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
         ]
       },
       "delete": {
@@ -15809,6 +16455,20 @@
             "schema": {
               "type": "string"
             }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -20760,7 +21420,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-12T14:56:48.491Z",
+              "default": "2026-10-13T20:20:56.829Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20865,7 +21525,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-12T14:56:48.492Z",
+              "default": "2026-10-13T20:20:56.829Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -20992,7 +21652,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-12T14:56:48.493Z",
+              "default": "2026-10-13T20:20:56.830Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21010,6 +21670,20 @@
               "maximum": 31
             },
             "required": false
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
           }
         ]
       }
@@ -21151,7 +21825,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-12T14:56:48.492Z",
+              "default": "2026-10-13T20:20:56.829Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23570,7 +24244,9 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "contentEncoding": "base64",
+              "contentMediaType": "application/json"
             },
             "required": false
           },
@@ -23823,7 +24499,9 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "contentEncoding": "base64",
+              "contentMediaType": "application/json"
             },
             "required": false
           },
@@ -24076,7 +24754,9 @@
             "name": "cursor",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "contentEncoding": "base64",
+              "contentMediaType": "application/json"
             },
             "required": false
           },
@@ -56224,7 +56904,9 @@
             "in": "query",
             "schema": {
               "description": "Pagination cursor",
-              "type": "string"
+              "type": "string",
+              "contentEncoding": "base64",
+              "contentMediaType": "application/json"
             },
             "required": false
           },
@@ -83091,7 +83773,9 @@
             "in": "query",
             "schema": {
               "description": "Pagination cursor",
-              "type": "string"
+              "type": "string",
+              "contentEncoding": "base64",
+              "contentMediaType": "application/json"
             },
             "required": false
           },
@@ -83253,7 +83937,9 @@
             "in": "query",
             "schema": {
               "description": "Pagination cursor",
-              "type": "string"
+              "type": "string",
+              "contentEncoding": "base64",
+              "contentMediaType": "application/json"
             },
             "required": false
           },
