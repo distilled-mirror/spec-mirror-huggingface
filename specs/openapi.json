@@ -21420,7 +21420,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-14T15:08:30.202Z",
+              "default": "2026-10-15T09:36:42.353Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21525,7 +21525,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-14T15:08:30.202Z",
+              "default": "2026-10-15T09:36:42.353Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21652,7 +21652,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-14T15:08:30.203Z",
+              "default": "2026-10-15T09:36:42.353Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21825,7 +21825,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-14T15:08:30.202Z",
+              "default": "2026-10-15T09:36:42.353Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24025,6 +24025,178 @@
           },
           {
             "name": "rev",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Wildcard path parameter"
+            }
+          }
+        ]
+      }
+    },
+    "/api/models/{namespace}/{repo}/safetensors-metadata/{path}": {
+      "get": {
+        "description": "Get the parsed headers of all the shards of a sharded safetensors model in a single request, instead of reading the index and then the header of every shard.\n\nOnly the `main` revision is served: the `ETag` is the commit sha of `main`, and requests with a matching `If-None-Match` get a 304. Returns 400 when the path isn't a `.safetensors.index.json` file and 422 when the files can't be parsed.\n\nThe response is brotli-compressed when the client accepts it, otherwise gzip-compressed or plain JSON.",
+        "summary": "Get safetensors metadata",
+        "tags": [
+          "models"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "sharded": {
+                      "type": "boolean",
+                      "const": true
+                    },
+                    "index": {
+                      "type": "object",
+                      "properties": {
+                        "metadata": {
+                          "type": "object",
+                          "propertyNames": {
+                            "type": "string"
+                          },
+                          "additionalProperties": {
+                            "type": [
+                              "string",
+                              "number"
+                            ]
+                          }
+                        }
+                      },
+                      "additionalProperties": false,
+                      "description": "The index file, without its `weight_map`: each shard header lists its tensors"
+                    },
+                    "headers": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "dtype": {
+                                  "type": "string"
+                                },
+                                "shape": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "integer",
+                                    "minimum": -9007199254740991,
+                                    "maximum": 9007199254740991
+                                  }
+                                },
+                                "data_offsets": {
+                                  "type": "array",
+                                  "prefixItems": [
+                                    {
+                                      "type": "integer",
+                                      "minimum": -9007199254740991,
+                                      "maximum": 9007199254740991
+                                    },
+                                    {
+                                      "type": "integer",
+                                      "minimum": -9007199254740991,
+                                      "maximum": 9007199254740991
+                                    }
+                                  ],
+                                  "items": false,
+                                  "minItems": 2,
+                                  "maxItems": 2
+                                }
+                              },
+                              "required": [
+                                "dtype",
+                                "shape",
+                                "data_offsets"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "propertyNames": {
+                                "type": "string"
+                              },
+                              "additionalProperties": {
+                                "type": "string"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "description": "The header of each shard, by shard file name: `__metadata__`, then the `dtype`, `shape` and `data_offsets` of each tensor"
+                    },
+                    "parameterCount": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "description": "Number of parameters per dtype"
+                    },
+                    "parameterTotal": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "filepaths": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The index file, then every shard file"
+                    }
+                  },
+                  "required": [
+                    "sharded",
+                    "index",
+                    "headers",
+                    "parameterCount",
+                    "filepaths"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Parsed headers of the shards of a sharded safetensors model"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
             "in": "path",
             "required": true,
             "schema": {
@@ -46478,7 +46650,8 @@
                                             "harbor",
                                             "verifiers",
                                             "openenv",
-                                            "nemo-gym"
+                                            "nemo-gym",
+                                            "agentenv"
                                           ]
                                         }
                                       },
@@ -48508,6 +48681,7 @@
                     "edsnlp",
                     "elm",
                     "encoderfile",
+                    "ensomi",
                     "espnet",
                     "eupe",
                     "fairseq",
@@ -49281,6 +49455,7 @@
                           "edsnlp",
                           "elm",
                           "encoderfile",
+                          "ensomi",
                           "espnet",
                           "eupe",
                           "fairseq",
@@ -50343,6 +50518,7 @@
                     "edsnlp",
                     "elm",
                     "encoderfile",
+                    "ensomi",
                     "espnet",
                     "eupe",
                     "fairseq",
@@ -57706,7 +57882,8 @@
                                     "harbor",
                                     "verifiers",
                                     "openenv",
-                                    "nemo-gym"
+                                    "nemo-gym",
+                                    "agentenv"
                                   ]
                                 }
                               },
@@ -62113,7 +62290,8 @@
                                         "harbor",
                                         "verifiers",
                                         "openenv",
-                                        "nemo-gym"
+                                        "nemo-gym",
+                                        "agentenv"
                                       ]
                                     }
                                   },
@@ -64556,7 +64734,8 @@
                                             "harbor",
                                             "verifiers",
                                             "openenv",
-                                            "nemo-gym"
+                                            "nemo-gym",
+                                            "agentenv"
                                           ]
                                         }
                                       },
@@ -66946,7 +67125,8 @@
                                         "harbor",
                                         "verifiers",
                                         "openenv",
-                                        "nemo-gym"
+                                        "nemo-gym",
+                                        "agentenv"
                                       ]
                                     }
                                   },
@@ -69381,7 +69561,8 @@
                                             "harbor",
                                             "verifiers",
                                             "openenv",
-                                            "nemo-gym"
+                                            "nemo-gym",
+                                            "agentenv"
                                           ]
                                         }
                                       },
@@ -71798,7 +71979,8 @@
                                         "harbor",
                                         "verifiers",
                                         "openenv",
-                                        "nemo-gym"
+                                        "nemo-gym",
+                                        "agentenv"
                                       ]
                                     }
                                   },
@@ -74192,7 +74374,8 @@
                                         "harbor",
                                         "verifiers",
                                         "openenv",
-                                        "nemo-gym"
+                                        "nemo-gym",
+                                        "agentenv"
                                       ]
                                     }
                                   },
@@ -76973,7 +77156,8 @@
                                         "harbor",
                                         "verifiers",
                                         "openenv",
-                                        "nemo-gym"
+                                        "nemo-gym",
+                                        "agentenv"
                                       ]
                                     }
                                   },
@@ -79317,7 +79501,8 @@
                                               "harbor",
                                               "verifiers",
                                               "openenv",
-                                              "nemo-gym"
+                                              "nemo-gym",
+                                              "agentenv"
                                             ]
                                           }
                                         },
