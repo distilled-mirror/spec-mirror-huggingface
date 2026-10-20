@@ -21421,7 +21421,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-18T03:57:19.856Z",
+              "default": "2026-10-19T17:44:27.393Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21526,7 +21526,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-18T03:57:19.856Z",
+              "default": "2026-10-19T17:44:27.394Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21653,7 +21653,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-18T03:57:19.856Z",
+              "default": "2026-10-19T17:44:27.395Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21826,7 +21826,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-18T03:57:19.856Z",
+              "default": "2026-10-19T17:44:27.394Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -31955,6 +31955,44 @@
                     "description": "If true, members of the owning org (except admins) must also go through the gated access-request flow.",
                     "type": "boolean"
                   },
+                  "gatedProfileSharing": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "boolean",
+                            "const": true
+                          },
+                          "email": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "username",
+                          "email"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "boolean",
+                            "const": false
+                          },
+                          "email": {
+                            "type": "boolean",
+                            "const": false
+                          }
+                        },
+                        "required": [
+                          "username",
+                          "email"
+                        ]
+                      }
+                    ],
+                    "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
+                  },
                   "gatedNotificationsEmail": {
                     "type": "string",
                     "format": "email",
@@ -32021,6 +32059,46 @@
                     "orgMembersGated": {
                       "description": "If true, members of the owning org (except admins) must also go through the gated access-request flow.",
                       "type": "boolean"
+                    },
+                    "gatedProfileSharing": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "boolean",
+                              "const": true
+                            },
+                            "email": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "email"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "email": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "email"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ],
+                      "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                     },
                     "gatedNotificationsEmail": {
                       "type": "string",
@@ -32118,6 +32196,44 @@
                     "description": "If true, members of the owning org (except admins) must also go through the gated access-request flow.",
                     "type": "boolean"
                   },
+                  "gatedProfileSharing": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "boolean",
+                            "const": true
+                          },
+                          "email": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "username",
+                          "email"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "boolean",
+                            "const": false
+                          },
+                          "email": {
+                            "type": "boolean",
+                            "const": false
+                          }
+                        },
+                        "required": [
+                          "username",
+                          "email"
+                        ]
+                      }
+                    ],
+                    "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
+                  },
                   "gatedNotificationsEmail": {
                     "type": "string",
                     "format": "email",
@@ -32184,6 +32300,46 @@
                     "orgMembersGated": {
                       "description": "If true, members of the owning org (except admins) must also go through the gated access-request flow.",
                       "type": "boolean"
+                    },
+                    "gatedProfileSharing": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "boolean",
+                              "const": true
+                            },
+                            "email": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "email"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "email": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "email"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ],
+                      "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                     },
                     "gatedNotificationsEmail": {
                       "type": "string",
@@ -32281,6 +32437,44 @@
                     "description": "If true, members of the owning org (except admins) must also go through the gated access-request flow.",
                     "type": "boolean"
                   },
+                  "gatedProfileSharing": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "boolean",
+                            "const": true
+                          },
+                          "email": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "username",
+                          "email"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "boolean",
+                            "const": false
+                          },
+                          "email": {
+                            "type": "boolean",
+                            "const": false
+                          }
+                        },
+                        "required": [
+                          "username",
+                          "email"
+                        ]
+                      }
+                    ],
+                    "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
+                  },
                   "gatedNotificationsEmail": {
                     "type": "string",
                     "format": "email",
@@ -32347,6 +32541,46 @@
                     "orgMembersGated": {
                       "description": "If true, members of the owning org (except admins) must also go through the gated access-request flow.",
                       "type": "boolean"
+                    },
+                    "gatedProfileSharing": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "boolean",
+                              "const": true
+                            },
+                            "email": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "email"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "email": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "email"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ],
+                      "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                     },
                     "gatedNotificationsEmail": {
                       "type": "string",
@@ -48808,6 +49042,7 @@
                     "routee-powertrain",
                     "rwkv",
                     "saelens",
+                    "sage-music",
                     "scail-2",
                     "sam2",
                     "sam-3d-body",
@@ -49582,6 +49817,7 @@
                           "routee-powertrain",
                           "rwkv",
                           "saelens",
+                          "sage-music",
                           "scail-2",
                           "sam2",
                           "sam-3d-body",
@@ -50645,6 +50881,7 @@
                     "routee-powertrain",
                     "rwkv",
                     "saelens",
+                    "sage-music",
                     "scail-2",
                     "sam2",
                     "sam-3d-body",
@@ -54596,7 +54833,15 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "requestId": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$",
+                        "description": "Id of the request, usable to accept/reject it even when the requester identity is not shared"
+                      },
                       "user": {
+                        "description": "Absent when the requester's profile is not shared",
                         "type": "object",
                         "properties": {
                           "_id": {
@@ -54928,6 +55173,7 @@
                       }
                     },
                     "required": [
+                      "requestId",
                       "status",
                       "timestamp"
                     ],
@@ -55040,7 +55286,15 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "requestId": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$",
+                        "description": "Id of the request, usable to accept/reject it even when the requester identity is not shared"
+                      },
                       "user": {
+                        "description": "Absent when the requester's profile is not shared",
                         "type": "object",
                         "properties": {
                           "_id": {
@@ -55372,6 +55626,7 @@
                       }
                     },
                     "required": [
+                      "requestId",
                       "status",
                       "timestamp"
                     ],
@@ -55479,39 +55734,101 @@
             "application/json": {
               "schema": {
                 "$schema": "https://json-schema.org/draft/2020-12/schema",
-                "type": "object",
-                "properties": {
-                  "userId": {
-                    "description": "Either userId or user must be provided",
-                    "type": "string",
-                    "minLength": 24,
-                    "maxLength": 24,
-                    "pattern": "^[0-9a-fA-F]{24}$"
-                  },
-                  "user": {
-                    "description": "Either userId or user must be provided",
-                    "type": "string"
-                  },
-                  "status": {
-                    "type": "string",
-                    "enum": [
-                      "accepted",
-                      "rejected",
-                      "pending",
-                      "reset"
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "accepted",
+                          "rejected",
+                          "pending",
+                          "reset"
+                        ]
+                      },
+                      "rejectionReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "resetReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "requestId": {
+                        "description": "Id of the request as returned by the listing endpoint; the only identifier when the requester's profile is not shared",
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-fA-F]{24}$"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "requestId"
                     ]
                   },
-                  "rejectionReason": {
-                    "type": "string",
-                    "maxLength": 200
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "accepted",
+                          "rejected",
+                          "pending",
+                          "reset"
+                        ]
+                      },
+                      "rejectionReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "resetReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "userId": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-fA-F]{24}$"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "userId"
+                    ]
                   },
-                  "resetReason": {
-                    "type": "string",
-                    "maxLength": 200
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "accepted",
+                          "rejected",
+                          "pending",
+                          "reset"
+                        ]
+                      },
+                      "rejectionReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "resetReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "user": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "user"
+                    ]
                   }
-                },
-                "required": [
-                  "status"
                 ]
               }
             }
@@ -55549,39 +55866,101 @@
             "application/json": {
               "schema": {
                 "$schema": "https://json-schema.org/draft/2020-12/schema",
-                "type": "object",
-                "properties": {
-                  "userId": {
-                    "description": "Either userId or user must be provided",
-                    "type": "string",
-                    "minLength": 24,
-                    "maxLength": 24,
-                    "pattern": "^[0-9a-fA-F]{24}$"
-                  },
-                  "user": {
-                    "description": "Either userId or user must be provided",
-                    "type": "string"
-                  },
-                  "status": {
-                    "type": "string",
-                    "enum": [
-                      "accepted",
-                      "rejected",
-                      "pending",
-                      "reset"
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "accepted",
+                          "rejected",
+                          "pending",
+                          "reset"
+                        ]
+                      },
+                      "rejectionReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "resetReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "requestId": {
+                        "description": "Id of the request as returned by the listing endpoint; the only identifier when the requester's profile is not shared",
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-fA-F]{24}$"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "requestId"
                     ]
                   },
-                  "rejectionReason": {
-                    "type": "string",
-                    "maxLength": 200
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "accepted",
+                          "rejected",
+                          "pending",
+                          "reset"
+                        ]
+                      },
+                      "rejectionReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "resetReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "userId": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-fA-F]{24}$"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "userId"
+                    ]
                   },
-                  "resetReason": {
-                    "type": "string",
-                    "maxLength": 200
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "accepted",
+                          "rejected",
+                          "pending",
+                          "reset"
+                        ]
+                      },
+                      "rejectionReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "resetReason": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
+                      "user": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "user"
+                    ]
                   }
-                },
-                "required": [
-                  "status"
                 ]
               }
             }
@@ -55643,20 +56022,48 @@
                     "maxItems": 100,
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "properties": {
-                        "userId": {
-                          "description": "Either userId or user must be provided",
-                          "type": "string",
-                          "minLength": 24,
-                          "maxLength": 24,
-                          "pattern": "^[0-9a-fA-F]{24}$"
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "requestId": {
+                              "description": "Id of the request as returned by the listing endpoint; the only identifier when the requester's profile is not shared",
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-fA-F]{24}$"
+                            }
+                          },
+                          "required": [
+                            "requestId"
+                          ]
                         },
-                        "user": {
-                          "description": "Either userId or user must be provided",
-                          "type": "string"
+                        {
+                          "type": "object",
+                          "properties": {
+                            "userId": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-fA-F]{24}$"
+                            }
+                          },
+                          "required": [
+                            "userId"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "user": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "user"
+                          ]
                         }
-                      }
+                      ]
                     }
                   }
                 },
@@ -55678,6 +56085,9 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "requestId": {
+                        "type": "string"
+                      },
                       "userId": {
                         "type": "string"
                       },
@@ -55762,20 +56172,48 @@
                     "maxItems": 100,
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "properties": {
-                        "userId": {
-                          "description": "Either userId or user must be provided",
-                          "type": "string",
-                          "minLength": 24,
-                          "maxLength": 24,
-                          "pattern": "^[0-9a-fA-F]{24}$"
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "requestId": {
+                              "description": "Id of the request as returned by the listing endpoint; the only identifier when the requester's profile is not shared",
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-fA-F]{24}$"
+                            }
+                          },
+                          "required": [
+                            "requestId"
+                          ]
                         },
-                        "user": {
-                          "description": "Either userId or user must be provided",
-                          "type": "string"
+                        {
+                          "type": "object",
+                          "properties": {
+                            "userId": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-fA-F]{24}$"
+                            }
+                          },
+                          "required": [
+                            "userId"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "user": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "user"
+                          ]
                         }
-                      }
+                      ]
                     }
                   }
                 },
@@ -55797,6 +56235,9 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "requestId": {
+                        "type": "string"
+                      },
                       "userId": {
                         "type": "string"
                       },
@@ -55847,7 +56288,7 @@
     },
     "/api/models/{namespace}/{repo}/user-access-request/grant": {
       "post": {
-        "description": "Grant access to a user for a gated repository",
+        "description": "Grant access to a user for a gated repository.",
         "summary": "Grant access",
         "tags": [
           "models"
@@ -55896,7 +56337,7 @@
     },
     "/api/datasets/{namespace}/{repo}/user-access-request/grant": {
       "post": {
-        "description": "Grant access to a user for a gated repository",
+        "description": "Grant access to a user for a gated repository.",
         "summary": "Grant access",
         "tags": [
           "datasets"
@@ -61935,6 +62376,46 @@
                                 "mode": {
                                   "type": "string",
                                   "const": "auto"
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -61967,6 +62448,46 @@
                                     "mode"
                                   ],
                                   "additionalProperties": false
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -64292,6 +64813,44 @@
                           "mode": {
                             "type": "string",
                             "const": "auto"
+                          },
+                          "profileSharing": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": true
+                                  },
+                                  "email": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": false
+                                  },
+                                  "email": {
+                                    "type": "boolean",
+                                    "const": false
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              }
+                            ],
+                            "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                           }
                         },
                         "required": [
@@ -64322,6 +64881,44 @@
                             "required": [
                               "mode"
                             ]
+                          },
+                          "profileSharing": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": true
+                                  },
+                                  "email": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": false
+                                  },
+                                  "email": {
+                                    "type": "boolean",
+                                    "const": false
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              }
+                            ],
+                            "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                           }
                         },
                         "required": [
@@ -64379,6 +64976,46 @@
                                     "mode": {
                                       "type": "string",
                                       "const": "auto"
+                                    },
+                                    "profileSharing": {
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": true
+                                            },
+                                            "email": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": false
+                                            },
+                                            "email": {
+                                              "type": "boolean",
+                                              "const": false
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        }
+                                      ],
+                                      "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                     }
                                   },
                                   "required": [
@@ -64411,6 +65048,46 @@
                                         "mode"
                                       ],
                                       "additionalProperties": false
+                                    },
+                                    "profileSharing": {
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": true
+                                            },
+                                            "email": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": false
+                                            },
+                                            "email": {
+                                              "type": "boolean",
+                                              "const": false
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        }
+                                      ],
+                                      "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                     }
                                   },
                                   "required": [
@@ -66770,6 +67447,46 @@
                                 "mode": {
                                   "type": "string",
                                   "const": "auto"
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -66802,6 +67519,46 @@
                                     "mode"
                                   ],
                                   "additionalProperties": false
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -69119,6 +69876,44 @@
                           "mode": {
                             "type": "string",
                             "const": "auto"
+                          },
+                          "profileSharing": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": true
+                                  },
+                                  "email": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": false
+                                  },
+                                  "email": {
+                                    "type": "boolean",
+                                    "const": false
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              }
+                            ],
+                            "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                           }
                         },
                         "required": [
@@ -69149,6 +69944,44 @@
                             "required": [
                               "mode"
                             ]
+                          },
+                          "profileSharing": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": true
+                                  },
+                                  "email": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "boolean",
+                                    "const": false
+                                  },
+                                  "email": {
+                                    "type": "boolean",
+                                    "const": false
+                                  }
+                                },
+                                "required": [
+                                  "username",
+                                  "email"
+                                ]
+                              }
+                            ],
+                            "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                           }
                         },
                         "required": [
@@ -69206,6 +70039,46 @@
                                     "mode": {
                                       "type": "string",
                                       "const": "auto"
+                                    },
+                                    "profileSharing": {
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": true
+                                            },
+                                            "email": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": false
+                                            },
+                                            "email": {
+                                              "type": "boolean",
+                                              "const": false
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        }
+                                      ],
+                                      "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                     }
                                   },
                                   "required": [
@@ -69238,6 +70111,46 @@
                                         "mode"
                                       ],
                                       "additionalProperties": false
+                                    },
+                                    "profileSharing": {
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": true
+                                            },
+                                            "email": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "username": {
+                                              "type": "boolean",
+                                              "const": false
+                                            },
+                                            "email": {
+                                              "type": "boolean",
+                                              "const": false
+                                            }
+                                          },
+                                          "required": [
+                                            "username",
+                                            "email"
+                                          ],
+                                          "additionalProperties": false
+                                        }
+                                      ],
+                                      "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                     }
                                   },
                                   "required": [
@@ -71624,6 +72537,46 @@
                                 "mode": {
                                   "type": "string",
                                   "const": "auto"
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -71656,6 +72609,46 @@
                                     "mode"
                                   ],
                                   "additionalProperties": false
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -74019,6 +75012,46 @@
                                 "mode": {
                                   "type": "string",
                                   "const": "auto"
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -74051,6 +75084,46 @@
                                     "mode"
                                   ],
                                   "additionalProperties": false
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -76801,6 +77874,46 @@
                                 "mode": {
                                   "type": "string",
                                   "const": "auto"
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -76833,6 +77946,46 @@
                                     "mode"
                                   ],
                                   "additionalProperties": false
+                                },
+                                "profileSharing": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": true
+                                        },
+                                        "email": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "username": {
+                                          "type": "boolean",
+                                          "const": false
+                                        },
+                                        "email": {
+                                          "type": "boolean",
+                                          "const": false
+                                        }
+                                      },
+                                      "required": [
+                                        "username",
+                                        "email"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ],
+                                  "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                 }
                               },
                               "required": [
@@ -79152,6 +80305,46 @@
                                       "mode": {
                                         "type": "string",
                                         "const": "auto"
+                                      },
+                                      "profileSharing": {
+                                        "anyOf": [
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "username": {
+                                                "type": "boolean",
+                                                "const": true
+                                              },
+                                              "email": {
+                                                "type": "boolean"
+                                              }
+                                            },
+                                            "required": [
+                                              "username",
+                                              "email"
+                                            ],
+                                            "additionalProperties": false
+                                          },
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "username": {
+                                                "type": "boolean",
+                                                "const": false
+                                              },
+                                              "email": {
+                                                "type": "boolean",
+                                                "const": false
+                                              }
+                                            },
+                                            "required": [
+                                              "username",
+                                              "email"
+                                            ],
+                                            "additionalProperties": false
+                                          }
+                                        ],
+                                        "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                       }
                                     },
                                     "required": [
@@ -79184,6 +80377,46 @@
                                           "mode"
                                         ],
                                         "additionalProperties": false
+                                      },
+                                      "profileSharing": {
+                                        "anyOf": [
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "username": {
+                                                "type": "boolean",
+                                                "const": true
+                                              },
+                                              "email": {
+                                                "type": "boolean"
+                                              }
+                                            },
+                                            "required": [
+                                              "username",
+                                              "email"
+                                            ],
+                                            "additionalProperties": false
+                                          },
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "username": {
+                                                "type": "boolean",
+                                                "const": false
+                                              },
+                                              "email": {
+                                                "type": "boolean",
+                                                "const": false
+                                              }
+                                            },
+                                            "required": [
+                                              "username",
+                                              "email"
+                                            ],
+                                            "additionalProperties": false
+                                          }
+                                        ],
+                                        "description": "What Hugging Face shares with the repo authors when a user requests access. Defaults to the username and email."
                                       }
                                     },
                                     "required": [
