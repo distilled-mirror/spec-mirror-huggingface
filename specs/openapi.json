@@ -5699,6 +5699,7 @@
                           "collection.update_resource_group",
                           "org.add_user",
                           "org.change_role",
+                          "org.change_account_type",
                           "org.create",
                           "org.delete",
                           "org.restore",
@@ -5780,6 +5781,8 @@
                           "resource_group.change_role",
                           "resource_group.settings",
                           "resource_group.delete",
+                          "resource_group.invite_user",
+                          "resource_group.invite.revoke",
                           "jobs.create",
                           "jobs.cancel",
                           "jobs.update_labels",
@@ -5797,6 +5800,8 @@
                           "org.service_account.token.delete",
                           "org.service_account.token.rotate",
                           "org.service_account.token.update",
+                          "org.service_account.token.s3_credential.create",
+                          "org.service_account.token.s3_credential.delete",
                           "oauth.token"
                         ]
                       },
@@ -6227,6 +6232,10 @@
                               "string",
                               "null"
                             ]
+                          },
+                          "isExternalCollaborator": {
+                            "description": "Whether the user is an external collaborator of the organization",
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -6676,6 +6685,10 @@
                               "string",
                               "null"
                             ]
+                          },
+                          "isExternalCollaborator": {
+                            "description": "Whether the user is an external collaborator of the organization",
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -7136,6 +7149,10 @@
                               "string",
                               "null"
                             ]
+                          },
+                          "isExternalCollaborator": {
+                            "description": "Whether the user is an external collaborator of the organization",
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -7589,6 +7606,10 @@
                               "string",
                               "null"
                             ]
+                          },
+                          "isExternalCollaborator": {
+                            "description": "Whether the user is an external collaborator of the organization",
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -7812,6 +7833,1299 @@
         ]
       }
     },
+    "/api/organizations/{name}/resource-groups/{resourceGroupId}/invite": {
+      "post": {
+        "description": "Invite a user who is not yet an organization member into a resource group. On accepting, they only get access to that resource group, with the requested read or write role.\n\nRequires external invites to be enabled in the organization's resource group settings, unless the caller is an organization admin.",
+        "summary": "Invite external user",
+        "tags": [
+          "resource-groups"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 42,
+                    "pattern": "^\\b(?!\\d+$)(?![0-9a-fA-F]{24}$)([a-zA-Z0-9]|-(?!-))+\\b$",
+                    "description": "Username of an existing Hugging Face user"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "read",
+                      "write"
+                    ],
+                    "description": "Role the invitee gets inside the resource group"
+                  }
+                },
+                "required": [
+                  "username",
+                  "role"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "admin",
+                        "write",
+                        "contributor",
+                        "read",
+                        "no_access"
+                      ],
+                      "description": "Organization role the invitee joins with"
+                    },
+                    "externalCollaborator": {
+                      "description": "Whether the invitee is exempted from SSO enforcement",
+                      "type": "boolean"
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                    },
+                    "author": {
+                      "description": "The user who issued the invitation",
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$",
+                          "description": "A hex string of 24 characters representing an ObjectId."
+                        },
+                        "orgs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "fullname",
+                              "avatarUrl"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "avatarUrl": {
+                          "type": "string"
+                        },
+                        "fullname": {
+                          "type": "string"
+                        },
+                        "isPro": {
+                          "type": "boolean"
+                        },
+                        "user": {
+                          "type": "string"
+                        },
+                        "numModels": {
+                          "type": "number"
+                        },
+                        "numDatasets": {
+                          "type": "number"
+                        },
+                        "numSpaces": {
+                          "type": "number"
+                        },
+                        "numBuckets": {
+                          "type": "number"
+                        },
+                        "numKernels": {
+                          "type": "number"
+                        },
+                        "numDiscussions": {
+                          "type": "number"
+                        },
+                        "numPapers": {
+                          "type": "number"
+                        },
+                        "numUpvotes": {
+                          "type": "number"
+                        },
+                        "numLikes": {
+                          "type": "number"
+                        },
+                        "numFollowers": {
+                          "type": "number"
+                        },
+                        "numFollowing": {
+                          "type": "number"
+                        },
+                        "numFollowingOrgs": {
+                          "type": "number"
+                        },
+                        "details": {
+                          "type": "string"
+                        },
+                        "isFollowing": {
+                          "type": "boolean"
+                        },
+                        "reasonToFollow": {
+                          "type": "string"
+                        },
+                        "primaryOrgAvatarUrl": {
+                          "type": "string"
+                        },
+                        "serviceAccount": {
+                          "description": "Set when the user is a service account",
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "org": {
+                              "type": "string"
+                            },
+                            "orgAvatarUrl": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "org",
+                            "orgAvatarUrl"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "user"
+                        }
+                      },
+                      "required": [
+                        "_id",
+                        "avatarUrl",
+                        "fullname",
+                        "isPro",
+                        "user",
+                        "type"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "invitee": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$",
+                          "description": "A hex string of 24 characters representing an ObjectId."
+                        },
+                        "orgs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "fullname",
+                              "avatarUrl"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "avatarUrl": {
+                          "type": "string"
+                        },
+                        "fullname": {
+                          "type": "string"
+                        },
+                        "isPro": {
+                          "type": "boolean"
+                        },
+                        "user": {
+                          "type": "string"
+                        },
+                        "numModels": {
+                          "type": "number"
+                        },
+                        "numDatasets": {
+                          "type": "number"
+                        },
+                        "numSpaces": {
+                          "type": "number"
+                        },
+                        "numBuckets": {
+                          "type": "number"
+                        },
+                        "numKernels": {
+                          "type": "number"
+                        },
+                        "numDiscussions": {
+                          "type": "number"
+                        },
+                        "numPapers": {
+                          "type": "number"
+                        },
+                        "numUpvotes": {
+                          "type": "number"
+                        },
+                        "numLikes": {
+                          "type": "number"
+                        },
+                        "numFollowers": {
+                          "type": "number"
+                        },
+                        "numFollowing": {
+                          "type": "number"
+                        },
+                        "numFollowingOrgs": {
+                          "type": "number"
+                        },
+                        "details": {
+                          "type": "string"
+                        },
+                        "isFollowing": {
+                          "type": "boolean"
+                        },
+                        "reasonToFollow": {
+                          "type": "string"
+                        },
+                        "primaryOrgAvatarUrl": {
+                          "type": "string"
+                        },
+                        "serviceAccount": {
+                          "description": "Set when the user is a service account",
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "org": {
+                              "type": "string"
+                            },
+                            "orgAvatarUrl": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "org",
+                            "orgAvatarUrl"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "user"
+                        }
+                      },
+                      "required": [
+                        "_id",
+                        "avatarUrl",
+                        "fullname",
+                        "isPro",
+                        "user",
+                        "type"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "resourceGroup": {
+                      "description": "Set when the invitation only grants access to one resource group",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$",
+                          "description": "A hex string of 24 characters representing an ObjectId."
+                        },
+                        "role": {
+                          "type": "string",
+                          "enum": [
+                            "read",
+                            "write"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "role"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "role",
+                    "expiresAt",
+                    "invitee"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The created invitation"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceGroupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/resource-groups/{resourceGroupId}/invitations": {
+      "get": {
+        "summary": "List pending invitations",
+        "tags": [
+          "resource-groups"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$",
+                        "description": "A hex string of 24 characters representing an ObjectId."
+                      },
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "admin",
+                          "write",
+                          "contributor",
+                          "read",
+                          "no_access"
+                        ],
+                        "description": "Organization role the invitee joins with"
+                      },
+                      "externalCollaborator": {
+                        "description": "Whether the invitee is exempted from SSO enforcement",
+                        "type": "boolean"
+                      },
+                      "expiresAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "author": {
+                        "description": "The user who issued the invitation",
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "minLength": 24,
+                            "maxLength": 24,
+                            "pattern": "^[0-9a-f]{24}$",
+                            "description": "A hex string of 24 characters representing an ObjectId."
+                          },
+                          "orgs": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "fullname": {
+                                  "type": "string"
+                                },
+                                "avatarUrl": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "name",
+                                "fullname",
+                                "avatarUrl"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "avatarUrl": {
+                            "type": "string"
+                          },
+                          "fullname": {
+                            "type": "string"
+                          },
+                          "isPro": {
+                            "type": "boolean"
+                          },
+                          "user": {
+                            "type": "string"
+                          },
+                          "numModels": {
+                            "type": "number"
+                          },
+                          "numDatasets": {
+                            "type": "number"
+                          },
+                          "numSpaces": {
+                            "type": "number"
+                          },
+                          "numBuckets": {
+                            "type": "number"
+                          },
+                          "numKernels": {
+                            "type": "number"
+                          },
+                          "numDiscussions": {
+                            "type": "number"
+                          },
+                          "numPapers": {
+                            "type": "number"
+                          },
+                          "numUpvotes": {
+                            "type": "number"
+                          },
+                          "numLikes": {
+                            "type": "number"
+                          },
+                          "numFollowers": {
+                            "type": "number"
+                          },
+                          "numFollowing": {
+                            "type": "number"
+                          },
+                          "numFollowingOrgs": {
+                            "type": "number"
+                          },
+                          "details": {
+                            "type": "string"
+                          },
+                          "isFollowing": {
+                            "type": "boolean"
+                          },
+                          "reasonToFollow": {
+                            "type": "string"
+                          },
+                          "primaryOrgAvatarUrl": {
+                            "type": "string"
+                          },
+                          "serviceAccount": {
+                            "description": "Set when the user is a service account",
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "minLength": 24,
+                                "maxLength": 24,
+                                "pattern": "^[0-9a-f]{24}$",
+                                "description": "A hex string of 24 characters representing an ObjectId."
+                              },
+                              "org": {
+                                "type": "string"
+                              },
+                              "orgAvatarUrl": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "org",
+                              "orgAvatarUrl"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "const": "user"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "avatarUrl",
+                          "fullname",
+                          "isPro",
+                          "user",
+                          "type"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "invitee": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "minLength": 24,
+                            "maxLength": 24,
+                            "pattern": "^[0-9a-f]{24}$",
+                            "description": "A hex string of 24 characters representing an ObjectId."
+                          },
+                          "orgs": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "fullname": {
+                                  "type": "string"
+                                },
+                                "avatarUrl": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "name",
+                                "fullname",
+                                "avatarUrl"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "avatarUrl": {
+                            "type": "string"
+                          },
+                          "fullname": {
+                            "type": "string"
+                          },
+                          "isPro": {
+                            "type": "boolean"
+                          },
+                          "user": {
+                            "type": "string"
+                          },
+                          "numModels": {
+                            "type": "number"
+                          },
+                          "numDatasets": {
+                            "type": "number"
+                          },
+                          "numSpaces": {
+                            "type": "number"
+                          },
+                          "numBuckets": {
+                            "type": "number"
+                          },
+                          "numKernels": {
+                            "type": "number"
+                          },
+                          "numDiscussions": {
+                            "type": "number"
+                          },
+                          "numPapers": {
+                            "type": "number"
+                          },
+                          "numUpvotes": {
+                            "type": "number"
+                          },
+                          "numLikes": {
+                            "type": "number"
+                          },
+                          "numFollowers": {
+                            "type": "number"
+                          },
+                          "numFollowing": {
+                            "type": "number"
+                          },
+                          "numFollowingOrgs": {
+                            "type": "number"
+                          },
+                          "details": {
+                            "type": "string"
+                          },
+                          "isFollowing": {
+                            "type": "boolean"
+                          },
+                          "reasonToFollow": {
+                            "type": "string"
+                          },
+                          "primaryOrgAvatarUrl": {
+                            "type": "string"
+                          },
+                          "serviceAccount": {
+                            "description": "Set when the user is a service account",
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "minLength": 24,
+                                "maxLength": 24,
+                                "pattern": "^[0-9a-f]{24}$",
+                                "description": "A hex string of 24 characters representing an ObjectId."
+                              },
+                              "org": {
+                                "type": "string"
+                              },
+                              "orgAvatarUrl": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "org",
+                              "orgAvatarUrl"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "const": "user"
+                          }
+                        },
+                        "required": [
+                          "_id",
+                          "avatarUrl",
+                          "fullname",
+                          "isPro",
+                          "user",
+                          "type"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "resourceGroup": {
+                        "description": "Set when the invitation only grants access to one resource group",
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 24,
+                            "maxLength": 24,
+                            "pattern": "^[0-9a-f]{24}$",
+                            "description": "A hex string of 24 characters representing an ObjectId."
+                          },
+                          "role": {
+                            "type": "string",
+                            "enum": [
+                              "read",
+                              "write"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "role"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "role",
+                      "expiresAt",
+                      "invitee"
+                    ],
+                    "additionalProperties": false,
+                    "description": "A pending organization invitation"
+                  }
+                }
+              }
+            },
+            "description": "Invitations pending on the resource group"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceGroupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/resource-groups/{resourceGroupId}/invitation/{id}": {
+      "delete": {
+        "summary": "Revoke invitation",
+        "tags": [
+          "resource-groups"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceGroupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/resource-groups/{resourceGroupId}/invitation/{id}/resend": {
+      "post": {
+        "summary": "Resend invitation",
+        "tags": [
+          "resource-groups"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "admin",
+                        "write",
+                        "contributor",
+                        "read",
+                        "no_access"
+                      ],
+                      "description": "Organization role the invitee joins with"
+                    },
+                    "externalCollaborator": {
+                      "description": "Whether the invitee is exempted from SSO enforcement",
+                      "type": "boolean"
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                    },
+                    "author": {
+                      "description": "The user who issued the invitation",
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$",
+                          "description": "A hex string of 24 characters representing an ObjectId."
+                        },
+                        "orgs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "fullname",
+                              "avatarUrl"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "avatarUrl": {
+                          "type": "string"
+                        },
+                        "fullname": {
+                          "type": "string"
+                        },
+                        "isPro": {
+                          "type": "boolean"
+                        },
+                        "user": {
+                          "type": "string"
+                        },
+                        "numModels": {
+                          "type": "number"
+                        },
+                        "numDatasets": {
+                          "type": "number"
+                        },
+                        "numSpaces": {
+                          "type": "number"
+                        },
+                        "numBuckets": {
+                          "type": "number"
+                        },
+                        "numKernels": {
+                          "type": "number"
+                        },
+                        "numDiscussions": {
+                          "type": "number"
+                        },
+                        "numPapers": {
+                          "type": "number"
+                        },
+                        "numUpvotes": {
+                          "type": "number"
+                        },
+                        "numLikes": {
+                          "type": "number"
+                        },
+                        "numFollowers": {
+                          "type": "number"
+                        },
+                        "numFollowing": {
+                          "type": "number"
+                        },
+                        "numFollowingOrgs": {
+                          "type": "number"
+                        },
+                        "details": {
+                          "type": "string"
+                        },
+                        "isFollowing": {
+                          "type": "boolean"
+                        },
+                        "reasonToFollow": {
+                          "type": "string"
+                        },
+                        "primaryOrgAvatarUrl": {
+                          "type": "string"
+                        },
+                        "serviceAccount": {
+                          "description": "Set when the user is a service account",
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "org": {
+                              "type": "string"
+                            },
+                            "orgAvatarUrl": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "org",
+                            "orgAvatarUrl"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "user"
+                        }
+                      },
+                      "required": [
+                        "_id",
+                        "avatarUrl",
+                        "fullname",
+                        "isPro",
+                        "user",
+                        "type"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "invitee": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$",
+                          "description": "A hex string of 24 characters representing an ObjectId."
+                        },
+                        "orgs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "fullname",
+                              "avatarUrl"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "avatarUrl": {
+                          "type": "string"
+                        },
+                        "fullname": {
+                          "type": "string"
+                        },
+                        "isPro": {
+                          "type": "boolean"
+                        },
+                        "user": {
+                          "type": "string"
+                        },
+                        "numModels": {
+                          "type": "number"
+                        },
+                        "numDatasets": {
+                          "type": "number"
+                        },
+                        "numSpaces": {
+                          "type": "number"
+                        },
+                        "numBuckets": {
+                          "type": "number"
+                        },
+                        "numKernels": {
+                          "type": "number"
+                        },
+                        "numDiscussions": {
+                          "type": "number"
+                        },
+                        "numPapers": {
+                          "type": "number"
+                        },
+                        "numUpvotes": {
+                          "type": "number"
+                        },
+                        "numLikes": {
+                          "type": "number"
+                        },
+                        "numFollowers": {
+                          "type": "number"
+                        },
+                        "numFollowing": {
+                          "type": "number"
+                        },
+                        "numFollowingOrgs": {
+                          "type": "number"
+                        },
+                        "details": {
+                          "type": "string"
+                        },
+                        "isFollowing": {
+                          "type": "boolean"
+                        },
+                        "reasonToFollow": {
+                          "type": "string"
+                        },
+                        "primaryOrgAvatarUrl": {
+                          "type": "string"
+                        },
+                        "serviceAccount": {
+                          "description": "Set when the user is a service account",
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "org": {
+                              "type": "string"
+                            },
+                            "orgAvatarUrl": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "org",
+                            "orgAvatarUrl"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "user"
+                        }
+                      },
+                      "required": [
+                        "_id",
+                        "avatarUrl",
+                        "fullname",
+                        "isPro",
+                        "user",
+                        "type"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "resourceGroup": {
+                      "description": "Set when the invitation only grants access to one resource group",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 24,
+                          "maxLength": 24,
+                          "pattern": "^[0-9a-f]{24}$",
+                          "description": "A hex string of 24 characters representing an ObjectId."
+                        },
+                        "role": {
+                          "type": "string",
+                          "enum": [
+                            "read",
+                            "write"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "role"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "role",
+                    "expiresAt",
+                    "invitee"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The invitation, with its pushed-out expiry"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceGroupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
     "/api/organizations/{name}/resource-groups/{resourceGroupId}/users/{username}": {
       "delete": {
         "description": "Remove a user from a resource group, revoking the access granted through it.\n\nRequires the org to have a Team plan or higher.",
@@ -7975,6 +9289,10 @@
                               "string",
                               "null"
                             ]
+                          },
+                          "isExternalCollaborator": {
+                            "description": "Whether the user is an external collaborator of the organization",
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -8409,6 +9727,10 @@
                               "string",
                               "null"
                             ]
+                          },
+                          "isExternalCollaborator": {
+                            "description": "Whether the user is an external collaborator of the organization",
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -8805,6 +10127,10 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "isExternalCollaborator": {
+                              "description": "Whether the user is an external collaborator of the organization",
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -9285,6 +10611,10 @@
                               "string",
                               "null"
                             ]
+                          },
+                          "isExternalCollaborator": {
+                            "description": "Whether the user is an external collaborator of the organization",
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -9468,6 +10798,172 @@
               }
             },
             "description": "The created resource group"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/resource-groups/settings": {
+      "get": {
+        "description": "Retrieve the org-wide resource group settings: who may create resource groups, and whether resource group admins may invite users from outside the org.\n\nRequires the org to have a Team plan or higher.",
+        "summary": "Get resource group settings",
+        "tags": [
+          "resource-groups"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "minRoleToCreate": {
+                      "type": "string",
+                      "enum": [
+                        "admin",
+                        "write",
+                        "contributor",
+                        "read"
+                      ]
+                    },
+                    "allowExternalInvites": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "minRoleToCreate",
+                    "allowExternalInvites"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The organization's resource group settings"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      },
+      "post": {
+        "description": "Update the org-wide resource group settings. Omitted fields are left unchanged.\n\nEnabling `allowExternalInvites` lets resource group admins add members to the org, consuming billable seats.\n\nRequires the org to have a Team plan or higher.",
+        "summary": "Update resource group settings",
+        "tags": [
+          "resource-groups"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "minRoleToCreate": {
+                    "description": "Minimum organization role required to create a resource group",
+                    "type": "string",
+                    "enum": [
+                      "admin",
+                      "write",
+                      "contributor",
+                      "read"
+                    ]
+                  },
+                  "allowExternalInvites": {
+                    "description": "Whether resource group admins may invite users from outside the organization",
+                    "type": [
+                      "string",
+                      "boolean"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "minRoleToCreate": {
+                      "type": "string",
+                      "enum": [
+                        "admin",
+                        "write",
+                        "contributor",
+                        "read"
+                      ]
+                    },
+                    "allowExternalInvites": {
+                      "type": "boolean",
+                      "description": "Whether resource group admins may invite users from outside the organization"
+                    }
+                  },
+                  "required": [
+                    "minRoleToCreate",
+                    "allowExternalInvites"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The organization's resource group settings"
           }
         },
         "parameters": [
@@ -10235,6 +11731,9 @@
                           },
                           "skipNetworkSecurity": {
                             "type": "boolean"
+                          },
+                          "s3AccessKey": {
+                            "type": "string"
                           }
                         },
                         "required": [
@@ -11168,6 +12667,73 @@
                 },
                 "required": [
                   "role"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Team",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/members/{username}/account-type": {
+      "put": {
+        "description": "Convert a member into an external collaborator, who isn't required to sign in with SSO, or back into a member. Need a paid plan.",
+        "summary": "Change account type",
+        "tags": [
+          "orgs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "accountType": {
+                    "type": "string",
+                    "enum": [
+                      "member",
+                      "external"
+                    ]
+                  }
+                },
+                "required": [
+                  "accountType"
                 ]
               }
             }
@@ -21421,7 +22987,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-20T18:28:26.268Z",
+              "default": "2026-10-21T22:45:30.633Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21526,7 +23092,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-20T18:28:26.268Z",
+              "default": "2026-10-21T22:45:30.634Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21653,7 +23219,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-20T18:28:26.269Z",
+              "default": "2026-10-21T22:45:30.634Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -21826,7 +23392,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-20T18:28:26.269Z",
+              "default": "2026-10-21T22:45:30.634Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
