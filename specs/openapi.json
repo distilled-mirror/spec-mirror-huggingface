@@ -6116,7 +6116,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             },
                             "scope": {
@@ -6214,6 +6215,17 @@
                               "no_access"
                             ]
                           },
+                          "assignedRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access",
+                              "inherit"
+                            ]
+                          },
                           "orgRole": {
                             "type": "string",
                             "enum": [
@@ -6245,6 +6257,7 @@
                           "name",
                           "avatarUrl",
                           "role",
+                          "assignedRole",
                           "orgRole"
                         ],
                         "additionalProperties": false
@@ -6569,7 +6582,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             },
                             "scope": {
@@ -6667,6 +6681,17 @@
                               "no_access"
                             ]
                           },
+                          "assignedRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access",
+                              "inherit"
+                            ]
+                          },
                           "orgRole": {
                             "type": "string",
                             "enum": [
@@ -6698,6 +6723,7 @@
                           "name",
                           "avatarUrl",
                           "role",
+                          "assignedRole",
                           "orgRole"
                         ],
                         "additionalProperties": false
@@ -6950,7 +6976,8 @@
                               "write",
                               "contributor",
                               "read",
-                              "no_access"
+                              "no_access",
+                              "inherit"
                             ]
                           },
                           "scope": {
@@ -7033,7 +7060,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             },
                             "scope": {
@@ -7131,6 +7159,17 @@
                               "no_access"
                             ]
                           },
+                          "assignedRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access",
+                              "inherit"
+                            ]
+                          },
                           "orgRole": {
                             "type": "string",
                             "enum": [
@@ -7162,6 +7201,7 @@
                           "name",
                           "avatarUrl",
                           "role",
+                          "assignedRole",
                           "orgRole"
                         ],
                         "additionalProperties": false
@@ -7378,7 +7418,7 @@
     },
     "/api/organizations/{name}/resource-groups/{resourceGroupId}/users": {
       "post": {
-        "description": "Add one or more organization members to a resource group.\n\nRequires the org to have a Team plan or higher.",
+        "description": "Add one or more organization members to a resource group.\n\nUse the `inherit` role to give a member the same role they have in the organization, following it when it changes.\n\nRequires the org to have a Team plan or higher.",
         "summary": "Add users",
         "tags": [
           "resource-groups"
@@ -7408,7 +7448,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             }
                           },
@@ -7430,7 +7471,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             }
                           },
@@ -7490,7 +7532,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             },
                             "scope": {
@@ -7588,6 +7631,17 @@
                               "no_access"
                             ]
                           },
+                          "assignedRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access",
+                              "inherit"
+                            ]
+                          },
                           "orgRole": {
                             "type": "string",
                             "enum": [
@@ -7619,6 +7673,7 @@
                           "name",
                           "avatarUrl",
                           "role",
+                          "assignedRole",
                           "orgRole"
                         ],
                         "additionalProperties": false
@@ -9173,7 +9228,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             },
                             "scope": {
@@ -9271,6 +9327,17 @@
                               "no_access"
                             ]
                           },
+                          "assignedRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access",
+                              "inherit"
+                            ]
+                          },
                           "orgRole": {
                             "type": "string",
                             "enum": [
@@ -9302,6 +9369,7 @@
                           "name",
                           "avatarUrl",
                           "role",
+                          "assignedRole",
                           "orgRole"
                         ],
                         "additionalProperties": false
@@ -9524,7 +9592,7 @@
         ]
       },
       "patch": {
-        "description": "Change the role of a user in a resource group. In a SCIM-managed resource group, pass `resetToScimRole` to undo a manual role change and restore the role mapped from the user's SCIM groups.\n\nRequires the org to have a Team plan or higher.",
+        "description": "Change the role of a user in a resource group. In a SCIM-managed resource group, pass `resetToScimRole` to undo a manual role change and restore the role mapped from the user's SCIM groups.\n\nUse the `inherit` role to give the member the same role they have in the organization, following it when it changes.\n\nRequires the org to have a Team plan or higher.",
         "summary": "Change user role",
         "tags": [
           "resource-groups"
@@ -9545,7 +9613,8 @@
                           "write",
                           "contributor",
                           "read",
-                          "no_access"
+                          "no_access",
+                          "inherit"
                         ]
                       }
                     },
@@ -9611,7 +9680,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             },
                             "scope": {
@@ -9709,6 +9779,17 @@
                               "no_access"
                             ]
                           },
+                          "assignedRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access",
+                              "inherit"
+                            ]
+                          },
                           "orgRole": {
                             "type": "string",
                             "enum": [
@@ -9740,6 +9821,7 @@
                           "name",
                           "avatarUrl",
                           "role",
+                          "assignedRole",
                           "orgRole"
                         ],
                         "additionalProperties": false
@@ -10011,7 +10093,8 @@
                                   "write",
                                   "contributor",
                                   "read",
-                                  "no_access"
+                                  "no_access",
+                                  "inherit"
                                 ]
                               },
                               "scope": {
@@ -10109,6 +10192,17 @@
                                 "no_access"
                               ]
                             },
+                            "assignedRole": {
+                              "type": "string",
+                              "enum": [
+                                "admin",
+                                "write",
+                                "contributor",
+                                "read",
+                                "no_access",
+                                "inherit"
+                              ]
+                            },
                             "orgRole": {
                               "type": "string",
                               "enum": [
@@ -10140,6 +10234,7 @@
                             "name",
                             "avatarUrl",
                             "role",
+                            "assignedRole",
                             "orgRole"
                           ],
                           "additionalProperties": false
@@ -10384,7 +10479,8 @@
                             "write",
                             "contributor",
                             "read",
-                            "no_access"
+                            "no_access",
+                            "inherit"
                           ]
                         }
                       },
@@ -10417,7 +10513,8 @@
                               "write",
                               "contributor",
                               "read",
-                              "no_access"
+                              "no_access",
+                              "inherit"
                             ]
                           },
                           "scope": {
@@ -10495,7 +10592,8 @@
                                 "write",
                                 "contributor",
                                 "read",
-                                "no_access"
+                                "no_access",
+                                "inherit"
                               ]
                             },
                             "scope": {
@@ -10593,6 +10691,17 @@
                               "no_access"
                             ]
                           },
+                          "assignedRole": {
+                            "type": "string",
+                            "enum": [
+                              "admin",
+                              "write",
+                              "contributor",
+                              "read",
+                              "no_access",
+                              "inherit"
+                            ]
+                          },
                           "orgRole": {
                             "type": "string",
                             "enum": [
@@ -10624,6 +10733,7 @@
                           "name",
                           "avatarUrl",
                           "role",
+                          "assignedRole",
                           "orgRole"
                         ],
                         "additionalProperties": false
@@ -12513,13 +12623,25 @@
                                 "read",
                                 "no_access"
                               ]
+                            },
+                            "assignedRole": {
+                              "type": "string",
+                              "enum": [
+                                "admin",
+                                "write",
+                                "contributor",
+                                "read",
+                                "no_access",
+                                "inherit"
+                              ]
                             }
                           },
                           "required": [
                             "name",
                             "id",
                             "numUsers",
-                            "role"
+                            "role",
+                            "assignedRole"
                           ],
                           "additionalProperties": false
                         }
@@ -12608,6 +12730,15 @@
               "maximum": 10000
             },
             "required": false
+          },
+          {
+            "name": "includeExternal",
+            "in": "query",
+            "schema": {
+              "description": "Include external collaborators. Only honored for org admins.",
+              "type": "string"
+            },
+            "required": false
           }
         ]
       }
@@ -12654,7 +12785,8 @@
                             "write",
                             "contributor",
                             "read",
-                            "no_access"
+                            "no_access",
+                            "inherit"
                           ]
                         }
                       },
@@ -22987,7 +23119,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-21T22:45:30.633Z",
+              "default": "2026-10-22T22:28:24.113Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23092,7 +23224,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-21T22:45:30.634Z",
+              "default": "2026-10-22T22:28:24.113Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23219,7 +23351,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-21T22:45:30.634Z",
+              "default": "2026-10-22T22:28:24.114Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23392,7 +23524,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-21T22:45:30.634Z",
+              "default": "2026-10-22T22:28:24.113Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -62321,6 +62453,63 @@
         ]
       }
     },
+    "/api/papers/{paperId}/media": {
+      "post": {
+        "description": "Replace the media shown on a Daily Papers submission. Requires the requester to be the paper author, the Daily Papers submitter, or a papers admin.",
+        "summary": "Update paper media",
+        "tags": [
+          "papers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "mediaUrls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "(^https:\\/\\/s3\\.amazonaws\\.com\\/hf-hub-cdn-uploads\\/.*\\.(gif|jpeg|jpg|mov|mp3|mp4|mpga|png|qt|wav|webm|webp)$)|(^https:\\/\\/cdn-uploads\\.huggingface\\.co\\/.*\\.(gif|jpeg|jpg|mov|mp3|mp4|mpga|png|qt|wav|webm|webp)$)"
+                    },
+                    "description": "Media URLs, in display order"
+                  }
+                },
+                "required": [
+                  "mediaUrls"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Paper media updated"
+          }
+        },
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/api/posts/{username}/{postSlug}": {
       "delete": {
         "summary": "Delete a discussion",
@@ -85652,6 +85841,41 @@
           },
           {
             "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/containers/{namespace}/{repo}/tags/{tag}": {
+      "delete": {
+        "description": "Deletes a single tag from a container image. The underlying image data is untouched.",
+        "summary": "Delete tag",
+        "tags": [
+          "containers"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
             "in": "path",
             "required": true,
             "schema": {
