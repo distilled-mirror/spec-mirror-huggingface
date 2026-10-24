@@ -12844,7 +12844,7 @@
     },
     "/api/organizations/{name}/members/{username}/account-type": {
       "put": {
-        "description": "Convert a member into an external collaborator, who isn't required to sign in with SSO, or back into a member. Need a paid plan.",
+        "description": "Convert a member into an external collaborator, who isn't required to sign in with SSO, or back into a member. Need a paid plan. Doesn't affect the role, which must be changed separately.",
         "summary": "Change account type",
         "tags": [
           "orgs"
@@ -23119,7 +23119,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-22T22:28:24.113Z",
+              "default": "2026-10-23T10:09:06.464Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23224,7 +23224,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-22T22:28:24.113Z",
+              "default": "2026-10-23T10:09:06.465Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23351,7 +23351,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-22T22:28:24.114Z",
+              "default": "2026-10-23T10:09:06.465Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23524,7 +23524,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-22T22:28:24.113Z",
+              "default": "2026-10-23T10:09:06.465Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
