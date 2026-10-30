@@ -5812,7 +5812,8 @@
                           "oauth.app.secret.rotate",
                           "oauth.app.secret.delete",
                           "oauth.app.secret.expire",
-                          "oauth.app.delete"
+                          "oauth.app.delete",
+                          "oauth.app.move"
                         ]
                       },
                       "data": {},
@@ -18516,6 +18517,13 @@
                         "postpaid"
                       ]
                     },
+                    "groups": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Names of the organizations the user belongs to, as a list of strings for OIDC clients syncing groups from a claim"
+                    },
                     "orgs": {
                       "type": "array",
                       "items": {
@@ -18625,6 +18633,7 @@
                   "required": [
                     "sub",
                     "isPro",
+                    "groups",
                     "orgs"
                   ],
                   "additionalProperties": false
@@ -18745,6 +18754,13 @@
                         "postpaid"
                       ]
                     },
+                    "groups": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Names of the organizations the user belongs to, as a list of strings for OIDC clients syncing groups from a claim"
+                    },
                     "orgs": {
                       "type": "array",
                       "items": {
@@ -18854,6 +18870,7 @@
                   "required": [
                     "sub",
                     "isPro",
+                    "groups",
                     "orgs"
                   ],
                   "additionalProperties": false
@@ -23137,7 +23154,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-28T21:38:58.934Z",
+              "default": "2026-10-29T15:22:32.945Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23242,7 +23259,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-28T21:38:58.935Z",
+              "default": "2026-10-29T15:22:32.946Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23369,7 +23386,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-28T21:38:58.935Z",
+              "default": "2026-10-29T15:22:32.947Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23542,7 +23559,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-10-28T21:38:58.935Z",
+              "default": "2026-10-29T15:22:32.946Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -48602,7 +48619,8 @@
                                             "verifiers",
                                             "openenv",
                                             "nemo-gym",
-                                            "agentenv"
+                                            "agentenv",
+                                            "lerobot"
                                           ]
                                         }
                                       },
@@ -50630,6 +50648,7 @@
                     "doctr",
                     "drinkme",
                     "edsnlp",
+                    "egohand",
                     "elm",
                     "encoderfile",
                     "ensomi",
@@ -50756,6 +50775,7 @@
                     "rkllm",
                     "robo-orchard-lab",
                     "routee-powertrain",
+                    "rt-detr-hand-detector-v1",
                     "rwkv",
                     "saelens",
                     "sage-music",
@@ -51405,6 +51425,7 @@
                           "doctr",
                           "drinkme",
                           "edsnlp",
+                          "egohand",
                           "elm",
                           "encoderfile",
                           "ensomi",
@@ -51531,6 +51552,7 @@
                           "rkllm",
                           "robo-orchard-lab",
                           "routee-powertrain",
+                          "rt-detr-hand-detector-v1",
                           "rwkv",
                           "saelens",
                           "sage-music",
@@ -52469,6 +52491,7 @@
                     "doctr",
                     "drinkme",
                     "edsnlp",
+                    "egohand",
                     "elm",
                     "encoderfile",
                     "ensomi",
@@ -52595,6 +52618,7 @@
                     "rkllm",
                     "robo-orchard-lab",
                     "routee-powertrain",
+                    "rt-detr-hand-detector-v1",
                     "rwkv",
                     "saelens",
                     "sage-music",
@@ -60044,7 +60068,8 @@
                                     "verifiers",
                                     "openenv",
                                     "nemo-gym",
-                                    "agentenv"
+                                    "agentenv",
+                                    "lerobot"
                                   ]
                                 }
                               },
@@ -64589,7 +64614,8 @@
                                         "verifiers",
                                         "openenv",
                                         "nemo-gym",
-                                        "agentenv"
+                                        "agentenv",
+                                        "lerobot"
                                       ]
                                     }
                                   },
@@ -67189,7 +67215,8 @@
                                             "verifiers",
                                             "openenv",
                                             "nemo-gym",
-                                            "agentenv"
+                                            "agentenv",
+                                            "lerobot"
                                           ]
                                         }
                                       },
@@ -69660,7 +69687,8 @@
                                         "verifiers",
                                         "openenv",
                                         "nemo-gym",
-                                        "agentenv"
+                                        "agentenv",
+                                        "lerobot"
                                       ]
                                     }
                                   },
@@ -72252,7 +72280,8 @@
                                             "verifiers",
                                             "openenv",
                                             "nemo-gym",
-                                            "agentenv"
+                                            "agentenv",
+                                            "lerobot"
                                           ]
                                         }
                                       },
@@ -74750,7 +74779,8 @@
                                         "verifiers",
                                         "openenv",
                                         "nemo-gym",
-                                        "agentenv"
+                                        "agentenv",
+                                        "lerobot"
                                       ]
                                     }
                                   },
@@ -77225,7 +77255,8 @@
                                         "verifiers",
                                         "openenv",
                                         "nemo-gym",
-                                        "agentenv"
+                                        "agentenv",
+                                        "lerobot"
                                       ]
                                     }
                                   },
@@ -80087,7 +80118,8 @@
                                         "verifiers",
                                         "openenv",
                                         "nemo-gym",
-                                        "agentenv"
+                                        "agentenv",
+                                        "lerobot"
                                       ]
                                     }
                                   },
@@ -82512,7 +82544,8 @@
                                               "verifiers",
                                               "openenv",
                                               "nemo-gym",
-                                              "agentenv"
+                                              "agentenv",
+                                              "lerobot"
                                             ]
                                           }
                                         },
