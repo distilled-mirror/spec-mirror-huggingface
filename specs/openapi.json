@@ -4743,7 +4743,29 @@
                     "scaleway",
                     "together",
                     "wavespeed",
-                    "zai-org"
+                    "zai-org",
+                    "featherless",
+                    "fireworks",
+                    "z-ai",
+                    "digitalocean",
+                    "coreweave",
+                    "nebius",
+                    "parasail",
+                    "primeintellect",
+                    "alibaba",
+                    "arcee-ai",
+                    "deepseek",
+                    "liquid",
+                    "minimax",
+                    "mistral",
+                    "moonshotai",
+                    "nvidia",
+                    "poolside",
+                    "reka",
+                    "stepfun",
+                    "tencent",
+                    "thinkingmachines",
+                    "xiaomi"
                   ]
                 },
                 "additionalProperties": {
@@ -5718,6 +5740,8 @@
                           "org.rotate_token",
                           "org.sso_login",
                           "org.sso_join",
+                          "org.sso_credential.authorize",
+                          "org.sso_credential.deauthorize",
                           "org.update_join_settings",
                           "org.update_settings",
                           "org.settings.regions",
@@ -23154,7 +23178,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-05T04:19:26.727Z",
+              "default": "2026-11-06T05:48:12.326Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23259,7 +23283,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-05T04:19:26.728Z",
+              "default": "2026-11-06T05:48:12.327Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23386,7 +23410,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-05T04:19:26.728Z",
+              "default": "2026-11-06T05:48:12.328Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23559,7 +23583,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-05T04:19:26.728Z",
+              "default": "2026-11-06T05:48:12.327Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -87043,6 +87067,15 @@
             "required": false
           },
           {
+            "name": "startAfter",
+            "in": "query",
+            "schema": {
+              "description": "Start the listing right after this path, in the requested `sort` and `direction` (exclusive). With `sort=path` it does not need to exist; with `sort=uploadedAt` it must be an existing entry of the listed folder. Cannot be combined with `cursor`.",
+              "type": "string"
+            },
+            "required": false
+          },
+          {
             "name": "recursive",
             "in": "query",
             "schema": {
@@ -87203,6 +87236,15 @@
               "type": "string",
               "contentEncoding": "base64",
               "contentMediaType": "application/json"
+            },
+            "required": false
+          },
+          {
+            "name": "startAfter",
+            "in": "query",
+            "schema": {
+              "description": "Start the listing right after this path, in the requested `sort` and `direction` (exclusive). With `sort=path` it does not need to exist; with `sort=uploadedAt` it must be an existing entry of the listed folder. Cannot be combined with `cursor`.",
+              "type": "string"
             },
             "required": false
           },
