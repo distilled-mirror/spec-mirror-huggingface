@@ -23178,7 +23178,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T05:48:12.326Z",
+              "default": "2026-11-06T16:57:30.553Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23283,7 +23283,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T05:48:12.327Z",
+              "default": "2026-11-06T16:57:30.554Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23410,7 +23410,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T05:48:12.328Z",
+              "default": "2026-11-06T16:57:30.554Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23583,7 +23583,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T05:48:12.327Z",
+              "default": "2026-11-06T16:57:30.554Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -33380,6 +33380,161 @@
         "summary": "Get resource group",
         "tags": [
           "buckets"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "numUsers": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "The resource group of the repository"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/containers/{namespace}/{repo}/resource-group": {
+      "post": {
+        "description": "Add the repository to a resource group",
+        "summary": "Add resource group",
+        "tags": [
+          "containers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "resourceGroupId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-fA-F]{24}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "The resource group to add the repository to, if null, the repository will be removed from the resource group"
+                  }
+                },
+                "required": [
+                  "resourceGroupId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "dataset",
+                        "model",
+                        "space",
+                        "bucket",
+                        "kernel",
+                        "container"
+                      ]
+                    },
+                    "private": {
+                      "type": "boolean"
+                    },
+                    "addedBy": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "private",
+                    "addedBy"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Minimal information about the repository"
+          }
+        },
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "summary": "Get resource group",
+        "tags": [
+          "containers"
         ],
         "responses": {
           "200": {
@@ -50054,6 +50209,14 @@
                           "private": {
                             "type": "boolean"
                           },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
+                          },
                           "trendingWeight": {
                             "type": "number"
                           }
@@ -50082,6 +50245,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           },
                           "trendingWeight": {
                             "type": "number"
@@ -50141,6 +50312,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           },
                           "emoji": {
                             "type": "string"
@@ -50251,6 +50430,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           }
                         },
                         "required": [
@@ -50276,6 +50463,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           }
                         },
                         "required": [
@@ -51897,6 +52092,14 @@
                           "private": {
                             "type": "boolean"
                           },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
+                          },
                           "trendingWeight": {
                             "type": "number"
                           }
@@ -51925,6 +52128,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           },
                           "trendingWeight": {
                             "type": "number"
@@ -51984,6 +52195,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           },
                           "emoji": {
                             "type": "string"
@@ -52094,6 +52313,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           }
                         },
                         "required": [
@@ -52119,6 +52346,14 @@
                           },
                           "private": {
                             "type": "boolean"
+                          },
+                          "authorType": {
+                            "description": "Whether the repo is owned by a user or an organization",
+                            "type": "string",
+                            "enum": [
+                              "user",
+                              "org"
+                            ]
                           }
                         },
                         "required": [
