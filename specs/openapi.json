@@ -11873,6 +11873,15 @@
                               ]
                             }
                           },
+                          "userPermissions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "user.gated-repos-requests.write"
+                              ]
+                            }
+                          },
                           "endpointPatterns": {
                             "type": "array",
                             "items": {
@@ -11883,6 +11892,9 @@
                             "type": "string"
                           },
                           "skipNetworkSecurity": {
+                            "type": "boolean"
+                          },
+                          "canReadGatedRepos": {
                             "type": "boolean"
                           },
                           "s3AccessKey": {
@@ -11897,6 +11909,7 @@
                           "permissions",
                           "repoIds",
                           "repoPermissions",
+                          "userPermissions",
                           "endpointPatterns"
                         ],
                         "additionalProperties": false
@@ -12070,6 +12083,17 @@
                       ]
                     }
                   },
+                  "userPermissions": {
+                    "default": [],
+                    "description": "Permissions on the service account itself.",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "user.gated-repos-requests.write"
+                      ]
+                    }
+                  },
                   "endpointPatterns": {
                     "default": [],
                     "description": "Inference endpoint name patterns (wildcards allowed, e.g. `gpt2-*`) restricting the token's org-wide Inference Endpoint permissions to matching endpoints. Empty means all endpoints.",
@@ -12084,6 +12108,11 @@
                   "skipNetworkSecurity": {
                     "default": false,
                     "description": "Exempt this token from the org's Network Security enforcement (IP allowlist and content access policy). Enterprise Plus only, and requires the `org.networkSecurity.write` permission.",
+                    "type": "boolean"
+                  },
+                  "canReadGatedRepos": {
+                    "default": false,
+                    "description": "Read contents of gated repos the service account has access to.",
                     "type": "boolean"
                   }
                 }
@@ -12133,6 +12162,12 @@
                             "type": "string"
                           }
                         },
+                        "userPermissions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
                         "endpointPatterns": {
                           "type": "array",
                           "items": {
@@ -12140,6 +12175,9 @@
                           }
                         },
                         "skipNetworkSecurity": {
+                          "type": "boolean"
+                        },
+                        "canReadGatedRepos": {
                           "type": "boolean"
                         }
                       },
@@ -12149,8 +12187,10 @@
                         "createdAt",
                         "repoIds",
                         "repoPermissions",
+                        "userPermissions",
                         "endpointPatterns",
-                        "skipNetworkSecurity"
+                        "skipNetworkSecurity",
+                        "canReadGatedRepos"
                       ],
                       "additionalProperties": false
                     }
@@ -12324,6 +12364,16 @@
                     },
                     "description": "Permissions granted on the selected `repoIds`."
                   },
+                  "userPermissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "user.gated-repos-requests.write"
+                      ]
+                    },
+                    "description": "Permissions on the service account itself."
+                  },
                   "endpointPatterns": {
                     "maxItems": 20,
                     "type": "array",
@@ -12337,6 +12387,10 @@
                   "skipNetworkSecurity": {
                     "type": "boolean",
                     "description": "Exempt this token from the org's Network Security enforcement (IP allowlist and content access policy). Enterprise Plus only, and requires the `org.networkSecurity.write` permission."
+                  },
+                  "canReadGatedRepos": {
+                    "type": "boolean",
+                    "description": "Read contents of gated repos the service account has access to."
                   }
                 }
               }
@@ -12375,6 +12429,12 @@
                         "type": "string"
                       }
                     },
+                    "userPermissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "endpointPatterns": {
                       "type": "array",
                       "items": {
@@ -12382,6 +12442,9 @@
                       }
                     },
                     "skipNetworkSecurity": {
+                      "type": "boolean"
+                    },
+                    "canReadGatedRepos": {
                       "type": "boolean"
                     }
                   },
@@ -12391,8 +12454,10 @@
                     "permissions",
                     "repoIds",
                     "repoPermissions",
+                    "userPermissions",
                     "endpointPatterns",
-                    "skipNetworkSecurity"
+                    "skipNetworkSecurity",
+                    "canReadGatedRepos"
                   ],
                   "additionalProperties": false
                 }
@@ -23178,7 +23243,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T16:58:36.297Z",
+              "default": "2026-11-10T21:02:37.806Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23283,7 +23348,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T16:58:36.298Z",
+              "default": "2026-11-10T21:02:37.807Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23410,7 +23475,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T16:58:36.299Z",
+              "default": "2026-11-10T21:02:37.807Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23583,7 +23648,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-06T16:58:36.298Z",
+              "default": "2026-11-10T21:02:37.807Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -34525,6 +34590,794 @@
           },
           {
             "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/{repoType}/{namespace}/{repo}/settings/trusted-publishers": {
+      "get": {
+        "description": "List the [trusted publishers](https://huggingface.co/docs/hub/trusted-publishers) of a repo.",
+        "summary": "Repo trusted publishers",
+        "tags": [
+          "repos"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$",
+                        "description": "A hex string of 24 characters representing an ObjectId."
+                      },
+                      "issuerUrl": {
+                        "type": "string"
+                      },
+                      "claims": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "eq"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "value"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "prefix"
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "value"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ],
+                          "description": "The claim must equal `value` (`eq`) or start with it (`prefix`)."
+                        }
+                      },
+                      "configuredBy": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "minLength": 24,
+                                "maxLength": 24,
+                                "pattern": "^[0-9a-f]{24}$",
+                                "description": "A hex string of 24 characters representing an ObjectId."
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "isHf": {
+                                "type": "boolean"
+                              },
+                              "isHfAdmin": {
+                                "type": "boolean"
+                              },
+                              "isMod": {
+                                "type": "boolean"
+                              },
+                              "followerCount": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string",
+                                "const": "org"
+                              },
+                              "plan": {
+                                "type": "string",
+                                "enum": [
+                                  "team",
+                                  "enterprise",
+                                  "plus",
+                                  "academia"
+                                ]
+                              },
+                              "isUserFollowing": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "_id",
+                              "avatarUrl",
+                              "fullname",
+                              "name",
+                              "isHf",
+                              "isHfAdmin",
+                              "isMod",
+                              "type"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "minLength": 24,
+                                "maxLength": 24,
+                                "pattern": "^[0-9a-f]{24}$",
+                                "description": "A hex string of 24 characters representing an ObjectId."
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "isHf": {
+                                "type": "boolean"
+                              },
+                              "isHfAdmin": {
+                                "type": "boolean"
+                              },
+                              "isMod": {
+                                "type": "boolean"
+                              },
+                              "followerCount": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string",
+                                "const": "user"
+                              },
+                              "isPro": {
+                                "type": "boolean"
+                              },
+                              "isUserFollowing": {
+                                "type": "boolean"
+                              },
+                              "primaryOrg": {
+                                "type": "object",
+                                "properties": {
+                                  "avatarUrl": {
+                                    "type": "string"
+                                  },
+                                  "fullname": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "const": "org"
+                                  },
+                                  "isHf": {
+                                    "type": "boolean"
+                                  },
+                                  "isFollowing": {
+                                    "type": "boolean"
+                                  },
+                                  "plan": {
+                                    "type": "string",
+                                    "enum": [
+                                      "team",
+                                      "enterprise",
+                                      "plus",
+                                      "academia"
+                                    ]
+                                  },
+                                  "details": {
+                                    "type": "string"
+                                  },
+                                  "hasPrivateMembersList": {
+                                    "type": "boolean"
+                                  },
+                                  "userRole": {
+                                    "type": "string",
+                                    "enum": [
+                                      "admin",
+                                      "write",
+                                      "contributor",
+                                      "read",
+                                      "no_access"
+                                    ]
+                                  },
+                                  "numUsers": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "avatarUrl",
+                                  "fullname",
+                                  "name",
+                                  "type",
+                                  "isHf"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "_id",
+                              "avatarUrl",
+                              "fullname",
+                              "name",
+                              "isHf",
+                              "isHfAdmin",
+                              "isMod",
+                              "type",
+                              "isPro"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "lastUsedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "capabilities": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "inference-api"
+                          ]
+                        }
+                      },
+                      "permissions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "repo.content.read",
+                            "repo.content.write"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "_id",
+                      "issuerUrl",
+                      "claims",
+                      "createdAt"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Trusted publisher"
+                  }
+                }
+              }
+            },
+            "description": "Trusted publishers"
+          }
+        },
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "models",
+                "spaces",
+                "datasets",
+                "kernels",
+                "buckets",
+                "containers"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "description": "Let OIDC tokens matching the issuer and claims exchange for a short-lived token on the repo. Requires write access to the repo.",
+        "summary": "Repo trusted publisher",
+        "tags": [
+          "repos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "issuerUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL of the OIDC issuer, e.g. `https://token.actions.githubusercontent.com`."
+                  },
+                  "claims": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "eq"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "value"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "prefix"
+                            },
+                            "value": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "value"
+                          ]
+                        }
+                      ],
+                      "description": "The claim must equal `value` (`eq`) or start with it (`prefix`)."
+                    },
+                    "description": "Claims the OIDC token must match, by claim name. At least one is required."
+                  },
+                  "permissions": {
+                    "description": "Permissions granted on the repo to matching tokens. Defaults to `[\"repo.content.write\"]`.",
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "repo.content.read",
+                        "repo.content.write"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "issuerUrl",
+                  "claims"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    },
+                    "issuerUrl": {
+                      "type": "string"
+                    },
+                    "claims": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "eq"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "prefix"
+                              },
+                              "value": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ],
+                        "description": "The claim must equal `value` (`eq`) or start with it (`prefix`)."
+                      }
+                    },
+                    "configuredBy": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "avatarUrl": {
+                              "type": "string"
+                            },
+                            "fullname": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "isHf": {
+                              "type": "boolean"
+                            },
+                            "isHfAdmin": {
+                              "type": "boolean"
+                            },
+                            "isMod": {
+                              "type": "boolean"
+                            },
+                            "followerCount": {
+                              "type": "number"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "org"
+                            },
+                            "plan": {
+                              "type": "string",
+                              "enum": [
+                                "team",
+                                "enterprise",
+                                "plus",
+                                "academia"
+                              ]
+                            },
+                            "isUserFollowing": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "_id",
+                            "avatarUrl",
+                            "fullname",
+                            "name",
+                            "isHf",
+                            "isHfAdmin",
+                            "isMod",
+                            "type"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "avatarUrl": {
+                              "type": "string"
+                            },
+                            "fullname": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "isHf": {
+                              "type": "boolean"
+                            },
+                            "isHfAdmin": {
+                              "type": "boolean"
+                            },
+                            "isMod": {
+                              "type": "boolean"
+                            },
+                            "followerCount": {
+                              "type": "number"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "user"
+                            },
+                            "isPro": {
+                              "type": "boolean"
+                            },
+                            "isUserFollowing": {
+                              "type": "boolean"
+                            },
+                            "primaryOrg": {
+                              "type": "object",
+                              "properties": {
+                                "avatarUrl": {
+                                  "type": "string"
+                                },
+                                "fullname": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string",
+                                  "const": "org"
+                                },
+                                "isHf": {
+                                  "type": "boolean"
+                                },
+                                "isFollowing": {
+                                  "type": "boolean"
+                                },
+                                "plan": {
+                                  "type": "string",
+                                  "enum": [
+                                    "team",
+                                    "enterprise",
+                                    "plus",
+                                    "academia"
+                                  ]
+                                },
+                                "details": {
+                                  "type": "string"
+                                },
+                                "hasPrivateMembersList": {
+                                  "type": "boolean"
+                                },
+                                "userRole": {
+                                  "type": "string",
+                                  "enum": [
+                                    "admin",
+                                    "write",
+                                    "contributor",
+                                    "read",
+                                    "no_access"
+                                  ]
+                                },
+                                "numUsers": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "avatarUrl",
+                                "fullname",
+                                "name",
+                                "type",
+                                "isHf"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "required": [
+                            "_id",
+                            "avatarUrl",
+                            "fullname",
+                            "name",
+                            "isHf",
+                            "isHfAdmin",
+                            "isMod",
+                            "type",
+                            "isPro"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                    },
+                    "lastUsedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                    },
+                    "capabilities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "inference-api"
+                        ]
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "repo.content.read",
+                          "repo.content.write"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "issuerUrl",
+                    "claims",
+                    "createdAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Trusted publisher"
+          }
+        },
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "models",
+                "spaces",
+                "datasets",
+                "kernels",
+                "buckets",
+                "containers"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/api/{repoType}/{namespace}/{repo}/settings/trusted-publishers/{publisherId}": {
+      "delete": {
+        "summary": "Repo trusted publisher",
+        "tags": [
+          "repos"
+        ],
+        "parameters": [
+          {
+            "name": "repoType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "models",
+                "spaces",
+                "datasets",
+                "kernels",
+                "buckets",
+                "containers"
+              ]
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publisherId",
             "in": "path",
             "required": true,
             "schema": {
@@ -50216,15 +51069,11 @@
                               "user",
                               "org"
                             ]
-                          },
-                          "trendingWeight": {
-                            "type": "number"
                           }
                         },
                         "required": [
                           "_id",
-                          "id",
-                          "trendingWeight"
+                          "id"
                         ],
                         "additionalProperties": false
                       }
@@ -50253,15 +51102,11 @@
                               "user",
                               "org"
                             ]
-                          },
-                          "trendingWeight": {
-                            "type": "number"
                           }
                         },
                         "required": [
                           "_id",
-                          "id",
-                          "trendingWeight"
+                          "id"
                         ],
                         "additionalProperties": false
                       }
@@ -50323,16 +51168,12 @@
                           },
                           "emoji": {
                             "type": "string"
-                          },
-                          "trendingWeight": {
-                            "type": "number"
                           }
                         },
                         "required": [
                           "_id",
                           "id",
-                          "emoji",
-                          "trendingWeight"
+                          "emoji"
                         ],
                         "additionalProperties": false
                       }
@@ -50810,6 +51651,7 @@
                     "aadya-neural",
                     "acestep",
                     "adapter-transformers",
+                    "alkove",
                     "allennlp",
                     "aneforge",
                     "anemoi",
@@ -50820,6 +51662,7 @@
                     "audiocraft",
                     "audioseal",
                     "bagel-mot",
+                    "basedecision",
                     "bboxmaskpose",
                     "ben2",
                     "bertopic",
@@ -50840,6 +51683,7 @@
                     "chat_tts",
                     "chexmix",
                     "chronos-forecasting",
+                    "circuit-tracer",
                     "clara",
                     "clipscope",
                     "cloud-agents",
@@ -50857,6 +51701,7 @@
                     "depth-pro",
                     "derm-foundation",
                     "describe-anything",
+                    "dewml",
                     "dia-tts",
                     "dia2",
                     "diff-interpretation-tuning",
@@ -50873,6 +51718,7 @@
                     "ensomi",
                     "espnet",
                     "eupe",
+                    "fahr-face",
                     "fairseq",
                     "fastai",
                     "fastprint",
@@ -50882,6 +51728,7 @@
                     "flexray",
                     "flextab",
                     "fme",
+                    "fse",
                     "gaussianformer",
                     "gemma.cpp",
                     "geometry-crafter",
@@ -50889,6 +51736,7 @@
                     "gliner",
                     "gliner2",
                     "glm-tts",
+                    "glyd",
                     "glyph-byt5",
                     "granite-library",
                     "grok",
@@ -50920,6 +51768,7 @@
                     "kernels",
                     "kimi-audio",
                     "kittentts",
+                    "konfai",
                     "kronos",
                     "k2",
                     "lyra-2.0",
@@ -50930,9 +51779,13 @@
                     "litert",
                     "litert-lm",
                     "lerobot",
+                    "libreyolo",
                     "lightglue",
+                    "limx-dynamics",
+                    "lingbot-map",
                     "liveportrait",
                     "longcat-video-avatar-1.5",
+                    "linnet-tts",
                     "llama-cpp-python",
                     "mini-omni2",
                     "mindspore",
@@ -50949,7 +51802,9 @@
                     "medvae",
                     "mflux",
                     "microduck",
+                    "minicpm-ocr",
                     "mitie",
+                    "mjlab",
                     "ml-agents",
                     "ml-sharp",
                     "mlx",
@@ -50969,6 +51824,7 @@
                     "open_clip",
                     "openasr",
                     "opendde",
+                    "opendecision",
                     "openpeerllm",
                     "open-sora",
                     "outetts",
@@ -50977,8 +51833,12 @@
                     "peft",
                     "perception-encoder",
                     "phantom-wan",
+                    "pika-h3-flex",
                     "piper",
+                    "pixeldense",
                     "pocket-tts",
+                    "pqgan",
+                    "protomotions",
                     "pruna-ai",
                     "pxia",
                     "pyannote-audio",
@@ -51004,6 +51864,7 @@
                     "sam-3d-objects",
                     "same",
                     "sample-factory",
+                    "sap-case",
                     "sap-rpt-1-oss",
                     "sapiens",
                     "sapiens2",
@@ -51028,6 +51889,7 @@
                     "stable-baselines3",
                     "stanza",
                     "supertonic",
+                    "svdtrunc",
                     "swarmformer",
                     "synthefy-migas",
                     "f5-tts",
@@ -51044,6 +51906,7 @@
                     "tirex",
                     "tirex-2",
                     "torchgeo",
+                    "torch-pointcloud",
                     "transformers",
                     "transformers.js",
                     "trellis",
@@ -51067,8 +51930,10 @@
                     "wan2.2",
                     "wham",
                     "whisperkit",
+                    "wilddet3d",
                     "yolov10",
                     "yolov26",
+                    "zipsplat",
                     "zonos",
                     "3dtopia-xl"
                   ]
@@ -51587,6 +52452,7 @@
                           "aadya-neural",
                           "acestep",
                           "adapter-transformers",
+                          "alkove",
                           "allennlp",
                           "aneforge",
                           "anemoi",
@@ -51597,6 +52463,7 @@
                           "audiocraft",
                           "audioseal",
                           "bagel-mot",
+                          "basedecision",
                           "bboxmaskpose",
                           "ben2",
                           "bertopic",
@@ -51617,6 +52484,7 @@
                           "chat_tts",
                           "chexmix",
                           "chronos-forecasting",
+                          "circuit-tracer",
                           "clara",
                           "clipscope",
                           "cloud-agents",
@@ -51634,6 +52502,7 @@
                           "depth-pro",
                           "derm-foundation",
                           "describe-anything",
+                          "dewml",
                           "dia-tts",
                           "dia2",
                           "diff-interpretation-tuning",
@@ -51650,6 +52519,7 @@
                           "ensomi",
                           "espnet",
                           "eupe",
+                          "fahr-face",
                           "fairseq",
                           "fastai",
                           "fastprint",
@@ -51659,6 +52529,7 @@
                           "flexray",
                           "flextab",
                           "fme",
+                          "fse",
                           "gaussianformer",
                           "gemma.cpp",
                           "geometry-crafter",
@@ -51666,6 +52537,7 @@
                           "gliner",
                           "gliner2",
                           "glm-tts",
+                          "glyd",
                           "glyph-byt5",
                           "granite-library",
                           "grok",
@@ -51697,6 +52569,7 @@
                           "kernels",
                           "kimi-audio",
                           "kittentts",
+                          "konfai",
                           "kronos",
                           "k2",
                           "lyra-2.0",
@@ -51707,9 +52580,13 @@
                           "litert",
                           "litert-lm",
                           "lerobot",
+                          "libreyolo",
                           "lightglue",
+                          "limx-dynamics",
+                          "lingbot-map",
                           "liveportrait",
                           "longcat-video-avatar-1.5",
+                          "linnet-tts",
                           "llama-cpp-python",
                           "mini-omni2",
                           "mindspore",
@@ -51726,7 +52603,9 @@
                           "medvae",
                           "mflux",
                           "microduck",
+                          "minicpm-ocr",
                           "mitie",
+                          "mjlab",
                           "ml-agents",
                           "ml-sharp",
                           "mlx",
@@ -51746,6 +52625,7 @@
                           "open_clip",
                           "openasr",
                           "opendde",
+                          "opendecision",
                           "openpeerllm",
                           "open-sora",
                           "outetts",
@@ -51754,8 +52634,12 @@
                           "peft",
                           "perception-encoder",
                           "phantom-wan",
+                          "pika-h3-flex",
                           "piper",
+                          "pixeldense",
                           "pocket-tts",
+                          "pqgan",
+                          "protomotions",
                           "pruna-ai",
                           "pxia",
                           "pyannote-audio",
@@ -51781,6 +52665,7 @@
                           "sam-3d-objects",
                           "same",
                           "sample-factory",
+                          "sap-case",
                           "sap-rpt-1-oss",
                           "sapiens",
                           "sapiens2",
@@ -51805,6 +52690,7 @@
                           "stable-baselines3",
                           "stanza",
                           "supertonic",
+                          "svdtrunc",
                           "swarmformer",
                           "synthefy-migas",
                           "f5-tts",
@@ -51821,6 +52707,7 @@
                           "tirex",
                           "tirex-2",
                           "torchgeo",
+                          "torch-pointcloud",
                           "transformers",
                           "transformers.js",
                           "trellis",
@@ -51844,8 +52731,10 @@
                           "wan2.2",
                           "wham",
                           "whisperkit",
+                          "wilddet3d",
                           "yolov10",
                           "yolov26",
+                          "zipsplat",
                           "zonos",
                           "3dtopia-xl"
                         ]
@@ -52099,15 +52988,11 @@
                               "user",
                               "org"
                             ]
-                          },
-                          "trendingWeight": {
-                            "type": "number"
                           }
                         },
                         "required": [
                           "_id",
-                          "id",
-                          "trendingWeight"
+                          "id"
                         ],
                         "additionalProperties": false
                       }
@@ -52136,15 +53021,11 @@
                               "user",
                               "org"
                             ]
-                          },
-                          "trendingWeight": {
-                            "type": "number"
                           }
                         },
                         "required": [
                           "_id",
-                          "id",
-                          "trendingWeight"
+                          "id"
                         ],
                         "additionalProperties": false
                       }
@@ -52206,16 +53087,12 @@
                           },
                           "emoji": {
                             "type": "string"
-                          },
-                          "trendingWeight": {
-                            "type": "number"
                           }
                         },
                         "required": [
                           "_id",
                           "id",
-                          "emoji",
-                          "trendingWeight"
+                          "emoji"
                         ],
                         "additionalProperties": false
                       }
@@ -52693,6 +53570,7 @@
                     "aadya-neural",
                     "acestep",
                     "adapter-transformers",
+                    "alkove",
                     "allennlp",
                     "aneforge",
                     "anemoi",
@@ -52703,6 +53581,7 @@
                     "audiocraft",
                     "audioseal",
                     "bagel-mot",
+                    "basedecision",
                     "bboxmaskpose",
                     "ben2",
                     "bertopic",
@@ -52723,6 +53602,7 @@
                     "chat_tts",
                     "chexmix",
                     "chronos-forecasting",
+                    "circuit-tracer",
                     "clara",
                     "clipscope",
                     "cloud-agents",
@@ -52740,6 +53620,7 @@
                     "depth-pro",
                     "derm-foundation",
                     "describe-anything",
+                    "dewml",
                     "dia-tts",
                     "dia2",
                     "diff-interpretation-tuning",
@@ -52756,6 +53637,7 @@
                     "ensomi",
                     "espnet",
                     "eupe",
+                    "fahr-face",
                     "fairseq",
                     "fastai",
                     "fastprint",
@@ -52765,6 +53647,7 @@
                     "flexray",
                     "flextab",
                     "fme",
+                    "fse",
                     "gaussianformer",
                     "gemma.cpp",
                     "geometry-crafter",
@@ -52772,6 +53655,7 @@
                     "gliner",
                     "gliner2",
                     "glm-tts",
+                    "glyd",
                     "glyph-byt5",
                     "granite-library",
                     "grok",
@@ -52803,6 +53687,7 @@
                     "kernels",
                     "kimi-audio",
                     "kittentts",
+                    "konfai",
                     "kronos",
                     "k2",
                     "lyra-2.0",
@@ -52813,9 +53698,13 @@
                     "litert",
                     "litert-lm",
                     "lerobot",
+                    "libreyolo",
                     "lightglue",
+                    "limx-dynamics",
+                    "lingbot-map",
                     "liveportrait",
                     "longcat-video-avatar-1.5",
+                    "linnet-tts",
                     "llama-cpp-python",
                     "mini-omni2",
                     "mindspore",
@@ -52832,7 +53721,9 @@
                     "medvae",
                     "mflux",
                     "microduck",
+                    "minicpm-ocr",
                     "mitie",
+                    "mjlab",
                     "ml-agents",
                     "ml-sharp",
                     "mlx",
@@ -52852,6 +53743,7 @@
                     "open_clip",
                     "openasr",
                     "opendde",
+                    "opendecision",
                     "openpeerllm",
                     "open-sora",
                     "outetts",
@@ -52860,8 +53752,12 @@
                     "peft",
                     "perception-encoder",
                     "phantom-wan",
+                    "pika-h3-flex",
                     "piper",
+                    "pixeldense",
                     "pocket-tts",
+                    "pqgan",
+                    "protomotions",
                     "pruna-ai",
                     "pxia",
                     "pyannote-audio",
@@ -52887,6 +53783,7 @@
                     "sam-3d-objects",
                     "same",
                     "sample-factory",
+                    "sap-case",
                     "sap-rpt-1-oss",
                     "sapiens",
                     "sapiens2",
@@ -52911,6 +53808,7 @@
                     "stable-baselines3",
                     "stanza",
                     "supertonic",
+                    "svdtrunc",
                     "swarmformer",
                     "synthefy-migas",
                     "f5-tts",
@@ -52927,6 +53825,7 @@
                     "tirex",
                     "tirex-2",
                     "torchgeo",
+                    "torch-pointcloud",
                     "transformers",
                     "transformers.js",
                     "trellis",
@@ -52950,8 +53849,10 @@
                     "wan2.2",
                     "wham",
                     "whisperkit",
+                    "wilddet3d",
                     "yolov10",
                     "yolov26",
+                    "zipsplat",
                     "zonos",
                     "3dtopia-xl"
                   ]
