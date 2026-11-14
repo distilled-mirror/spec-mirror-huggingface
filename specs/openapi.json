@@ -1299,7 +1299,7 @@
     },
     "/api/credentials/revoke": {
       "post": {
-        "description": "Publicly invalidate leaked Hugging Face access tokens. Possession of the raw token value is the only proof required: no authentication is needed, and no rights over the owning account or org are necessary. Each raw token is fully invalidated, the owning user is notified by email. Always returns 202, whether or not any of the provided tokens existed, so the response cannot be used to probe token validity.",
+        "description": "Publicly invalidate leaked Hugging Face access tokens or S3 credentials. Possession of the raw token value, or of the S3 access key ID and secret, is the only proof required: no authentication is needed, and no rights over the owning account or org are necessary. Each raw token is fully invalidated. A leaked S3 credential is deleted and its paired token invalidated. The owning user is notified by email. Always returns 202, whether or not any of the provided tokens existed, so the response cannot be used to probe token validity.",
         "summary": "Revoke leaked tokens",
         "tags": [
           "tokens"
@@ -1316,14 +1316,41 @@
                     "maxItems": 1000,
                     "type": "array",
                     "items": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 200
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 200
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "accessKeyId": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 200
+                            },
+                            "secretAccessKey": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 200
+                            }
+                          },
+                          "required": [
+                            "accessKeyId",
+                            "secretAccessKey"
+                          ]
+                        }
+                      ]
                     },
-                    "description": "Raw access token values to invalidate, at most 1000.",
+                    "description": "Raw access token values or S3 credentials (access key ID and secret) to invalidate, at most 1000.",
                     "examples": [
                       [
-                        "hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        "hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        {
+                          "accessKeyId": "HFAKXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+                          "secretAccessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        }
                       ]
                     ]
                   }
@@ -5817,6 +5844,7 @@
                           "org.service_account.delete",
                           "org.service_account.token.create",
                           "org.service_account.token.delete",
+                          "org.service_account.token.invalidate",
                           "org.service_account.token.rotate",
                           "org.service_account.token.update",
                           "org.service_account.token.s3_credential.create",
@@ -23234,7 +23262,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-13T00:22:42.431Z",
+              "default": "2026-11-13T11:06:11.942Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23339,7 +23367,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-13T00:22:42.432Z",
+              "default": "2026-11-13T11:06:11.943Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23466,7 +23494,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-13T00:22:42.433Z",
+              "default": "2026-11-13T11:06:11.943Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23639,7 +23667,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-13T00:22:42.432Z",
+              "default": "2026-11-13T11:06:11.943Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
