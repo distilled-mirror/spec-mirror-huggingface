@@ -5733,6 +5733,7 @@
                           "billing.gcp_remove",
                           "billing.marketplace_approve",
                           "billing.cancel_subscription",
+                          "billing.end_subscription",
                           "billing.renew_subscription",
                           "billing.start_subscription",
                           "billing.un_cancel_subscription",
@@ -5850,6 +5851,8 @@
                           "org.service_account.token.update",
                           "org.service_account.token.s3_credential.create",
                           "org.service_account.token.s3_credential.delete",
+                          "org.service_account.trusted_publisher.create",
+                          "org.service_account.trusted_publisher.delete",
                           "oauth.token",
                           "oauth.app.create",
                           "oauth.app.update",
@@ -12601,6 +12604,789 @@
           },
           {
             "name": "tokenId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/service-accounts/{serviceAccountId}/trusted-publishers": {
+      "get": {
+        "description": "List the [trusted publishers](https://huggingface.co/docs/hub/trusted-publishers) of a service account.",
+        "summary": "Trusted publishers",
+        "tags": [
+          "service-accounts"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "minLength": 24,
+                        "maxLength": 24,
+                        "pattern": "^[0-9a-f]{24}$",
+                        "description": "A hex string of 24 characters representing an ObjectId."
+                      },
+                      "issuerUrl": {
+                        "type": "string"
+                      },
+                      "claims": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "eq"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "value"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "const": "prefix"
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "value"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ],
+                          "description": "The claim must equal `value` (`eq`) or start with it (`prefix`)."
+                        }
+                      },
+                      "configuredBy": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "minLength": 24,
+                                "maxLength": 24,
+                                "pattern": "^[0-9a-f]{24}$",
+                                "description": "A hex string of 24 characters representing an ObjectId."
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "isHf": {
+                                "type": "boolean"
+                              },
+                              "isHfAdmin": {
+                                "type": "boolean"
+                              },
+                              "isMod": {
+                                "type": "boolean"
+                              },
+                              "followerCount": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string",
+                                "const": "org"
+                              },
+                              "plan": {
+                                "type": "string",
+                                "enum": [
+                                  "team",
+                                  "enterprise",
+                                  "plus",
+                                  "academia"
+                                ]
+                              },
+                              "isUserFollowing": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "_id",
+                              "avatarUrl",
+                              "fullname",
+                              "name",
+                              "isHf",
+                              "isHfAdmin",
+                              "isMod",
+                              "type"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "minLength": 24,
+                                "maxLength": 24,
+                                "pattern": "^[0-9a-f]{24}$",
+                                "description": "A hex string of 24 characters representing an ObjectId."
+                              },
+                              "avatarUrl": {
+                                "type": "string"
+                              },
+                              "fullname": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "isHf": {
+                                "type": "boolean"
+                              },
+                              "isHfAdmin": {
+                                "type": "boolean"
+                              },
+                              "isMod": {
+                                "type": "boolean"
+                              },
+                              "followerCount": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string",
+                                "const": "user"
+                              },
+                              "isPro": {
+                                "type": "boolean"
+                              },
+                              "isUserFollowing": {
+                                "type": "boolean"
+                              },
+                              "primaryOrg": {
+                                "type": "object",
+                                "properties": {
+                                  "avatarUrl": {
+                                    "type": "string"
+                                  },
+                                  "fullname": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "const": "org"
+                                  },
+                                  "isHf": {
+                                    "type": "boolean"
+                                  },
+                                  "isFollowing": {
+                                    "type": "boolean"
+                                  },
+                                  "plan": {
+                                    "type": "string",
+                                    "enum": [
+                                      "team",
+                                      "enterprise",
+                                      "plus",
+                                      "academia"
+                                    ]
+                                  },
+                                  "details": {
+                                    "type": "string"
+                                  },
+                                  "hasPrivateMembersList": {
+                                    "type": "boolean"
+                                  },
+                                  "userRole": {
+                                    "type": "string",
+                                    "enum": [
+                                      "admin",
+                                      "write",
+                                      "contributor",
+                                      "read",
+                                      "no_access"
+                                    ]
+                                  },
+                                  "numUsers": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "avatarUrl",
+                                  "fullname",
+                                  "name",
+                                  "type",
+                                  "isHf"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "_id",
+                              "avatarUrl",
+                              "fullname",
+                              "name",
+                              "isHf",
+                              "isHfAdmin",
+                              "isMod",
+                              "type",
+                              "isPro"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "lastUsedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                      },
+                      "capabilities": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "inference-api",
+                            "request-gated-repos"
+                          ]
+                        }
+                      },
+                      "permissions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "repo.content.read",
+                            "repo.content.write"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "_id",
+                      "issuerUrl",
+                      "claims",
+                      "createdAt"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Trusted publisher"
+                  }
+                }
+              }
+            },
+            "description": "Trusted publishers"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      },
+      "post": {
+        "description": "Let OIDC tokens matching the issuer and claims exchange for a short-lived token of the service account, with `resource` set to the service account name.",
+        "summary": "Trusted publisher",
+        "tags": [
+          "service-accounts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "issuerUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL of the OIDC issuer, e.g. `https://token.actions.githubusercontent.com`."
+                  },
+                  "claims": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "eq"
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "value"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "prefix"
+                            },
+                            "value": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "value"
+                          ]
+                        }
+                      ],
+                      "description": "The claim must equal `value` (`eq`) or start with it (`prefix`)."
+                    },
+                    "description": "Claims the OIDC token must match, by claim name. At least one is required."
+                  },
+                  "capabilities": {
+                    "description": "Scopes granted to matching tokens on top of `gated-repos` (read the gated repos the account has access to).",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "inference-api",
+                        "request-gated-repos"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "issuerUrl",
+                  "claims"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-f]{24}$",
+                      "description": "A hex string of 24 characters representing an ObjectId."
+                    },
+                    "issuerUrl": {
+                      "type": "string"
+                    },
+                    "claims": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "eq"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "prefix"
+                              },
+                              "value": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ],
+                        "description": "The claim must equal `value` (`eq`) or start with it (`prefix`)."
+                      }
+                    },
+                    "configuredBy": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "avatarUrl": {
+                              "type": "string"
+                            },
+                            "fullname": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "isHf": {
+                              "type": "boolean"
+                            },
+                            "isHfAdmin": {
+                              "type": "boolean"
+                            },
+                            "isMod": {
+                              "type": "boolean"
+                            },
+                            "followerCount": {
+                              "type": "number"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "org"
+                            },
+                            "plan": {
+                              "type": "string",
+                              "enum": [
+                                "team",
+                                "enterprise",
+                                "plus",
+                                "academia"
+                              ]
+                            },
+                            "isUserFollowing": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "_id",
+                            "avatarUrl",
+                            "fullname",
+                            "name",
+                            "isHf",
+                            "isHfAdmin",
+                            "isMod",
+                            "type"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            },
+                            "avatarUrl": {
+                              "type": "string"
+                            },
+                            "fullname": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "isHf": {
+                              "type": "boolean"
+                            },
+                            "isHfAdmin": {
+                              "type": "boolean"
+                            },
+                            "isMod": {
+                              "type": "boolean"
+                            },
+                            "followerCount": {
+                              "type": "number"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "user"
+                            },
+                            "isPro": {
+                              "type": "boolean"
+                            },
+                            "isUserFollowing": {
+                              "type": "boolean"
+                            },
+                            "primaryOrg": {
+                              "type": "object",
+                              "properties": {
+                                "avatarUrl": {
+                                  "type": "string"
+                                },
+                                "fullname": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string",
+                                  "const": "org"
+                                },
+                                "isHf": {
+                                  "type": "boolean"
+                                },
+                                "isFollowing": {
+                                  "type": "boolean"
+                                },
+                                "plan": {
+                                  "type": "string",
+                                  "enum": [
+                                    "team",
+                                    "enterprise",
+                                    "plus",
+                                    "academia"
+                                  ]
+                                },
+                                "details": {
+                                  "type": "string"
+                                },
+                                "hasPrivateMembersList": {
+                                  "type": "boolean"
+                                },
+                                "userRole": {
+                                  "type": "string",
+                                  "enum": [
+                                    "admin",
+                                    "write",
+                                    "contributor",
+                                    "read",
+                                    "no_access"
+                                  ]
+                                },
+                                "numUsers": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "avatarUrl",
+                                "fullname",
+                                "name",
+                                "type",
+                                "isHf"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "required": [
+                            "_id",
+                            "avatarUrl",
+                            "fullname",
+                            "name",
+                            "isHf",
+                            "isHfAdmin",
+                            "isMod",
+                            "type",
+                            "isPro"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                    },
+                    "lastUsedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                    },
+                    "capabilities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "inference-api",
+                          "request-gated-repos"
+                        ]
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "repo.content.read",
+                          "repo.content.write"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "issuerUrl",
+                    "claims",
+                    "createdAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "Trusted publisher"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-badges": [
+          {
+            "name": "Enterprise",
+            "position": "before"
+          },
+          {
+            "name": "Enterprise Plus",
+            "position": "before"
+          },
+          {
+            "name": "Academia Hub",
+            "position": "before"
+          }
+        ]
+      }
+    },
+    "/api/organizations/{name}/service-accounts/{serviceAccountId}/trusted-publishers/{publisherId}": {
+      "delete": {
+        "summary": "Trusted publisher",
+        "tags": [
+          "service-accounts"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publisherId",
             "in": "path",
             "required": true,
             "schema": {
@@ -23263,7 +24049,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-17T11:27:27.896Z",
+              "default": "2026-11-19T05:54:25.478Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23368,7 +24154,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-17T11:27:27.897Z",
+              "default": "2026-11-19T05:54:25.479Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23495,7 +24281,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-17T11:27:27.897Z",
+              "default": "2026-11-19T05:54:25.479Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -23942,7 +24728,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-17T11:27:27.897Z",
+              "default": "2026-11-19T05:54:25.479Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -35160,7 +35946,8 @@
                         "items": {
                           "type": "string",
                           "enum": [
-                            "inference-api"
+                            "inference-api",
+                            "request-gated-repos"
                           ]
                         }
                       },
@@ -35567,7 +36354,8 @@
                       "items": {
                         "type": "string",
                         "enum": [
-                          "inference-api"
+                          "inference-api",
+                          "request-gated-repos"
                         ]
                       }
                     },
