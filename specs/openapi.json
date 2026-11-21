@@ -11881,6 +11881,26 @@
                               ]
                             }
                           },
+                          "resourceGroupIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 24,
+                              "maxLength": 24,
+                              "pattern": "^[0-9a-f]{24}$",
+                              "description": "A hex string of 24 characters representing an ObjectId."
+                            }
+                          },
+                          "resourceGroupPermissions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "repo.content.read",
+                                "repo.write"
+                              ]
+                            }
+                          },
                           "userPermissions": {
                             "type": "array",
                             "items": {
@@ -11917,6 +11937,8 @@
                           "permissions",
                           "repoIds",
                           "repoPermissions",
+                          "resourceGroupIds",
+                          "resourceGroupPermissions",
                           "userPermissions",
                           "endpointPatterns"
                         ],
@@ -12070,7 +12092,7 @@
                     }
                   },
                   "repoIds": {
-                    "description": "Repositories to grant `repoPermissions` on. Can be repositories owned by the organization or any public repository. These override the org-wide permissions.",
+                    "description": "Repositories to grant `repoPermissions` on. Can be repositories owned by the organization or any public repository. These override the org-wide and resource-group permissions.",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -12082,6 +12104,28 @@
                   "repoPermissions": {
                     "default": [],
                     "description": "Permissions granted on the selected `repoIds`.",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "repo.content.read",
+                        "repo.write"
+                      ]
+                    }
+                  },
+                  "resourceGroupIds": {
+                    "description": "Resource groups of the organization to grant `resourceGroupPermissions` on. Applies to every repository currently or later in those resource groups, and overrides the org-wide permissions.",
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-fA-F]{24}$"
+                    }
+                  },
+                  "resourceGroupPermissions": {
+                    "default": [],
+                    "description": "Permissions granted on the repositories of the selected `resourceGroupIds`.",
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -12170,6 +12214,18 @@
                             "type": "string"
                           }
                         },
+                        "resourceGroupIds": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "resourceGroupPermissions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
                         "userPermissions": {
                           "type": "array",
                           "items": {
@@ -12195,6 +12251,8 @@
                         "createdAt",
                         "repoIds",
                         "repoPermissions",
+                        "resourceGroupIds",
+                        "resourceGroupPermissions",
                         "userPermissions",
                         "endpointPatterns",
                         "skipNetworkSecurity",
@@ -12359,7 +12417,7 @@
                       "maxLength": 24,
                       "pattern": "^[0-9a-fA-F]{24}$"
                     },
-                    "description": "Repositories to grant `repoPermissions` on. Can be repositories owned by the organization or any public repository. These override the org-wide permissions."
+                    "description": "Repositories to grant `repoPermissions` on. Can be repositories owned by the organization or any public repository. These override the org-wide and resource-group permissions."
                   },
                   "repoPermissions": {
                     "type": "array",
@@ -12371,6 +12429,27 @@
                       ]
                     },
                     "description": "Permissions granted on the selected `repoIds`."
+                  },
+                  "resourceGroupIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-fA-F]{24}$"
+                    },
+                    "description": "Resource groups of the organization to grant `resourceGroupPermissions` on. Applies to every repository currently or later in those resource groups, and overrides the org-wide permissions."
+                  },
+                  "resourceGroupPermissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "repo.content.read",
+                        "repo.write"
+                      ]
+                    },
+                    "description": "Permissions granted on the repositories of the selected `resourceGroupIds`."
                   },
                   "userPermissions": {
                     "type": "array",
@@ -12437,6 +12516,18 @@
                         "type": "string"
                       }
                     },
+                    "resourceGroupIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "resourceGroupPermissions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "userPermissions": {
                       "type": "array",
                       "items": {
@@ -12462,6 +12553,8 @@
                     "permissions",
                     "repoIds",
                     "repoPermissions",
+                    "resourceGroupIds",
+                    "resourceGroupPermissions",
                     "userPermissions",
                     "endpointPatterns",
                     "skipNetworkSecurity",
@@ -24034,7 +24127,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-19T13:34:42.037Z",
+              "default": "2026-11-20T14:00:52.050Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24139,7 +24232,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-19T13:34:42.037Z",
+              "default": "2026-11-20T14:00:52.050Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24266,7 +24359,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-19T13:34:42.038Z",
+              "default": "2026-11-20T14:00:52.051Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24713,7 +24806,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-19T13:34:42.037Z",
+              "default": "2026-11-20T14:00:52.050Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
