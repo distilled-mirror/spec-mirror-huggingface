@@ -993,7 +993,10 @@
             "name": "articleId",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 24,
+              "maxLength": 24,
+              "pattern": "^[0-9a-fA-F]{24}$"
             },
             "required": false
           },
@@ -1120,7 +1123,10 @@
             "name": "articleId",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 24,
+              "maxLength": 24,
+              "pattern": "^[0-9a-fA-F]{24}$"
             },
             "required": false
           },
@@ -1174,10 +1180,12 @@
                 "type": "object",
                 "properties": {
                   "discussionIds": {
-                    "default": [],
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "string",
+                      "minLength": 24,
+                      "maxLength": 24,
+                      "pattern": "^[0-9a-fA-F]{24}$"
                     }
                   },
                   "read": {
@@ -1258,7 +1266,10 @@
             "name": "articleId",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 24,
+              "maxLength": 24,
+              "pattern": "^[0-9a-fA-F]{24}$"
             },
             "required": false
           },
@@ -1299,7 +1310,7 @@
     },
     "/api/credentials/revoke": {
       "post": {
-        "description": "Publicly invalidate leaked Hugging Face access tokens or S3 credentials. Possession of the raw token value, or of the S3 access key ID and secret, is the only proof required: no authentication is needed, and no rights over the owning account or org are necessary. Each raw token is fully invalidated. A leaked S3 credential is deleted and its paired token invalidated. The owning user is notified by email. Always returns 202, whether or not any of the provided tokens existed, so the response cannot be used to probe token validity.",
+        "description": "Publicly invalidate leaked Hugging Face access tokens, OAuth access or refresh tokens, or S3 credentials. Possession of the raw token value, or of the S3 access key ID and secret, is the only proof required: no authentication is needed, and no rights over the owning account or org are necessary. Each raw token is fully invalidated. A leaked S3 credential is deleted and its paired token invalidated. The owning user is notified by email. Always returns 202, whether or not any of the provided tokens existed, so the response cannot be used to probe token validity.",
         "summary": "Revoke leaked tokens",
         "tags": [
           "tokens"
@@ -1320,7 +1331,7 @@
                         {
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 200
+                          "maxLength": 4000
                         },
                         {
                           "type": "object",
@@ -1343,10 +1354,12 @@
                         }
                       ]
                     },
-                    "description": "Raw access token values or S3 credentials (access key ID and secret) to invalidate, at most 1000.",
+                    "description": "Raw access token values, OAuth access or refresh tokens, or S3 credentials (access key ID and secret) to invalidate, at most 1000.",
                     "examples": [
                       [
                         "hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "hf_oauth_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "hf_oauth__refresh_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
                         {
                           "accessKeyId": "HFAKXXXXXXXXXXXXXXXXXXXXXXXXXXX",
                           "secretAccessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -5839,6 +5852,7 @@
                           "org.service_account.trusted_publisher.create",
                           "org.service_account.trusted_publisher.delete",
                           "oauth.token",
+                          "oauth.token.revoke",
                           "oauth.app.create",
                           "oauth.app.update",
                           "oauth.app.secret.rotate",
@@ -24127,7 +24141,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T01:29:25.756Z",
+              "default": "2026-11-23T20:52:25.810Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24232,7 +24246,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T01:29:25.756Z",
+              "default": "2026-11-23T20:52:25.811Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24359,7 +24373,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T01:29:25.757Z",
+              "default": "2026-11-23T20:52:25.811Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24806,7 +24820,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T01:29:25.756Z",
+              "default": "2026-11-23T20:52:25.811Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -52817,6 +52831,7 @@
                     "aadya-neural",
                     "acestep",
                     "adapter-transformers",
+                    "akeratos",
                     "alkove",
                     "allennlp",
                     "aneforge",
@@ -52828,6 +52843,7 @@
                     "audiocraft",
                     "audioseal",
                     "bagel-mot",
+                    "basalt",
                     "basedecision",
                     "bboxmaskpose",
                     "ben2",
@@ -52879,6 +52895,7 @@
                     "docking-at-home",
                     "doctr",
                     "drinkme",
+                    "duo-world-model",
                     "edsnlp",
                     "egohand",
                     "elm",
@@ -52927,6 +52944,8 @@
                     "infinitetalk",
                     "infinite-you",
                     "intellifold",
+                    "inworld-sava",
+                    "inworld-voice-isolation",
                     "ising-decoding",
                     "jev-style",
                     "keras",
@@ -52964,6 +52983,7 @@
                     "manas-1",
                     "mars5-tts",
                     "matanyone",
+                    "mediapipe",
                     "memra",
                     "mesh-anything",
                     "merlin",
@@ -52985,6 +53005,7 @@
                     "mtvcraft",
                     "multimolecule",
                     "nemo",
+                    "neurobrix",
                     "ninfer",
                     "nobg",
                     "nv-medtech",
@@ -53016,6 +53037,7 @@
                     "quantumpeer",
                     "qwen3_tts",
                     "recurrentgemma",
+                    "redefiner",
                     "relik",
                     "refiners",
                     "renderformer",
@@ -53025,6 +53047,7 @@
                     "routee-powertrain",
                     "rt-detr-hand-detector-v1",
                     "rwkv",
+                    "s1s2",
                     "saelens",
                     "sage-music",
                     "scail-2",
@@ -53626,6 +53649,7 @@
                           "aadya-neural",
                           "acestep",
                           "adapter-transformers",
+                          "akeratos",
                           "alkove",
                           "allennlp",
                           "aneforge",
@@ -53637,6 +53661,7 @@
                           "audiocraft",
                           "audioseal",
                           "bagel-mot",
+                          "basalt",
                           "basedecision",
                           "bboxmaskpose",
                           "ben2",
@@ -53688,6 +53713,7 @@
                           "docking-at-home",
                           "doctr",
                           "drinkme",
+                          "duo-world-model",
                           "edsnlp",
                           "egohand",
                           "elm",
@@ -53736,6 +53762,8 @@
                           "infinitetalk",
                           "infinite-you",
                           "intellifold",
+                          "inworld-sava",
+                          "inworld-voice-isolation",
                           "ising-decoding",
                           "jev-style",
                           "keras",
@@ -53773,6 +53801,7 @@
                           "manas-1",
                           "mars5-tts",
                           "matanyone",
+                          "mediapipe",
                           "memra",
                           "mesh-anything",
                           "merlin",
@@ -53794,6 +53823,7 @@
                           "mtvcraft",
                           "multimolecule",
                           "nemo",
+                          "neurobrix",
                           "ninfer",
                           "nobg",
                           "nv-medtech",
@@ -53825,6 +53855,7 @@
                           "quantumpeer",
                           "qwen3_tts",
                           "recurrentgemma",
+                          "redefiner",
                           "relik",
                           "refiners",
                           "renderformer",
@@ -53834,6 +53865,7 @@
                           "routee-powertrain",
                           "rt-detr-hand-detector-v1",
                           "rwkv",
+                          "s1s2",
                           "saelens",
                           "sage-music",
                           "scail-2",
@@ -54752,6 +54784,7 @@
                     "aadya-neural",
                     "acestep",
                     "adapter-transformers",
+                    "akeratos",
                     "alkove",
                     "allennlp",
                     "aneforge",
@@ -54763,6 +54796,7 @@
                     "audiocraft",
                     "audioseal",
                     "bagel-mot",
+                    "basalt",
                     "basedecision",
                     "bboxmaskpose",
                     "ben2",
@@ -54814,6 +54848,7 @@
                     "docking-at-home",
                     "doctr",
                     "drinkme",
+                    "duo-world-model",
                     "edsnlp",
                     "egohand",
                     "elm",
@@ -54862,6 +54897,8 @@
                     "infinitetalk",
                     "infinite-you",
                     "intellifold",
+                    "inworld-sava",
+                    "inworld-voice-isolation",
                     "ising-decoding",
                     "jev-style",
                     "keras",
@@ -54899,6 +54936,7 @@
                     "manas-1",
                     "mars5-tts",
                     "matanyone",
+                    "mediapipe",
                     "memra",
                     "mesh-anything",
                     "merlin",
@@ -54920,6 +54958,7 @@
                     "mtvcraft",
                     "multimolecule",
                     "nemo",
+                    "neurobrix",
                     "ninfer",
                     "nobg",
                     "nv-medtech",
@@ -54951,6 +54990,7 @@
                     "quantumpeer",
                     "qwen3_tts",
                     "recurrentgemma",
+                    "redefiner",
                     "relik",
                     "refiners",
                     "renderformer",
@@ -54960,6 +55000,7 @@
                     "routee-powertrain",
                     "rt-detr-hand-detector-v1",
                     "rwkv",
+                    "s1s2",
                     "saelens",
                     "sage-music",
                     "scail-2",
