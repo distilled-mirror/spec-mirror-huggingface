@@ -17107,7 +17107,7 @@
                   },
                   "externalId": {
                     "type": "string",
-                    "description": "SSO unique identifier (SAML nameid or OIDC sub claim) - required for SSO login"
+                    "description": "IdP SCIM identifier, used to look the user up. SSO login matches the SAML NameID or OIDC sub separately"
                   }
                 },
                 "required": [
@@ -24141,7 +24141,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T20:52:25.810Z",
+              "default": "2026-11-24T20:07:35.697Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24246,7 +24246,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T20:52:25.811Z",
+              "default": "2026-11-24T20:07:35.698Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24373,7 +24373,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T20:52:25.811Z",
+              "default": "2026-11-24T20:07:35.698Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24820,7 +24820,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-23T20:52:25.811Z",
+              "default": "2026-11-24T20:07:35.698Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -50983,29 +50983,57 @@
                                       "type": "object",
                                       "properties": {
                                         "provider": {
-                                          "type": "string",
-                                          "enum": [
-                                            "baseten",
-                                            "cerebras",
-                                            "cohere",
-                                            "deepinfra",
-                                            "fal-ai",
-                                            "featherless-ai",
-                                            "fireworks-ai",
-                                            "groq",
-                                            "hf-inference",
-                                            "humain-ai",
-                                            "novita",
-                                            "nscale",
-                                            "openai",
-                                            "openrouter",
-                                            "ovhcloud",
-                                            "publicai",
-                                            "replicate",
-                                            "scaleway",
-                                            "together",
-                                            "wavespeed",
-                                            "zai-org"
+                                          "anyOf": [
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "baseten",
+                                                "cerebras",
+                                                "cohere",
+                                                "deepinfra",
+                                                "fal-ai",
+                                                "featherless-ai",
+                                                "fireworks-ai",
+                                                "groq",
+                                                "hf-inference",
+                                                "humain-ai",
+                                                "novita",
+                                                "nscale",
+                                                "openai",
+                                                "openrouter",
+                                                "ovhcloud",
+                                                "publicai",
+                                                "replicate",
+                                                "scaleway",
+                                                "together",
+                                                "wavespeed",
+                                                "zai-org"
+                                              ]
+                                            },
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "baseten",
+                                                "cerebras",
+                                                "cohere",
+                                                "deepinfra",
+                                                "featherless",
+                                                "fireworks",
+                                                "novita",
+                                                "together",
+                                                "z-ai",
+                                                "digitalocean",
+                                                "coreweave",
+                                                "nebius",
+                                                "parasail",
+                                                "primeintellect",
+                                                "liquid",
+                                                "mistral",
+                                                "moonshotai",
+                                                "reka",
+                                                "tencent"
+                                              ]
+                                            }
                                           ]
                                         },
                                         "providerStatus": {
@@ -51138,12 +51166,6 @@
                                         "isModelAuthor"
                                       ],
                                       "additionalProperties": false
-                                    }
-                                  },
-                                  "openRouterProviders": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "string"
                                     }
                                   },
                                   "isLikedByUser": {
@@ -55403,7 +55425,7 @@
               "default": 0,
               "type": "integer",
               "minimum": 0,
-              "maximum": 9007199254740991
+              "maximum": 1000
             },
             "required": false
           },
@@ -61976,29 +61998,57 @@
                               "type": "object",
                               "properties": {
                                 "provider": {
-                                  "type": "string",
-                                  "enum": [
-                                    "baseten",
-                                    "cerebras",
-                                    "cohere",
-                                    "deepinfra",
-                                    "fal-ai",
-                                    "featherless-ai",
-                                    "fireworks-ai",
-                                    "groq",
-                                    "hf-inference",
-                                    "humain-ai",
-                                    "novita",
-                                    "nscale",
-                                    "openai",
-                                    "openrouter",
-                                    "ovhcloud",
-                                    "publicai",
-                                    "replicate",
-                                    "scaleway",
-                                    "together",
-                                    "wavespeed",
-                                    "zai-org"
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "enum": [
+                                        "baseten",
+                                        "cerebras",
+                                        "cohere",
+                                        "deepinfra",
+                                        "fal-ai",
+                                        "featherless-ai",
+                                        "fireworks-ai",
+                                        "groq",
+                                        "hf-inference",
+                                        "humain-ai",
+                                        "novita",
+                                        "nscale",
+                                        "openai",
+                                        "openrouter",
+                                        "ovhcloud",
+                                        "publicai",
+                                        "replicate",
+                                        "scaleway",
+                                        "together",
+                                        "wavespeed",
+                                        "zai-org"
+                                      ]
+                                    },
+                                    {
+                                      "type": "string",
+                                      "enum": [
+                                        "baseten",
+                                        "cerebras",
+                                        "cohere",
+                                        "deepinfra",
+                                        "featherless",
+                                        "fireworks",
+                                        "novita",
+                                        "together",
+                                        "z-ai",
+                                        "digitalocean",
+                                        "coreweave",
+                                        "nebius",
+                                        "parasail",
+                                        "primeintellect",
+                                        "liquid",
+                                        "mistral",
+                                        "moonshotai",
+                                        "reka",
+                                        "tencent"
+                                      ]
+                                    }
                                   ]
                                 },
                                 "providerStatus": {
@@ -62131,12 +62181,6 @@
                                 "isModelAuthor"
                               ],
                               "additionalProperties": false
-                            }
-                          },
-                          "openRouterProviders": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
                             }
                           },
                           "isLikedByUser": {
@@ -67190,29 +67234,57 @@
                                   "type": "object",
                                   "properties": {
                                     "provider": {
-                                      "type": "string",
-                                      "enum": [
-                                        "baseten",
-                                        "cerebras",
-                                        "cohere",
-                                        "deepinfra",
-                                        "fal-ai",
-                                        "featherless-ai",
-                                        "fireworks-ai",
-                                        "groq",
-                                        "hf-inference",
-                                        "humain-ai",
-                                        "novita",
-                                        "nscale",
-                                        "openai",
-                                        "openrouter",
-                                        "ovhcloud",
-                                        "publicai",
-                                        "replicate",
-                                        "scaleway",
-                                        "together",
-                                        "wavespeed",
-                                        "zai-org"
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "fal-ai",
+                                            "featherless-ai",
+                                            "fireworks-ai",
+                                            "groq",
+                                            "hf-inference",
+                                            "humain-ai",
+                                            "novita",
+                                            "nscale",
+                                            "openai",
+                                            "openrouter",
+                                            "ovhcloud",
+                                            "publicai",
+                                            "replicate",
+                                            "scaleway",
+                                            "together",
+                                            "wavespeed",
+                                            "zai-org"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "featherless",
+                                            "fireworks",
+                                            "novita",
+                                            "together",
+                                            "z-ai",
+                                            "digitalocean",
+                                            "coreweave",
+                                            "nebius",
+                                            "parasail",
+                                            "primeintellect",
+                                            "liquid",
+                                            "mistral",
+                                            "moonshotai",
+                                            "reka",
+                                            "tencent"
+                                          ]
+                                        }
                                       ]
                                     },
                                     "providerStatus": {
@@ -67345,12 +67417,6 @@
                                     "isModelAuthor"
                                   ],
                                   "additionalProperties": false
-                                }
-                              },
-                              "openRouterProviders": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
                                 }
                               },
                               "isLikedByUser": {
@@ -69797,29 +69863,57 @@
                                       "type": "object",
                                       "properties": {
                                         "provider": {
-                                          "type": "string",
-                                          "enum": [
-                                            "baseten",
-                                            "cerebras",
-                                            "cohere",
-                                            "deepinfra",
-                                            "fal-ai",
-                                            "featherless-ai",
-                                            "fireworks-ai",
-                                            "groq",
-                                            "hf-inference",
-                                            "humain-ai",
-                                            "novita",
-                                            "nscale",
-                                            "openai",
-                                            "openrouter",
-                                            "ovhcloud",
-                                            "publicai",
-                                            "replicate",
-                                            "scaleway",
-                                            "together",
-                                            "wavespeed",
-                                            "zai-org"
+                                          "anyOf": [
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "baseten",
+                                                "cerebras",
+                                                "cohere",
+                                                "deepinfra",
+                                                "fal-ai",
+                                                "featherless-ai",
+                                                "fireworks-ai",
+                                                "groq",
+                                                "hf-inference",
+                                                "humain-ai",
+                                                "novita",
+                                                "nscale",
+                                                "openai",
+                                                "openrouter",
+                                                "ovhcloud",
+                                                "publicai",
+                                                "replicate",
+                                                "scaleway",
+                                                "together",
+                                                "wavespeed",
+                                                "zai-org"
+                                              ]
+                                            },
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "baseten",
+                                                "cerebras",
+                                                "cohere",
+                                                "deepinfra",
+                                                "featherless",
+                                                "fireworks",
+                                                "novita",
+                                                "together",
+                                                "z-ai",
+                                                "digitalocean",
+                                                "coreweave",
+                                                "nebius",
+                                                "parasail",
+                                                "primeintellect",
+                                                "liquid",
+                                                "mistral",
+                                                "moonshotai",
+                                                "reka",
+                                                "tencent"
+                                              ]
+                                            }
                                           ]
                                         },
                                         "providerStatus": {
@@ -69952,12 +70046,6 @@
                                         "isModelAuthor"
                                       ],
                                       "additionalProperties": false
-                                    }
-                                  },
-                                  "openRouterProviders": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "string"
                                     }
                                   },
                                   "isLikedByUser": {
@@ -72275,29 +72363,57 @@
                                   "type": "object",
                                   "properties": {
                                     "provider": {
-                                      "type": "string",
-                                      "enum": [
-                                        "baseten",
-                                        "cerebras",
-                                        "cohere",
-                                        "deepinfra",
-                                        "fal-ai",
-                                        "featherless-ai",
-                                        "fireworks-ai",
-                                        "groq",
-                                        "hf-inference",
-                                        "humain-ai",
-                                        "novita",
-                                        "nscale",
-                                        "openai",
-                                        "openrouter",
-                                        "ovhcloud",
-                                        "publicai",
-                                        "replicate",
-                                        "scaleway",
-                                        "together",
-                                        "wavespeed",
-                                        "zai-org"
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "fal-ai",
+                                            "featherless-ai",
+                                            "fireworks-ai",
+                                            "groq",
+                                            "hf-inference",
+                                            "humain-ai",
+                                            "novita",
+                                            "nscale",
+                                            "openai",
+                                            "openrouter",
+                                            "ovhcloud",
+                                            "publicai",
+                                            "replicate",
+                                            "scaleway",
+                                            "together",
+                                            "wavespeed",
+                                            "zai-org"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "featherless",
+                                            "fireworks",
+                                            "novita",
+                                            "together",
+                                            "z-ai",
+                                            "digitalocean",
+                                            "coreweave",
+                                            "nebius",
+                                            "parasail",
+                                            "primeintellect",
+                                            "liquid",
+                                            "mistral",
+                                            "moonshotai",
+                                            "reka",
+                                            "tencent"
+                                          ]
+                                        }
                                       ]
                                     },
                                     "providerStatus": {
@@ -72430,12 +72546,6 @@
                                     "isModelAuthor"
                                   ],
                                   "additionalProperties": false
-                                }
-                              },
-                              "openRouterProviders": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
                                 }
                               },
                               "isLikedByUser": {
@@ -74874,29 +74984,57 @@
                                       "type": "object",
                                       "properties": {
                                         "provider": {
-                                          "type": "string",
-                                          "enum": [
-                                            "baseten",
-                                            "cerebras",
-                                            "cohere",
-                                            "deepinfra",
-                                            "fal-ai",
-                                            "featherless-ai",
-                                            "fireworks-ai",
-                                            "groq",
-                                            "hf-inference",
-                                            "humain-ai",
-                                            "novita",
-                                            "nscale",
-                                            "openai",
-                                            "openrouter",
-                                            "ovhcloud",
-                                            "publicai",
-                                            "replicate",
-                                            "scaleway",
-                                            "together",
-                                            "wavespeed",
-                                            "zai-org"
+                                          "anyOf": [
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "baseten",
+                                                "cerebras",
+                                                "cohere",
+                                                "deepinfra",
+                                                "fal-ai",
+                                                "featherless-ai",
+                                                "fireworks-ai",
+                                                "groq",
+                                                "hf-inference",
+                                                "humain-ai",
+                                                "novita",
+                                                "nscale",
+                                                "openai",
+                                                "openrouter",
+                                                "ovhcloud",
+                                                "publicai",
+                                                "replicate",
+                                                "scaleway",
+                                                "together",
+                                                "wavespeed",
+                                                "zai-org"
+                                              ]
+                                            },
+                                            {
+                                              "type": "string",
+                                              "enum": [
+                                                "baseten",
+                                                "cerebras",
+                                                "cohere",
+                                                "deepinfra",
+                                                "featherless",
+                                                "fireworks",
+                                                "novita",
+                                                "together",
+                                                "z-ai",
+                                                "digitalocean",
+                                                "coreweave",
+                                                "nebius",
+                                                "parasail",
+                                                "primeintellect",
+                                                "liquid",
+                                                "mistral",
+                                                "moonshotai",
+                                                "reka",
+                                                "tencent"
+                                              ]
+                                            }
                                           ]
                                         },
                                         "providerStatus": {
@@ -75029,12 +75167,6 @@
                                         "isModelAuthor"
                                       ],
                                       "additionalProperties": false
-                                    }
-                                  },
-                                  "openRouterProviders": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "string"
                                     }
                                   },
                                   "isLikedByUser": {
@@ -77379,29 +77511,57 @@
                                   "type": "object",
                                   "properties": {
                                     "provider": {
-                                      "type": "string",
-                                      "enum": [
-                                        "baseten",
-                                        "cerebras",
-                                        "cohere",
-                                        "deepinfra",
-                                        "fal-ai",
-                                        "featherless-ai",
-                                        "fireworks-ai",
-                                        "groq",
-                                        "hf-inference",
-                                        "humain-ai",
-                                        "novita",
-                                        "nscale",
-                                        "openai",
-                                        "openrouter",
-                                        "ovhcloud",
-                                        "publicai",
-                                        "replicate",
-                                        "scaleway",
-                                        "together",
-                                        "wavespeed",
-                                        "zai-org"
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "fal-ai",
+                                            "featherless-ai",
+                                            "fireworks-ai",
+                                            "groq",
+                                            "hf-inference",
+                                            "humain-ai",
+                                            "novita",
+                                            "nscale",
+                                            "openai",
+                                            "openrouter",
+                                            "ovhcloud",
+                                            "publicai",
+                                            "replicate",
+                                            "scaleway",
+                                            "together",
+                                            "wavespeed",
+                                            "zai-org"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "featherless",
+                                            "fireworks",
+                                            "novita",
+                                            "together",
+                                            "z-ai",
+                                            "digitalocean",
+                                            "coreweave",
+                                            "nebius",
+                                            "parasail",
+                                            "primeintellect",
+                                            "liquid",
+                                            "mistral",
+                                            "moonshotai",
+                                            "reka",
+                                            "tencent"
+                                          ]
+                                        }
                                       ]
                                     },
                                     "providerStatus": {
@@ -77534,12 +77694,6 @@
                                     "isModelAuthor"
                                   ],
                                   "additionalProperties": false
-                                }
-                              },
-                              "openRouterProviders": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
                                 }
                               },
                               "isLikedByUser": {
@@ -79861,29 +80015,57 @@
                                   "type": "object",
                                   "properties": {
                                     "provider": {
-                                      "type": "string",
-                                      "enum": [
-                                        "baseten",
-                                        "cerebras",
-                                        "cohere",
-                                        "deepinfra",
-                                        "fal-ai",
-                                        "featherless-ai",
-                                        "fireworks-ai",
-                                        "groq",
-                                        "hf-inference",
-                                        "humain-ai",
-                                        "novita",
-                                        "nscale",
-                                        "openai",
-                                        "openrouter",
-                                        "ovhcloud",
-                                        "publicai",
-                                        "replicate",
-                                        "scaleway",
-                                        "together",
-                                        "wavespeed",
-                                        "zai-org"
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "fal-ai",
+                                            "featherless-ai",
+                                            "fireworks-ai",
+                                            "groq",
+                                            "hf-inference",
+                                            "humain-ai",
+                                            "novita",
+                                            "nscale",
+                                            "openai",
+                                            "openrouter",
+                                            "ovhcloud",
+                                            "publicai",
+                                            "replicate",
+                                            "scaleway",
+                                            "together",
+                                            "wavespeed",
+                                            "zai-org"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "featherless",
+                                            "fireworks",
+                                            "novita",
+                                            "together",
+                                            "z-ai",
+                                            "digitalocean",
+                                            "coreweave",
+                                            "nebius",
+                                            "parasail",
+                                            "primeintellect",
+                                            "liquid",
+                                            "mistral",
+                                            "moonshotai",
+                                            "reka",
+                                            "tencent"
+                                          ]
+                                        }
                                       ]
                                     },
                                     "providerStatus": {
@@ -80016,12 +80198,6 @@
                                     "isModelAuthor"
                                   ],
                                   "additionalProperties": false
-                                }
-                              },
-                              "openRouterProviders": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
                                 }
                               },
                               "isLikedByUser": {
@@ -82730,29 +82906,57 @@
                                   "type": "object",
                                   "properties": {
                                     "provider": {
-                                      "type": "string",
-                                      "enum": [
-                                        "baseten",
-                                        "cerebras",
-                                        "cohere",
-                                        "deepinfra",
-                                        "fal-ai",
-                                        "featherless-ai",
-                                        "fireworks-ai",
-                                        "groq",
-                                        "hf-inference",
-                                        "humain-ai",
-                                        "novita",
-                                        "nscale",
-                                        "openai",
-                                        "openrouter",
-                                        "ovhcloud",
-                                        "publicai",
-                                        "replicate",
-                                        "scaleway",
-                                        "together",
-                                        "wavespeed",
-                                        "zai-org"
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "fal-ai",
+                                            "featherless-ai",
+                                            "fireworks-ai",
+                                            "groq",
+                                            "hf-inference",
+                                            "humain-ai",
+                                            "novita",
+                                            "nscale",
+                                            "openai",
+                                            "openrouter",
+                                            "ovhcloud",
+                                            "publicai",
+                                            "replicate",
+                                            "scaleway",
+                                            "together",
+                                            "wavespeed",
+                                            "zai-org"
+                                          ]
+                                        },
+                                        {
+                                          "type": "string",
+                                          "enum": [
+                                            "baseten",
+                                            "cerebras",
+                                            "cohere",
+                                            "deepinfra",
+                                            "featherless",
+                                            "fireworks",
+                                            "novita",
+                                            "together",
+                                            "z-ai",
+                                            "digitalocean",
+                                            "coreweave",
+                                            "nebius",
+                                            "parasail",
+                                            "primeintellect",
+                                            "liquid",
+                                            "mistral",
+                                            "moonshotai",
+                                            "reka",
+                                            "tencent"
+                                          ]
+                                        }
                                       ]
                                     },
                                     "providerStatus": {
@@ -82885,12 +83089,6 @@
                                     "isModelAuthor"
                                   ],
                                   "additionalProperties": false
-                                }
-                              },
-                              "openRouterProviders": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
                                 }
                               },
                               "isLikedByUser": {
@@ -85162,29 +85360,57 @@
                                         "type": "object",
                                         "properties": {
                                           "provider": {
-                                            "type": "string",
-                                            "enum": [
-                                              "baseten",
-                                              "cerebras",
-                                              "cohere",
-                                              "deepinfra",
-                                              "fal-ai",
-                                              "featherless-ai",
-                                              "fireworks-ai",
-                                              "groq",
-                                              "hf-inference",
-                                              "humain-ai",
-                                              "novita",
-                                              "nscale",
-                                              "openai",
-                                              "openrouter",
-                                              "ovhcloud",
-                                              "publicai",
-                                              "replicate",
-                                              "scaleway",
-                                              "together",
-                                              "wavespeed",
-                                              "zai-org"
+                                            "anyOf": [
+                                              {
+                                                "type": "string",
+                                                "enum": [
+                                                  "baseten",
+                                                  "cerebras",
+                                                  "cohere",
+                                                  "deepinfra",
+                                                  "fal-ai",
+                                                  "featherless-ai",
+                                                  "fireworks-ai",
+                                                  "groq",
+                                                  "hf-inference",
+                                                  "humain-ai",
+                                                  "novita",
+                                                  "nscale",
+                                                  "openai",
+                                                  "openrouter",
+                                                  "ovhcloud",
+                                                  "publicai",
+                                                  "replicate",
+                                                  "scaleway",
+                                                  "together",
+                                                  "wavespeed",
+                                                  "zai-org"
+                                                ]
+                                              },
+                                              {
+                                                "type": "string",
+                                                "enum": [
+                                                  "baseten",
+                                                  "cerebras",
+                                                  "cohere",
+                                                  "deepinfra",
+                                                  "featherless",
+                                                  "fireworks",
+                                                  "novita",
+                                                  "together",
+                                                  "z-ai",
+                                                  "digitalocean",
+                                                  "coreweave",
+                                                  "nebius",
+                                                  "parasail",
+                                                  "primeintellect",
+                                                  "liquid",
+                                                  "mistral",
+                                                  "moonshotai",
+                                                  "reka",
+                                                  "tencent"
+                                                ]
+                                              }
                                             ]
                                           },
                                           "providerStatus": {
@@ -85317,12 +85543,6 @@
                                           "isModelAuthor"
                                         ],
                                         "additionalProperties": false
-                                      }
-                                    },
-                                    "openRouterProviders": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "string"
                                       }
                                     },
                                     "isLikedByUser": {
