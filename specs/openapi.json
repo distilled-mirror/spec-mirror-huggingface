@@ -4792,6 +4792,7 @@
                     "nebius",
                     "parasail",
                     "primeintellect",
+                    "deepseek",
                     "liquid",
                     "mistral",
                     "moonshotai",
@@ -24143,7 +24144,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-25T12:43:19.433Z",
+              "default": "2026-11-26T17:15:58.777Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24248,7 +24249,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-25T12:43:19.434Z",
+              "default": "2026-11-26T17:15:58.777Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24375,7 +24376,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-25T12:43:19.434Z",
+              "default": "2026-11-26T17:15:58.778Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24822,7 +24823,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-25T12:43:19.434Z",
+              "default": "2026-11-26T17:15:58.778Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -34055,8 +34056,8 @@
     },
     "/api/models/{namespace}/{repo}/resource-group": {
       "post": {
-        "description": "Add the repository to a resource group",
-        "summary": "Add resource group",
+        "description": "Assign, move, or unassign an organization-owned repository to a resource group. Pass null to unassign. User-owned repositories are not eligible.",
+        "summary": "Assign resource group",
         "tags": [
           "models"
         ],
@@ -34079,7 +34080,7 @@
                         "type": "null"
                       }
                     ],
-                    "description": "The resource group to add the repository to, if null, the repository will be removed from the resource group"
+                    "description": "The resource group to assign the repository to. If null, the repository is removed from any resource group."
                   }
                 },
                 "required": [
@@ -34210,8 +34211,8 @@
     },
     "/api/spaces/{namespace}/{repo}/resource-group": {
       "post": {
-        "description": "Add the repository to a resource group",
-        "summary": "Add resource group",
+        "description": "Assign, move, or unassign an organization-owned repository to a resource group. Pass null to unassign. User-owned repositories are not eligible.",
+        "summary": "Assign resource group",
         "tags": [
           "spaces"
         ],
@@ -34234,7 +34235,7 @@
                         "type": "null"
                       }
                     ],
-                    "description": "The resource group to add the repository to, if null, the repository will be removed from the resource group"
+                    "description": "The resource group to assign the repository to. If null, the repository is removed from any resource group."
                   }
                 },
                 "required": [
@@ -34365,8 +34366,8 @@
     },
     "/api/datasets/{namespace}/{repo}/resource-group": {
       "post": {
-        "description": "Add the repository to a resource group",
-        "summary": "Add resource group",
+        "description": "Assign, move, or unassign an organization-owned repository to a resource group. Pass null to unassign. User-owned repositories are not eligible.",
+        "summary": "Assign resource group",
         "tags": [
           "datasets"
         ],
@@ -34389,7 +34390,7 @@
                         "type": "null"
                       }
                     ],
-                    "description": "The resource group to add the repository to, if null, the repository will be removed from the resource group"
+                    "description": "The resource group to assign the repository to. If null, the repository is removed from any resource group."
                   }
                 },
                 "required": [
@@ -34520,8 +34521,8 @@
     },
     "/api/buckets/{namespace}/{repo}/resource-group": {
       "post": {
-        "description": "Add the repository to a resource group",
-        "summary": "Add resource group",
+        "description": "Assign, move, or unassign an organization-owned repository to a resource group. Pass null to unassign. User-owned repositories are not eligible.",
+        "summary": "Assign resource group",
         "tags": [
           "buckets"
         ],
@@ -34544,7 +34545,7 @@
                         "type": "null"
                       }
                     ],
-                    "description": "The resource group to add the repository to, if null, the repository will be removed from the resource group"
+                    "description": "The resource group to assign the repository to. If null, the repository is removed from any resource group."
                   }
                 },
                 "required": [
@@ -34675,8 +34676,8 @@
     },
     "/api/containers/{namespace}/{repo}/resource-group": {
       "post": {
-        "description": "Add the repository to a resource group",
-        "summary": "Add resource group",
+        "description": "Assign, move, or unassign an organization-owned repository to a resource group. Pass null to unassign. User-owned repositories are not eligible.",
+        "summary": "Assign resource group",
         "tags": [
           "containers"
         ],
@@ -34699,7 +34700,7 @@
                         "type": "null"
                       }
                     ],
-                    "description": "The resource group to add the repository to, if null, the repository will be removed from the resource group"
+                    "description": "The resource group to assign the repository to. If null, the repository is removed from any resource group."
                   }
                 },
                 "required": [
@@ -50990,18 +50991,16 @@
                                               "type": "string",
                                               "enum": [
                                                 "baseten",
-                                                "cerebras",
                                                 "cohere",
+                                                "cerebras",
                                                 "deepinfra",
                                                 "fal-ai",
                                                 "featherless-ai",
                                                 "fireworks-ai",
                                                 "groq",
                                                 "hf-inference",
-                                                "humain-ai",
                                                 "novita",
                                                 "nscale",
-                                                "openai",
                                                 "openrouter",
                                                 "ovhcloud",
                                                 "publicai",
@@ -51029,6 +51028,7 @@
                                                 "nebius",
                                                 "parasail",
                                                 "primeintellect",
+                                                "deepseek",
                                                 "liquid",
                                                 "mistral",
                                                 "moonshotai",
@@ -51036,14 +51036,6 @@
                                                 "tencent"
                                               ]
                                             }
-                                          ]
-                                        },
-                                        "providerStatus": {
-                                          "type": "string",
-                                          "enum": [
-                                            "live",
-                                            "staging",
-                                            "error"
                                           ]
                                         },
                                         "modelStatus": {
@@ -51159,7 +51151,6 @@
                                       },
                                       "required": [
                                         "provider",
-                                        "providerStatus",
                                         "modelStatus",
                                         "providerId",
                                         "task",
@@ -62005,18 +61996,16 @@
                                       "type": "string",
                                       "enum": [
                                         "baseten",
-                                        "cerebras",
                                         "cohere",
+                                        "cerebras",
                                         "deepinfra",
                                         "fal-ai",
                                         "featherless-ai",
                                         "fireworks-ai",
                                         "groq",
                                         "hf-inference",
-                                        "humain-ai",
                                         "novita",
                                         "nscale",
-                                        "openai",
                                         "openrouter",
                                         "ovhcloud",
                                         "publicai",
@@ -62044,6 +62033,7 @@
                                         "nebius",
                                         "parasail",
                                         "primeintellect",
+                                        "deepseek",
                                         "liquid",
                                         "mistral",
                                         "moonshotai",
@@ -62051,14 +62041,6 @@
                                         "tencent"
                                       ]
                                     }
-                                  ]
-                                },
-                                "providerStatus": {
-                                  "type": "string",
-                                  "enum": [
-                                    "live",
-                                    "staging",
-                                    "error"
                                   ]
                                 },
                                 "modelStatus": {
@@ -62174,7 +62156,6 @@
                               },
                               "required": [
                                 "provider",
-                                "providerStatus",
                                 "modelStatus",
                                 "providerId",
                                 "task",
@@ -67241,18 +67222,16 @@
                                           "type": "string",
                                           "enum": [
                                             "baseten",
-                                            "cerebras",
                                             "cohere",
+                                            "cerebras",
                                             "deepinfra",
                                             "fal-ai",
                                             "featherless-ai",
                                             "fireworks-ai",
                                             "groq",
                                             "hf-inference",
-                                            "humain-ai",
                                             "novita",
                                             "nscale",
-                                            "openai",
                                             "openrouter",
                                             "ovhcloud",
                                             "publicai",
@@ -67280,6 +67259,7 @@
                                             "nebius",
                                             "parasail",
                                             "primeintellect",
+                                            "deepseek",
                                             "liquid",
                                             "mistral",
                                             "moonshotai",
@@ -67287,14 +67267,6 @@
                                             "tencent"
                                           ]
                                         }
-                                      ]
-                                    },
-                                    "providerStatus": {
-                                      "type": "string",
-                                      "enum": [
-                                        "live",
-                                        "staging",
-                                        "error"
                                       ]
                                     },
                                     "modelStatus": {
@@ -67410,7 +67382,6 @@
                                   },
                                   "required": [
                                     "provider",
-                                    "providerStatus",
                                     "modelStatus",
                                     "providerId",
                                     "task",
@@ -69870,18 +69841,16 @@
                                               "type": "string",
                                               "enum": [
                                                 "baseten",
-                                                "cerebras",
                                                 "cohere",
+                                                "cerebras",
                                                 "deepinfra",
                                                 "fal-ai",
                                                 "featherless-ai",
                                                 "fireworks-ai",
                                                 "groq",
                                                 "hf-inference",
-                                                "humain-ai",
                                                 "novita",
                                                 "nscale",
-                                                "openai",
                                                 "openrouter",
                                                 "ovhcloud",
                                                 "publicai",
@@ -69909,6 +69878,7 @@
                                                 "nebius",
                                                 "parasail",
                                                 "primeintellect",
+                                                "deepseek",
                                                 "liquid",
                                                 "mistral",
                                                 "moonshotai",
@@ -69916,14 +69886,6 @@
                                                 "tencent"
                                               ]
                                             }
-                                          ]
-                                        },
-                                        "providerStatus": {
-                                          "type": "string",
-                                          "enum": [
-                                            "live",
-                                            "staging",
-                                            "error"
                                           ]
                                         },
                                         "modelStatus": {
@@ -70039,7 +70001,6 @@
                                       },
                                       "required": [
                                         "provider",
-                                        "providerStatus",
                                         "modelStatus",
                                         "providerId",
                                         "task",
@@ -72370,18 +72331,16 @@
                                           "type": "string",
                                           "enum": [
                                             "baseten",
-                                            "cerebras",
                                             "cohere",
+                                            "cerebras",
                                             "deepinfra",
                                             "fal-ai",
                                             "featherless-ai",
                                             "fireworks-ai",
                                             "groq",
                                             "hf-inference",
-                                            "humain-ai",
                                             "novita",
                                             "nscale",
-                                            "openai",
                                             "openrouter",
                                             "ovhcloud",
                                             "publicai",
@@ -72409,6 +72368,7 @@
                                             "nebius",
                                             "parasail",
                                             "primeintellect",
+                                            "deepseek",
                                             "liquid",
                                             "mistral",
                                             "moonshotai",
@@ -72416,14 +72376,6 @@
                                             "tencent"
                                           ]
                                         }
-                                      ]
-                                    },
-                                    "providerStatus": {
-                                      "type": "string",
-                                      "enum": [
-                                        "live",
-                                        "staging",
-                                        "error"
                                       ]
                                     },
                                     "modelStatus": {
@@ -72539,7 +72491,6 @@
                                   },
                                   "required": [
                                     "provider",
-                                    "providerStatus",
                                     "modelStatus",
                                     "providerId",
                                     "task",
@@ -74991,18 +74942,16 @@
                                               "type": "string",
                                               "enum": [
                                                 "baseten",
-                                                "cerebras",
                                                 "cohere",
+                                                "cerebras",
                                                 "deepinfra",
                                                 "fal-ai",
                                                 "featherless-ai",
                                                 "fireworks-ai",
                                                 "groq",
                                                 "hf-inference",
-                                                "humain-ai",
                                                 "novita",
                                                 "nscale",
-                                                "openai",
                                                 "openrouter",
                                                 "ovhcloud",
                                                 "publicai",
@@ -75030,6 +74979,7 @@
                                                 "nebius",
                                                 "parasail",
                                                 "primeintellect",
+                                                "deepseek",
                                                 "liquid",
                                                 "mistral",
                                                 "moonshotai",
@@ -75037,14 +74987,6 @@
                                                 "tencent"
                                               ]
                                             }
-                                          ]
-                                        },
-                                        "providerStatus": {
-                                          "type": "string",
-                                          "enum": [
-                                            "live",
-                                            "staging",
-                                            "error"
                                           ]
                                         },
                                         "modelStatus": {
@@ -75160,7 +75102,6 @@
                                       },
                                       "required": [
                                         "provider",
-                                        "providerStatus",
                                         "modelStatus",
                                         "providerId",
                                         "task",
@@ -77518,18 +77459,16 @@
                                           "type": "string",
                                           "enum": [
                                             "baseten",
-                                            "cerebras",
                                             "cohere",
+                                            "cerebras",
                                             "deepinfra",
                                             "fal-ai",
                                             "featherless-ai",
                                             "fireworks-ai",
                                             "groq",
                                             "hf-inference",
-                                            "humain-ai",
                                             "novita",
                                             "nscale",
-                                            "openai",
                                             "openrouter",
                                             "ovhcloud",
                                             "publicai",
@@ -77557,6 +77496,7 @@
                                             "nebius",
                                             "parasail",
                                             "primeintellect",
+                                            "deepseek",
                                             "liquid",
                                             "mistral",
                                             "moonshotai",
@@ -77564,14 +77504,6 @@
                                             "tencent"
                                           ]
                                         }
-                                      ]
-                                    },
-                                    "providerStatus": {
-                                      "type": "string",
-                                      "enum": [
-                                        "live",
-                                        "staging",
-                                        "error"
                                       ]
                                     },
                                     "modelStatus": {
@@ -77687,7 +77619,6 @@
                                   },
                                   "required": [
                                     "provider",
-                                    "providerStatus",
                                     "modelStatus",
                                     "providerId",
                                     "task",
@@ -80022,18 +79953,16 @@
                                           "type": "string",
                                           "enum": [
                                             "baseten",
-                                            "cerebras",
                                             "cohere",
+                                            "cerebras",
                                             "deepinfra",
                                             "fal-ai",
                                             "featherless-ai",
                                             "fireworks-ai",
                                             "groq",
                                             "hf-inference",
-                                            "humain-ai",
                                             "novita",
                                             "nscale",
-                                            "openai",
                                             "openrouter",
                                             "ovhcloud",
                                             "publicai",
@@ -80061,6 +79990,7 @@
                                             "nebius",
                                             "parasail",
                                             "primeintellect",
+                                            "deepseek",
                                             "liquid",
                                             "mistral",
                                             "moonshotai",
@@ -80068,14 +79998,6 @@
                                             "tencent"
                                           ]
                                         }
-                                      ]
-                                    },
-                                    "providerStatus": {
-                                      "type": "string",
-                                      "enum": [
-                                        "live",
-                                        "staging",
-                                        "error"
                                       ]
                                     },
                                     "modelStatus": {
@@ -80191,7 +80113,6 @@
                                   },
                                   "required": [
                                     "provider",
-                                    "providerStatus",
                                     "modelStatus",
                                     "providerId",
                                     "task",
@@ -82913,18 +82834,16 @@
                                           "type": "string",
                                           "enum": [
                                             "baseten",
-                                            "cerebras",
                                             "cohere",
+                                            "cerebras",
                                             "deepinfra",
                                             "fal-ai",
                                             "featherless-ai",
                                             "fireworks-ai",
                                             "groq",
                                             "hf-inference",
-                                            "humain-ai",
                                             "novita",
                                             "nscale",
-                                            "openai",
                                             "openrouter",
                                             "ovhcloud",
                                             "publicai",
@@ -82952,6 +82871,7 @@
                                             "nebius",
                                             "parasail",
                                             "primeintellect",
+                                            "deepseek",
                                             "liquid",
                                             "mistral",
                                             "moonshotai",
@@ -82959,14 +82879,6 @@
                                             "tencent"
                                           ]
                                         }
-                                      ]
-                                    },
-                                    "providerStatus": {
-                                      "type": "string",
-                                      "enum": [
-                                        "live",
-                                        "staging",
-                                        "error"
                                       ]
                                     },
                                     "modelStatus": {
@@ -83082,7 +82994,6 @@
                                   },
                                   "required": [
                                     "provider",
-                                    "providerStatus",
                                     "modelStatus",
                                     "providerId",
                                     "task",
@@ -85367,18 +85278,16 @@
                                                 "type": "string",
                                                 "enum": [
                                                   "baseten",
-                                                  "cerebras",
                                                   "cohere",
+                                                  "cerebras",
                                                   "deepinfra",
                                                   "fal-ai",
                                                   "featherless-ai",
                                                   "fireworks-ai",
                                                   "groq",
                                                   "hf-inference",
-                                                  "humain-ai",
                                                   "novita",
                                                   "nscale",
-                                                  "openai",
                                                   "openrouter",
                                                   "ovhcloud",
                                                   "publicai",
@@ -85406,6 +85315,7 @@
                                                   "nebius",
                                                   "parasail",
                                                   "primeintellect",
+                                                  "deepseek",
                                                   "liquid",
                                                   "mistral",
                                                   "moonshotai",
@@ -85413,14 +85323,6 @@
                                                   "tencent"
                                                 ]
                                               }
-                                            ]
-                                          },
-                                          "providerStatus": {
-                                            "type": "string",
-                                            "enum": [
-                                              "live",
-                                              "staging",
-                                              "error"
                                             ]
                                           },
                                           "modelStatus": {
@@ -85536,7 +85438,6 @@
                                         },
                                         "required": [
                                           "provider",
-                                          "providerStatus",
                                           "modelStatus",
                                           "providerId",
                                           "task",
