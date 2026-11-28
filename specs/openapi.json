@@ -5822,6 +5822,8 @@
                           "spaces.remove_storage",
                           "spaces.set_volumes",
                           "spaces.remove_volumes",
+                          "spaces.update_dev_mode",
+                          "spaces.ssh_access",
                           "spaces.update_hardware",
                           "spaces.update_sleep_time",
                           "resource_group.create",
@@ -5836,6 +5838,7 @@
                           "jobs.cancel",
                           "jobs.update_labels",
                           "jobs.update_expose",
+                          "jobs.ssh_access",
                           "scheduled_job.create",
                           "scheduled_job.delete",
                           "scheduled_job.resume",
@@ -24144,7 +24147,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-26T17:15:58.777Z",
+              "default": "2026-11-27T17:26:42.454Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24249,7 +24252,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-26T17:15:58.777Z",
+              "default": "2026-11-27T17:26:42.454Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24376,7 +24379,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-26T17:15:58.778Z",
+              "default": "2026-11-27T17:26:42.454Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -24823,7 +24826,7 @@
             "name": "endDate",
             "in": "query",
             "schema": {
-              "default": "2026-11-26T17:15:58.778Z",
+              "default": "2026-11-27T17:26:42.454Z",
               "type": "string",
               "format": "date-time",
               "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
@@ -52978,6 +52981,7 @@
                     "laya",
                     "ltx",
                     "lightning-ir",
+                    "liteparse",
                     "litert",
                     "litert-lm",
                     "lerobot",
@@ -53057,6 +53061,7 @@
                     "refiners",
                     "renderformer",
                     "reverb",
+                    "reverb-tts",
                     "rkllm",
                     "robo-orchard-lab",
                     "routee-powertrain",
@@ -53796,6 +53801,7 @@
                           "laya",
                           "ltx",
                           "lightning-ir",
+                          "liteparse",
                           "litert",
                           "litert-lm",
                           "lerobot",
@@ -53875,6 +53881,7 @@
                           "refiners",
                           "renderformer",
                           "reverb",
+                          "reverb-tts",
                           "rkllm",
                           "robo-orchard-lab",
                           "routee-powertrain",
@@ -54931,6 +54938,7 @@
                     "laya",
                     "ltx",
                     "lightning-ir",
+                    "liteparse",
                     "litert",
                     "litert-lm",
                     "lerobot",
@@ -55010,6 +55018,7 @@
                     "refiners",
                     "renderformer",
                     "reverb",
+                    "reverb-tts",
                     "rkllm",
                     "robo-orchard-lab",
                     "routee-powertrain",
@@ -88909,6 +88918,18 @@
                     "uploadedAt": {
                       "type": "string",
                       "description": "ISO 8601 timestamp of when the file was added to the bucket"
+                    },
+                    "mtime": {
+                      "description": "ISO 8601 original file modification time, when set by the uploader",
+                      "type": "string"
+                    },
+                    "mtimeNanos": {
+                      "description": "Sub-millisecond remainder of mtime, in nanoseconds (0–999_999)",
+                      "type": "number"
+                    },
+                    "mode": {
+                      "description": "POSIX st_mode of the file, when set by the uploader",
+                      "type": "number"
                     }
                   },
                   "required": [
@@ -89073,6 +89094,18 @@
                     "uploadedAt": {
                       "type": "string",
                       "description": "ISO 8601 timestamp of when the file was added to the bucket"
+                    },
+                    "mtime": {
+                      "description": "ISO 8601 original file modification time, when set by the uploader",
+                      "type": "string"
+                    },
+                    "mtimeNanos": {
+                      "description": "Sub-millisecond remainder of mtime, in nanoseconds (0–999_999)",
+                      "type": "number"
+                    },
+                    "mode": {
+                      "description": "POSIX st_mode of the file, when set by the uploader",
+                      "type": "number"
                     }
                   },
                   "required": [
@@ -89197,7 +89230,7 @@
     },
     "/api/buckets/{namespace}/{repo}/batch": {
       "post": {
-        "description": "Accepts NDJSON (newline-delimited JSON) where each line is an addFile, copyFile, or deleteFile instruction.\nAll add/copy operations must come before all delete operations.\n\nJSON-lines payload:\n```json\n\t'{\"type\":\"addFile\",\"path\":\"...\",\"xetHash\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"copyFile\",\"path\":\"...\",\"xetHash\":\"...\",\"sourceRepoType\":\"...\",\"sourceRepoId\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"deleteFile\",\"path\":\"...\"}'\n```",
+        "description": "Accepts NDJSON (newline-delimited JSON) where each line is an addFile, copyFile, updateMetadata, or deleteFile instruction.\nAll add/copy/update operations must come before all delete operations.\n\naddFile and copyFile set the whole state of the file: `mtime` and `mode` are cleared when omitted.\nupdateMetadata only changes the metadata it is given, on an existing file, without touching its content or `uploadedAt`.\n`mode` is the POSIX st_mode (decimal integer); with the S_IFLNK file type bits, the file is a symlink whose content is the target.\n\nJSON-lines payload:\n```json\n\t'{\"type\":\"addFile\",\"path\":\"...\",\"xetHash\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\",\"mode\":...}' +\n\t'{\"type\":\"copyFile\",\"path\":\"...\",\"xetHash\":\"...\",\"sourceRepoType\":\"...\",\"sourceRepoId\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\",\"mode\":...}' +\n\t'{\"type\":\"updateMetadata\",\"path\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\",\"mode\":...}' +\n\t'{\"type\":\"deleteFile\",\"path\":\"...\"}'\n```",
         "summary": "Batch file operations",
         "tags": [
           "buckets"
@@ -89342,7 +89375,7 @@
     },
     "/api/containers/{namespace}/{repo}/batch": {
       "post": {
-        "description": "Accepts NDJSON (newline-delimited JSON) where each line is an addFile, copyFile, or deleteFile instruction.\nAll add/copy operations must come before all delete operations.\n\nJSON-lines payload:\n```json\n\t'{\"type\":\"addFile\",\"path\":\"...\",\"xetHash\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"copyFile\",\"path\":\"...\",\"xetHash\":\"...\",\"sourceRepoType\":\"...\",\"sourceRepoId\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\"}' +\n\t'{\"type\":\"deleteFile\",\"path\":\"...\"}'\n```",
+        "description": "Accepts NDJSON (newline-delimited JSON) where each line is an addFile, copyFile, updateMetadata, or deleteFile instruction.\nAll add/copy/update operations must come before all delete operations.\n\naddFile and copyFile set the whole state of the file: `mtime` and `mode` are cleared when omitted.\nupdateMetadata only changes the metadata it is given, on an existing file, without touching its content or `uploadedAt`.\n`mode` is the POSIX st_mode (decimal integer); with the S_IFLNK file type bits, the file is a symlink whose content is the target.\n\nJSON-lines payload:\n```json\n\t'{\"type\":\"addFile\",\"path\":\"...\",\"xetHash\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\",\"mode\":...}' +\n\t'{\"type\":\"copyFile\",\"path\":\"...\",\"xetHash\":\"...\",\"sourceRepoType\":\"...\",\"sourceRepoId\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\",\"mode\":...}' +\n\t'{\"type\":\"updateMetadata\",\"path\":\"...\",\"mtime\":...,\"mtimeNanos\":...,\"contentType\":\"...\",\"mode\":...}' +\n\t'{\"type\":\"deleteFile\",\"path\":\"...\"}'\n```",
         "summary": "Batch file operations",
         "tags": [
           "containers"
@@ -89538,6 +89571,12 @@
                       },
                       "contentType": {
                         "type": "string"
+                      },
+                      "mode": {
+                        "description": "POSIX st_mode, when set by the uploader. With the S_IFLNK type bits (0o120000), the file is a symlink whose content is the target",
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
                       }
                     },
                     "required": [
@@ -89711,6 +89750,12 @@
                       },
                       "contentType": {
                         "type": "string"
+                      },
+                      "mode": {
+                        "description": "POSIX st_mode, when set by the uploader. With the S_IFLNK type bits (0o120000), the file is a symlink whose content is the target",
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
                       }
                     },
                     "required": [
@@ -89833,7 +89878,7 @@
     },
     "/api/buckets/{namespace}/{repo}/events": {
       "get": {
-        "description": "Server-sent events (`Accept: text/event-stream`) of the bucket's file changes, so clients can stop polling `/tree`.\n\nEvents:\n- `ready`: `{\"cursor\"}` — replay (if any) is done, live changes follow. `cursor` may be absent if the feed has seen no change yet.\n- `changes`: `{\"cursor\", \"changes\": [{\"path\", \"op\": \"add\" | \"update\" | \"delete\", \"size\"?, \"xetHash\"?, \"uploadedAt\"?, \"mtime\"?, \"mtimeNanos\"?}]}` — a batch of changes coalesced over ~200ms. An `update` only carries the fields that changed (an identical re-upload has just `uploadedAt`); `mtime`/`mtimeNanos` are `null` when a re-upload cleared them. `xetHash` is omitted without content read access.\n- `reset`: `{\"reason\": \"cursor_too_old\"}` — the requested `cursor`/`since` is older than what the server buffers (about 15 minutes); the stream ends and the client must re-list. A `since` at or after the bucket's `updatedAt` never resets, however old.\n- `reconnect`: `{\"cursor\"}` — sent after 20 minutes or when the server shuts down (deploys), then the stream ends; reconnect with that cursor. Treat any other end of the stream the same way: reconnect with the last cursor you received.\n\nA `: ping` comment is sent every 30s. Resume with `?cursor=` (exclusive) or `?since=` (inclusive); without either, only live changes are sent.",
+        "description": "Server-sent events (`Accept: text/event-stream`) of the bucket's file changes, so clients can stop polling `/tree`.\n\nEvents:\n- `ready`: `{\"cursor\"}` — replay (if any) is done, live changes follow. `cursor` may be absent if the feed has seen no change yet.\n- `changes`: `{\"cursor\", \"changes\": [{\"path\", \"op\": \"add\" | \"update\" | \"delete\", \"size\"?, \"xetHash\"?, \"uploadedAt\"?, \"mtime\"?, \"mtimeNanos\"?, \"mode\"?, \"contentType\"?}]}` — a batch of changes coalesced over ~200ms. An `update` only carries the fields that changed (an identical re-upload has just `uploadedAt`, an `updateMetadata` just the metadata it changed); `mtime`/`mtimeNanos`/`mode` are `null` when a re-upload cleared them. `contentType` is only sent on an `update` that changed it. `xetHash` is omitted without content read access.\n- `reset`: `{\"reason\": \"cursor_too_old\"}` — the requested `cursor`/`since` is older than what the server buffers (about 15 minutes); the stream ends and the client must re-list. A `since` at or after the bucket's `updatedAt` never resets, however old.\n- `reconnect`: `{\"cursor\"}` — sent after 20 minutes or when the server shuts down (deploys), then the stream ends; reconnect with that cursor. Treat any other end of the stream the same way: reconnect with the last cursor you received.\n\nA `: ping` comment is sent every 30s. Resume with `?cursor=` (exclusive) or `?since=` (inclusive); without either, only live changes are sent.",
         "summary": "Follow changes",
         "tags": [
           "buckets"
@@ -89982,6 +90027,12 @@
                       },
                       "contentType": {
                         "type": "string"
+                      },
+                      "mode": {
+                        "description": "POSIX st_mode, when set by the uploader. With the S_IFLNK type bits (0o120000), the file is a symlink whose content is the target",
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
                       }
                     },
                     "required": [
@@ -90099,6 +90150,12 @@
                       },
                       "contentType": {
                         "type": "string"
+                      },
+                      "mode": {
+                        "description": "POSIX st_mode, when set by the uploader. With the S_IFLNK type bits (0o120000), the file is a symlink whose content is the target",
+                        "type": "integer",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
                       }
                     },
                     "required": [
